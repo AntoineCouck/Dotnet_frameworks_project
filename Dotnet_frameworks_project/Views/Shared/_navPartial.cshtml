@@ -1,0 +1,25 @@
+﻿          <link rel="stylesheet" href="~/css/materialize.css" asp-append-version="true" />
+         <link rel="stylesheet" href="~/css/materialize.min.css" asp-append-version="true" />
+  <link href="https://cdnjtopflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+          <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+               <script src="~/js/site.js" asp-append-version="true"></script>
+
+
+
+  <ul id="slide-out" class="sidenav">
+    <li>
+      <div class="background">
+    <i class="large material-icons" >account_circle</i>
+      </div>
+    </li>
+     <li><div style="margin-top:20%;" class="divider"></div></li>
+    <li><a class="subheader">Account options</a></li>
+    
+     <i  style="text-align:center"><partial name="_LoginPartial" /></i>
+   
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">Navigation options</a></li>
+    <li><a class="waves-effect" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+  </ul>
+  <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons" style="font-size:50px; margin-left:1.2%; margin-top:1.2%;">menu</i></a>
