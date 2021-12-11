@@ -14,6 +14,7 @@ namespace Dotnet_frameworks_project.Seeders
                     DbContextOptions<ApplicationContext>>()))
             {
                 ApplicationUser user1 = null;
+                ApplicationUser Logopedist = null;
                 context.Database.EnsureCreated();
 
                 if(!context.Users.Any())
@@ -27,7 +28,18 @@ namespace Dotnet_frameworks_project.Seeders
                         EmailConfirmed = true
                     };
 
+                    Logopedist = new ApplicationUser
+                    {
+                        UserName = "Logopedist",
+                        Firstname = "Margot",
+                        Lastname = "Delo",
+                        Email = "System.administrator@studentenbeheer.be",
+                        EmailConfirmed = true
+                    };
+
+
                     userManager.CreateAsync(user1, "Abc!98765");
+                    userManager.CreateAsync(Logopedist, "Abc!12345");
                 }
 
                 if (!context.Roles.Any())
@@ -52,12 +64,24 @@ namespace Dotnet_frameworks_project.Seeders
                     context.UserRoles.AddRange(
 
                         new IdentityUserRole<string> { UserId = user1.Id, RoleId = "Admin" }
-                        //new IdentityUserRole<string> { UserId = user.Id, RoleId = "User" }
+                        
 
                         );
 
                     context.SaveChanges();
                 }
+                if (Logopedist != null)
+                {
+                    context.UserRoles.AddRange(
+
+                        new IdentityUserRole<string> { UserId = Logopedist.Id, RoleId = "Logopedist" }
+
+
+                        );
+
+                    context.SaveChanges();
+                }
+
 
             }
 

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Dotnet_frameworks_project.Models;
 
 namespace Dotnet_frameworks_project.Areas.Identity.Data;
 
@@ -19,4 +20,6 @@ public class ApplicationContext : IdentityDbContext<ApplicationUser>
         // For example, you can rename the ASP.NET Identity table names and more.
         // Add your customizations after calling base.OnModelCreating(builder);
     }
+
+    public DbSet<Patient> Patient { get; set; }
 }
