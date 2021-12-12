@@ -30,6 +30,30 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Birthday)
         </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ParentsPhone)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ParentsPhone)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LeftSessions)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LeftSessions)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FollowUp_Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FollowUp_Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.user)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.user.Id)
+        </dd>
     </dl>
     
     <form asp-action="Delete">

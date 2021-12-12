@@ -10,93 +10,87 @@ using Dotnet_frameworks_project.Models;
 
 namespace Dotnet_frameworks_project.Controllers
 {
-    public class PatientsController : Controller
+    public class FollowUp_typeController : Controller
     {
         private readonly ApplicationContext _context;
 
-        public PatientsController(ApplicationContext context)
+        public FollowUp_typeController(ApplicationContext context)
         {
             _context = context;
         }
 
-        // GET: Patients
+        // GET: FollowUp_type
         public async Task<IActionResult> Index()
         {
-
-            var applicationContext = _context.Patient.Include(p => p.user);
-            return View(await applicationContext.ToListAsync());
+            return View(await _context.FollowUp_type.ToListAsync());
         }
 
-        // GET: Patients/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // GET: FollowUp_type/Details/5
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var patient = await _context.Patient
-                .Include(p => p.user)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (patient == null)
+            var followUp_type = await _context.FollowUp_type
+                .FirstOrDefaultAsync(m => m.Name == id);
+            if (followUp_type == null)
             {
                 return NotFound();
             }
 
-            return View(patient);
+            return View(followUp_type);
         }
 
-        // GET: Patients/Create
+        // GET: FollowUp_type/Create
         public IActionResult Create()
         {
             
-            //ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
-            ViewData["FollowupName"] = new SelectList(_context.FollowUp_type , "Name" , "Name");
+
             return View();
         }
 
-        // POST: Patients/Create
+        // POST: FollowUp_type/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Birthday,ParentsPhone,LeftSessions,FollowUp_Name,UserId")] Patient patient)
+        public async Task<IActionResult> Create([Bind("Name,Description,Number_of_requiredsessions")] FollowUp_type followUp_type)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(patient);
+                _context.Add(followUp_type);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", patient.UserId);
-            return View(patient);
+            return View(followUp_type);
         }
 
-        // GET: Patients/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // GET: FollowUp_type/Edit/5
+        public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var patient = await _context.Patient.FindAsync(id);
-            if (patient == null)
+            var followUp_type = await _context.FollowUp_type.FindAsync(id);
+            if (followUp_type == null)
             {
                 return NotFound();
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", patient.UserId);
-            return View(patient);
+            return View(followUp_type);
         }
 
-        // POST: Patients/Edit/5
+        // POST: FollowUp_type/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Birthday,ParentsPhone,LeftSessions,FollowUp_Name,UserId")] Patient patient)
+        public async Task<IActionResult> Edit(string id, [Bind("Name,Description,Number_of_requiredsessions")] FollowUp_type followUp_type)
         {
-            if (id != patient.Id)
+            if (id != followUp_type.Name)
             {
                 return NotFound();
             }
@@ -105,12 +99,12 @@ namespace Dotnet_frameworks_project.Controllers
             {
                 try
                 {
-                    _context.Update(patient);
+                    _context.Update(followUp_type);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PatientExists(patient.Id))
+                    if (!FollowUp_typeExists(followUp_type.Name))
                     {
                         return NotFound();
                     }
@@ -121,43 +115,41 @@ namespace Dotnet_frameworks_project.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", patient.UserId);
-            return View(patient);
+            return View(followUp_type);
         }
 
-        // GET: Patients/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // GET: FollowUp_type/Delete/5
+        public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var patient = await _context.Patient
-                .Include(p => p.user)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (patient == null)
+            var followUp_type = await _context.FollowUp_type
+                .FirstOrDefaultAsync(m => m.Name == id);
+            if (followUp_type == null)
             {
                 return NotFound();
             }
 
-            return View(patient);
+            return View(followUp_type);
         }
 
-        // POST: Patients/Delete/5
+        // POST: FollowUp_type/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var patient = await _context.Patient.FindAsync(id);
-            _context.Patient.Remove(patient);
+            var followUp_type = await _context.FollowUp_type.FindAsync(id);
+            _context.FollowUp_type.Remove(followUp_type);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PatientExists(int id)
+        private bool FollowUp_typeExists(string id)
         {
-            return _context.Patient.Any(e => e.Id == id);
+            return _context.FollowUp_type.Any(e => e.Name == id);
         }
     }
 }
