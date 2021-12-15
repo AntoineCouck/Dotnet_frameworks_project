@@ -24,4 +24,6 @@ public class ApplicationContext : IdentityDbContext<ApplicationUser>
     public DbSet<Patient> Patient { get; set; }
 
     public DbSet<Dotnet_frameworks_project.Models.FollowUp_type> FollowUp_type { get; set; }
+
+    public DbSet<Dotnet_frameworks_project.Models.FollowUp_patients> FollowUp_patients { get; set; }
 }

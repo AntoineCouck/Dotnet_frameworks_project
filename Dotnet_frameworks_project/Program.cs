@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Dotnet_frameworks_project.Areas.Identity.Data;
 using Dotnet_frameworks_project.Seeders;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using NETCore.MailKit.Infrastructure.Internal;
+using Dotnet_frameworks_project.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("ApplicationContextConnection");builder.Services.AddDbContext<ApplicationContext>(options =>
@@ -28,6 +31,29 @@ builder.Services.Configure<IdentityOptions>(options =>
 
     options.User.RequireUniqueEmail = false;
 });
+
+builder.Services.AddTransient<IEmailSender, MailKitEmailSender>();
+builder.Services.Configure<MailKitOptions>(options =>
+{
+    options.Server = builder.Configuration["ExternalProviders:MailKit:SMTP:Address"];
+    options.Port = Convert.ToInt32(builder.Configuration["ExternalProviders:MailKit:SMTP:Port"]);
+    options.Account = builder.Configuration["ExternalProviders:MailKit:SMTP:Account"];
+    options.Password = builder.Configuration["ExternalProviders:MailKit:SMTP:Password"];
+    options.SenderEmail = builder.Configuration["ExternalProviders:MailKit:SMTP:SenderEmail"];
+    options.SenderName = builder.Configuration["ExternalProviders:MailKit:SMTP:SenderName"];
+
+    // Set it to TRUE to enable ssl or tls, FALSE otherwise
+    options.Security = false;  // true zet ssl or tls aan
+});
+
+
+// voor apparte een algemene controller te gebruiken 
+
+builder.Services.AddHttpContextAccessor();
+
+// voor apparte een algemene controller te gebruiken 
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

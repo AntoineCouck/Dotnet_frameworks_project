@@ -2,13 +2,15 @@
 {
     public class FollowUp_patients
     {
-        public string FollowUpId { get; set; }
+        public int Id { get; set; }
 
-        public int PatientId { get; set; }
+        public string ? FollowUpId { get; set; }
 
-        public Patient Patient { get; set; }
+        public int ? PatientId { get; set; }
 
-        public FollowUp_type FollowUpType { get; set; }
+        public Patient ? Patient { get; set; }
+
+        public FollowUp_type ? FollowUpType { get; set; }
 
     }
 }

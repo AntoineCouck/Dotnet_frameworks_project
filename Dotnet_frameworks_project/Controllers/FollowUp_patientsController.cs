@@ -10,24 +10,23 @@ using Dotnet_frameworks_project.Models;
 
 namespace Dotnet_frameworks_project.Controllers
 {
-    public class PatientsController : Controller
+    public class FollowUp_patientsController : Controller
     {
         private readonly ApplicationContext _context;
 
-        public PatientsController(ApplicationContext context)
+        public FollowUp_patientsController(ApplicationContext context)
         {
             _context = context;
         }
 
-        // GET: Patients
+        // GET: FollowUp_patients
         public async Task<IActionResult> Index()
         {
-
-            var applicationContext = _context.Patient.Include(p => p.user);
+            var applicationContext = _context.FollowUp_patients.Include(f => f.Patient);
             return View(await applicationContext.ToListAsync());
         }
 
-        // GET: Patients/Details/5
+        // GET: FollowUp_patients/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -35,44 +34,45 @@ namespace Dotnet_frameworks_project.Controllers
                 return NotFound();
             }
 
-            var patient = await _context.Patient
-                .Include(p => p.user)
+            var followUp_patients = await _context.FollowUp_patients
+                .Include(f => f.Patient)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (patient == null)
+            if (followUp_patients == null)
             {
                 return NotFound();
             }
 
-            return View(patient);
+            return View(followUp_patients);
         }
 
-        // GET: Patients/Create
+        // GET: FollowUp_patients/Create
         public IActionResult Create()
         {
-
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
-
+            ViewData["PatientId"] = new SelectList(_context.Patient, "Id", "FirstName");
+            ViewData["TypeId"] = new SelectList(_context.FollowUp_type, "Name", "Name");
             return View();
         }
 
-        // POST: Patients/Create
+        // POST: FollowUp_patients/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Birthday,ParentsPhone,LeftSessions,UserId")] Patient patient)
+        public async Task<IActionResult> Create([Bind("Id,FollowUpId,PatientId")] FollowUp_patients followUp_patients)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(patient);
+                _context.Add(followUp_patients);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", patient.UserId);
-            return View(patient);
+            ViewData["PatientId"] = new SelectList(_context.Patient, "Id", "FirstName", followUp_patients.PatientId);
+            ViewData["TypeId"] = new SelectList(_context.FollowUp_type, "Name", "Name");
+
+            return View(followUp_patients);
         }
 
-        // GET: Patients/Edit/5
+        // GET: FollowUp_patients/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -80,23 +80,23 @@ namespace Dotnet_frameworks_project.Controllers
                 return NotFound();
             }
 
-            var patient = await _context.Patient.FindAsync(id);
-            if (patient == null)
+            var followUp_patients = await _context.FollowUp_patients.FindAsync(id);
+            if (followUp_patients == null)
             {
                 return NotFound();
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", patient.UserId);
-            return View(patient);
+            ViewData["PatientId"] = new SelectList(_context.Patient, "Id", "FirstName", followUp_patients.PatientId);
+            return View(followUp_patients);
         }
 
-        // POST: Patients/Edit/5
+        // POST: FollowUp_patients/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Birthday,ParentsPhone,LeftSessions,FollowUp_Name,UserId")] Patient patient)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FollowUpId,PatientId")] FollowUp_patients followUp_patients)
         {
-            if (id != patient.Id)
+            if (id != followUp_patients.Id)
             {
                 return NotFound();
             }
@@ -105,12 +105,12 @@ namespace Dotnet_frameworks_project.Controllers
             {
                 try
                 {
-                    _context.Update(patient);
+                    _context.Update(followUp_patients);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PatientExists(patient.Id))
+                    if (!FollowUp_patientsExists(followUp_patients.Id))
                     {
                         return NotFound();
                     }
@@ -121,11 +121,11 @@ namespace Dotnet_frameworks_project.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", patient.UserId);
-            return View(patient);
+            ViewData["PatientId"] = new SelectList(_context.Patient, "Id", "FirstName", followUp_patients.PatientId);
+            return View(followUp_patients);
         }
 
-        // GET: Patients/Delete/5
+        // GET: FollowUp_patients/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -133,31 +133,31 @@ namespace Dotnet_frameworks_project.Controllers
                 return NotFound();
             }
 
-            var patient = await _context.Patient
-                .Include(p => p.user)
+            var followUp_patients = await _context.FollowUp_patients
+                .Include(f => f.Patient)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (patient == null)
+            if (followUp_patients == null)
             {
                 return NotFound();
             }
 
-            return View(patient);
+            return View(followUp_patients);
         }
 
-        // POST: Patients/Delete/5
+        // POST: FollowUp_patients/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var patient = await _context.Patient.FindAsync(id);
-            _context.Patient.Remove(patient);
+            var followUp_patients = await _context.FollowUp_patients.FindAsync(id);
+            _context.FollowUp_patients.Remove(followUp_patients);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PatientExists(int id)
+        private bool FollowUp_patientsExists(int id)
         {
-            return _context.Patient.Any(e => e.Id == id);
+            return _context.FollowUp_patients.Any(e => e.Id == id);
         }
     }
 }
