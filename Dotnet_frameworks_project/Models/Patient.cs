@@ -30,4 +30,10 @@ public class Patient
     public string ? UserId { get; set; }
     public ApplicationUser ? user { get; set; }
 
+
+    public Insurance ? Insurance { get; set; }
+
+    [ForeignKey("Insurance")]
+    public string ? InsuranceId { get; set; }
+
 }

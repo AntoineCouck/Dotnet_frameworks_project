@@ -16,7 +16,7 @@
      <li><div style="margin-top:20%;" class="divider"></div></li>
     <li><a class="subheader">Account options</a></li>
     
-     <i  style="text-align:center"><partial name="_LoginPartial" /></i>
+     <i style="text-align:center"><partial name="_LoginPartial" /></i>
    
     <li><div class="divider"></div></li>
     <li><a class="subheader">Navigation options</a></li>
@@ -26,10 +26,11 @@
     <li><a class="subheader">Patients management</a></li>
          <li><a class="waves-effect" asp-area="" asp-controller="Patients" asp-action="Index">View all patients</a></li>
                   <li><a class="waves-effect" asp-area="" asp-controller="FollowUp_patients" asp-action="Index">Create a follow up </a></li>
-
-          <li><div class="divider"></div></li>
-    <li><a class="subheader">Follow up</a></li>
              <li><a class="waves-effect" asp-area="" asp-controller="FollowUp_type" asp-action="Index">Followup types</a></li>
+                   <li><div class="divider"></div></li>
+    <li><a class="subheader">Tests management</a></li>
+                 <li><a class="waves-effect" asp-area="" asp-controller="Tests" asp-action="Index">Tests</a></li>
+                 <li><a class="waves-effect" asp-area="" asp-controller="PassedTests" asp-action="Index">Add a passed test</a></li>
 
   </ul>
   <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons" style="font-size:50px; margin-left:1.2%; margin-top:1.2%;">menu</i></a>
