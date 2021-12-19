@@ -26,6 +26,40 @@
     </dl>
 </div>
 <div>
+<h2>Member of the insurance:</h2>
+
+        <table class="striped highlight centered responsive-table" >
+        <thead>
+          <tr>
+              <th>FirstName</th>
+              <th>LastName</th>
+             
+          </tr>
+        </thead>
+
+        <tbody>
+            @{
+
+        foreach(var patient in ViewBag.Patients)
+        {
+          <tr>
+            <td>@patient.FirstName</td>
+            <td>@patient.LastName</td>
+          </tr>
+        }
+
+ }
+
+        </tbody>
+      </table>
+
+
+
+
+<p></p>
+
+</div>
+<div>
     <a asp-action="Edit" asp-route-id="@Model?.Name">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

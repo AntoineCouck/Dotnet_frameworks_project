@@ -1,13 +1,9 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Dotnet_frameworks_project.Areas.Identity.Data;
+using Dotnet_frameworks_project.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Dotnet_frameworks_project.Areas.Identity.Data;
-using Dotnet_frameworks_project.Models;
 
 namespace Dotnet_frameworks_project.Controllers
 {

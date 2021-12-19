@@ -1,13 +1,8 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using Dotnet_frameworks_project.Areas.Identity.Data;
 using Dotnet_frameworks_project.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Dotnet_frameworks_project.Controllers
 {
@@ -20,9 +15,13 @@ namespace Dotnet_frameworks_project.Controllers
             _context = context;
         }
 
+        
+
         // GET: Insurances
         public async Task<IActionResult> Index()
         {
+           
+
             return View(await _context.Insurance.ToListAsync());
         }
 
@@ -33,6 +32,10 @@ namespace Dotnet_frameworks_project.Controllers
             {
                 return NotFound();
             }
+
+          var patients = _context.Patient.Where(p => p.InsuranceId == id).ToList();
+
+            ViewData["Patients"] = patients;
 
             var insurance = await _context.Insurance
                 .FirstOrDefaultAsync(m => m.Name == id);

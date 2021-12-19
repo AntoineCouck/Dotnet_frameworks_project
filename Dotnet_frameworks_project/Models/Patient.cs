@@ -23,17 +23,17 @@ public class Patient
     [Required]
     [Phone]
     public string ParentsPhone { get; set; }
-   
-    
-    public int ? LeftSessions { get; set; } 
-  
-    public string ? UserId { get; set; }
-    public ApplicationUser ? user { get; set; }
 
 
-    public Insurance ? Insurance { get; set; }
+    public int? LeftSessions { get; set; }
+
+    public string? UserId { get; set; }
+    public ApplicationUser? user { get; set; }
+
+
+    public Insurance? Insurance { get; set; }
 
     [ForeignKey("Insurance")]
-    public string ? InsuranceId { get; set; }
+    public string? InsuranceId { get; set; }
 
 }

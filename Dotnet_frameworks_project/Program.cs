@@ -1,17 +1,23 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Dotnet_frameworks_project.Areas.Identity.Data;
 using Dotnet_frameworks_project.Seeders;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using NETCore.MailKit.Infrastructure.Internal;
 using Dotnet_frameworks_project.Services;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.EntityFrameworkCore;
+using NETCore.MailKit.Infrastructure.Internal;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("ApplicationContextConnection");builder.Services.AddDbContext<ApplicationContext>(options =>
-    options.UseSqlServer(connectionString));builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationContext>();
-// Add services to the container.
+var connectionString = builder.Configuration.GetConnectionString("ApplicationContextConnection"); builder.Services.AddDbContext<ApplicationContext>(options =>
+     options.UseSqlServer(connectionString)); builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+      .AddEntityFrameworkStores<ApplicationContext>();
+
 builder.Services.AddControllersWithViews();
+
+// for app controller 
+
+builder.Services.AddHttpContextAccessor();
+
+// for app controller
 builder.Services.Configure<IdentityOptions>(options =>
 {
     options.Password.RequireDigit = true;
@@ -47,11 +53,7 @@ builder.Services.Configure<MailKitOptions>(options =>
 });
 
 
-// voor apparte een algemene controller te gebruiken 
 
-builder.Services.AddHttpContextAccessor();
-
-// voor apparte een algemene controller te gebruiken 
 
 
 var app = builder.Build();
@@ -73,6 +75,7 @@ using (var scope = app.Services.CreateScope())
 
 //voor de seeder
 
+
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
@@ -82,4 +85,5 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapRazorPages();
+app.UseMiddleware<SessionUser>();
 app.Run();

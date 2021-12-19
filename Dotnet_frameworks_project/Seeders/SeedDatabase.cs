@@ -13,12 +13,19 @@ namespace Dotnet_frameworks_project.Seeders
                 serviceProvider.GetRequiredService<
                     DbContextOptions<ApplicationContext>>()))
             {
+              
                 ApplicationUser user1 = null;
                 ApplicationUser Logopedist = null;
+
                 context.Database.EnsureCreated();
 
-                if(!context.Users.Any())
-            {
+
+                if (!context.Users.Any())
+                {
+                    //ApplicationUser dummy = new ApplicationUser { Id = "-", Firstname = "-", Lastname = "-", UserName = "-", Email = "?@?.?" };
+                    //context.Users.Add(dummy);
+                    //context.SaveChanges();
+
                     user1 = new ApplicationUser
                     {
                         UserName = "Admin",
@@ -64,7 +71,7 @@ namespace Dotnet_frameworks_project.Seeders
                     context.UserRoles.AddRange(
 
                         new IdentityUserRole<string> { UserId = user1.Id, RoleId = "Admin" }
-                        
+
 
                         );
 

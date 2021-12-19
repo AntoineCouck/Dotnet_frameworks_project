@@ -1,29 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿#nullable disable
+using Dotnet_frameworks_project.Areas.Identity.Data;
+using Dotnet_frameworks_project.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Dotnet_frameworks_project.Areas.Identity.Data;
-using Dotnet_frameworks_project.Models;
 
 namespace Dotnet_frameworks_project.Controllers
 {
-    public class PatientsController : Controller
+    public class PatientsController : ApplicationController
     {
-        private readonly ApplicationContext _context;
+        //private readonly ApplicationContext _context;
+        
 
-        public PatientsController(ApplicationContext context)
+        public PatientsController(ApplicationContext context , IHttpContextAccessor httpContextAccessor, ILogger<ApplicationController> logger) :base(context , httpContextAccessor , logger)
         {
-            _context = context;
+            //_context = context;
+            
         }
 
         // GET: Patients
         public async Task<IActionResult> Index()
         {
-
-            var applicationContext = _context.Patient.Include(p => p.user);
+            var applicationContext = _context.Patient.Include(p => p.Insurance).Include(p => p.user);
             return View(await applicationContext.ToListAsync());
         }
 
@@ -36,6 +34,7 @@ namespace Dotnet_frameworks_project.Controllers
             }
 
             var patient = await _context.Patient
+                .Include(p => p.Insurance)
                 .Include(p => p.user)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (patient == null)
@@ -49,9 +48,11 @@ namespace Dotnet_frameworks_project.Controllers
         // GET: Patients/Create
         public IActionResult Create()
         {
+            var user = _context.Users.Where(u => u.UserName == _user.UserName).ToList();
+           
 
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
-
+            ViewData["InsuranceId"] = new SelectList(_context.Insurance, "Name", "Name");
+            ViewData["UserId"] = user;
             return View();
         }
 
@@ -60,7 +61,7 @@ namespace Dotnet_frameworks_project.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Birthday,ParentsPhone,LeftSessions,UserId")] Patient patient)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Birthday,ParentsPhone,LeftSessions,UserId,InsuranceId")] Patient patient)
         {
             if (ModelState.IsValid)
             {
@@ -68,6 +69,7 @@ namespace Dotnet_frameworks_project.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["InsuranceId"] = new SelectList(_context.Insurance, "Name", "Name", patient.InsuranceId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", patient.UserId);
             return View(patient);
         }
@@ -85,6 +87,7 @@ namespace Dotnet_frameworks_project.Controllers
             {
                 return NotFound();
             }
+            ViewData["InsuranceId"] = new SelectList(_context.Insurance, "Name", "Name", patient.InsuranceId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", patient.UserId);
             return View(patient);
         }
@@ -94,7 +97,7 @@ namespace Dotnet_frameworks_project.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Birthday,ParentsPhone,LeftSessions,FollowUp_Name,UserId")] Patient patient)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Birthday,ParentsPhone,LeftSessions,UserId,InsuranceId")] Patient patient)
         {
             if (id != patient.Id)
             {
@@ -121,6 +124,7 @@ namespace Dotnet_frameworks_project.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["InsuranceId"] = new SelectList(_context.Insurance, "Name", "Name", patient.InsuranceId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", patient.UserId);
             return View(patient);
         }
@@ -134,6 +138,7 @@ namespace Dotnet_frameworks_project.Controllers
             }
 
             var patient = await _context.Patient
+                .Include(p => p.Insurance)
                 .Include(p => p.user)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (patient == null)

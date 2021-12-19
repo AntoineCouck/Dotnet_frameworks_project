@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Dotnet_frameworks_project.Migrations
 {
-    public partial class Add : Migration
+    public partial class test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -61,6 +61,34 @@ namespace Dotnet_frameworks_project.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_FollowUp_type", x => x.Name);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Insurance",
+                columns: table => new
+                {
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Adres = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Insurance", x => x.Name);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Test",
+                columns: table => new
+                {
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Usage = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Min_age = table.Column<int>(type: "int", nullable: false),
+                    Max_age = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Test", x => x.Name);
                 });
 
             migrationBuilder.CreateTable(
@@ -180,7 +208,8 @@ namespace Dotnet_frameworks_project.Migrations
                     Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ParentsPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LeftSessions = table.Column<int>(type: "int", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    InsuranceId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -190,6 +219,11 @@ namespace Dotnet_frameworks_project.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Patient_Insurance_InsuranceId",
+                        column: x => x.InsuranceId,
+                        principalTable: "Insurance",
+                        principalColumn: "Name");
                 });
 
             migrationBuilder.CreateTable(
@@ -215,6 +249,30 @@ namespace Dotnet_frameworks_project.Migrations
                         column: x => x.PatientId,
                         principalTable: "Patient",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PassedTests",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TestId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    PatientId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PassedTests", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PassedTests_Patient_PatientId",
+                        column: x => x.PatientId,
+                        principalTable: "Patient",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_PassedTests_Test_TestId",
+                        column: x => x.TestId,
+                        principalTable: "Test",
+                        principalColumn: "Name");
                 });
 
             migrationBuilder.CreateIndex(
@@ -267,6 +325,21 @@ namespace Dotnet_frameworks_project.Migrations
                 column: "PatientId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_PassedTests_PatientId",
+                table: "PassedTests",
+                column: "PatientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PassedTests_TestId",
+                table: "PassedTests",
+                column: "TestId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Patient_InsuranceId",
+                table: "Patient",
+                column: "InsuranceId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Patient_UserId",
                 table: "Patient",
                 column: "UserId");
@@ -293,6 +366,9 @@ namespace Dotnet_frameworks_project.Migrations
                 name: "FollowUp_patients");
 
             migrationBuilder.DropTable(
+                name: "PassedTests");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
@@ -302,7 +378,13 @@ namespace Dotnet_frameworks_project.Migrations
                 name: "Patient");
 
             migrationBuilder.DropTable(
+                name: "Test");
+
+            migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Insurance");
         }
     }
 }

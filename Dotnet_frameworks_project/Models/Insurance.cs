@@ -11,7 +11,6 @@ namespace Dotnet_frameworks_project.Models
         [Required]
         public string Adres { get; set; }
 
-        [Phone]
         [Required]
 
         public int PhoneNumber { get; set; }

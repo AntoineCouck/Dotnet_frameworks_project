@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dotnet_frameworks_project.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20211219141910_azerty")]
-    partial class azerty
+    [Migration("20211219200830_test")]
+    partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

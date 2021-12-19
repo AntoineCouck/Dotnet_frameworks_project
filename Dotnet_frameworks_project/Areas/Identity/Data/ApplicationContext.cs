@@ -1,8 +1,6 @@
-﻿using Dotnet_frameworks_project.Areas.Identity.Data;
-using Microsoft.AspNetCore.Identity;
+﻿using Dotnet_frameworks_project.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Dotnet_frameworks_project.Models;
 
 namespace Dotnet_frameworks_project.Areas.Identity.Data;
 
