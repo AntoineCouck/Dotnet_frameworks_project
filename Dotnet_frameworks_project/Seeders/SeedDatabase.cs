@@ -1,4 +1,5 @@
 ﻿using Dotnet_frameworks_project.Areas.Identity.Data;
+using Dotnet_frameworks_project.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,11 +21,24 @@ namespace Dotnet_frameworks_project.Seeders
                 context.Database.EnsureCreated();
 
 
+                if (!context.Language.Any())
+                {
+                    context.Language.AddRange(
+                        new Language() { Id = "-", Name = "-", Cultures = "-", IsSystemLanguage = false },
+                        new Language() { Id = "en", Name = "English", Cultures = "UK;US", IsSystemLanguage = true },
+                        new Language() { Id = "fr", Name = "français", Cultures = "BE;FR", IsSystemLanguage = true },
+                        new Language() { Id = "nl", Name = "Nederlands", Cultures = "BE;NL", IsSystemLanguage = true }
+                    );
+                    context.SaveChanges();
+                }
+
+
+
                 if (!context.Users.Any())
                 {
-                    //ApplicationUser dummy = new ApplicationUser { Id = "-", Firstname = "-", Lastname = "-", UserName = "-", Email = "?@?.?" };
-                    //context.Users.Add(dummy);
-                    //context.SaveChanges();
+                    ApplicationUser dummy = new ApplicationUser { Id = "-", Firstname = "-", Lastname = "-", UserName = "-", Email = "?@?.?" };
+                    context.Users.Add(dummy);
+                    context.SaveChanges();
 
                     user1 = new ApplicationUser
                     {
@@ -57,7 +71,7 @@ namespace Dotnet_frameworks_project.Seeders
                             new IdentityRole { Id = "Logopedist", Name = "Logopedist", NormalizedName = "logopedist" },
                             new IdentityRole { Id = "Parents", Name = "Parents", NormalizedName = "parents" },
                             new IdentityRole { Id = "Mutualiteit", Name = "Mutualiteit", NormalizedName = "mutualiteit" },
-                              new IdentityRole { Id = "Admin", Name = "Admin", NormalizedName = "admin" }
+                            new IdentityRole { Id = "Admin", Name = "Admin", NormalizedName = "admin" }
 
                             );
 
@@ -88,6 +102,38 @@ namespace Dotnet_frameworks_project.Seeders
 
                     context.SaveChanges();
                 }
+
+
+             
+
+                List<string> supportedLanguages = new List<string>();
+                Language.AllLanguages = context.Language.ToList();
+                Language.LanguageDictionary = new Dictionary<string, Language>();
+                Language.SystemLanguages = new List<Language>();
+
+                supportedLanguages.Add("nl-BE");
+                foreach (Language l in Language.AllLanguages)
+                {
+
+                    // key not found = ligne en dessous mettre au dessus du if 
+                    Language.LanguageDictionary[l.Id] = l;
+
+
+                    if (l.Id != "-")
+                    {
+
+                        if (l.IsSystemLanguage)
+                            Language.SystemLanguages.Add(l);
+                        supportedLanguages.Add(l.Id);
+                        string[] even = l.Cultures.Split(";");
+                        foreach (string e in even)
+                        {
+                            supportedLanguages.Add(l.Id + "-" + e);
+                        }
+                    }
+                }
+                Language.SupportedLanguages = supportedLanguages.ToArray();
+
 
 
             }

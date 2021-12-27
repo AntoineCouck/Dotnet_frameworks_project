@@ -1,17 +1,22 @@
-﻿using Dotnet_frameworks_project.Models;
+﻿using Dotnet_frameworks_project.Areas.Identity.Data;
+using Dotnet_frameworks_project.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using System.Diagnostics;
 
 namespace Dotnet_frameworks_project.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : ApplicationController
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IStringLocalizer<HomeController> _localizer;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ApplicationContext context, IHttpContextAccessor httpContextAccessor, ILogger<ApplicationController> logger, IStringLocalizer<HomeController> localizer) : base(context, httpContextAccessor, logger)
+
         {
-            _logger = logger;
+            _localizer = localizer;
         }
+
+
 
         public IActionResult Index()
         {

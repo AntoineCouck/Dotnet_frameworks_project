@@ -3,19 +3,21 @@ using Dotnet_frameworks_project.Areas.Identity.Data;
 using Dotnet_frameworks_project.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace Dotnet_frameworks_project.Controllers
 {
-    public class InsurancesController : Controller
+    public class InsurancesController : ApplicationController
     {
-        private readonly ApplicationContext _context;
 
-        public InsurancesController(ApplicationContext context)
+        private readonly IStringLocalizer<InsurancesController> _localizer;
+
+        public InsurancesController(ApplicationContext context, IHttpContextAccessor httpContextAccessor, ILogger<ApplicationController> logger, IStringLocalizer<InsurancesController> localizer) : base(context, httpContextAccessor, logger)
+
         {
-            _context = context;
+            _localizer = localizer;
         }
 
-        
 
         // GET: Insurances
         public async Task<IActionResult> Index()

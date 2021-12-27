@@ -2,17 +2,21 @@
 using Dotnet_frameworks_project.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace Dotnet_frameworks_project.Controllers
 {
-    public class FollowUp_typeController : Controller
+    public class FollowUp_typeController : ApplicationController
     {
-        private readonly ApplicationContext _context;
+        private readonly IStringLocalizer<FollowUp_typeController> _localizer;
 
-        public FollowUp_typeController(ApplicationContext context)
+        public FollowUp_typeController(ApplicationContext context, IHttpContextAccessor httpContextAccessor, ILogger<ApplicationController> logger, IStringLocalizer<FollowUp_typeController> localizer) : base(context, httpContextAccessor, logger)
+
         {
-            _context = context;
+            _localizer = localizer;
         }
+
+
 
         // GET: FollowUp_type
         public async Task<IActionResult> Index()

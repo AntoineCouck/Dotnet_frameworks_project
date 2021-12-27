@@ -4,19 +4,23 @@ using Dotnet_frameworks_project.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace Dotnet_frameworks_project.Controllers
 {
     public class PatientsController : ApplicationController
     {
         //private readonly ApplicationContext _context;
-        
 
-        public PatientsController(ApplicationContext context , IHttpContextAccessor httpContextAccessor, ILogger<ApplicationController> logger) :base(context , httpContextAccessor , logger)
+
+        private readonly IStringLocalizer<PatientsController> _localizer;
+
+        public PatientsController(ApplicationContext context, IHttpContextAccessor httpContextAccessor, ILogger<ApplicationController> logger, IStringLocalizer<PatientsController> localizer) : base(context, httpContextAccessor, logger)
+
         {
-            //_context = context;
-            
+            _localizer = localizer;
         }
+
 
         // GET: Patients
         public async Task<IActionResult> Index()

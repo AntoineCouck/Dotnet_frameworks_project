@@ -1,4 +1,5 @@
 using Dotnet_frameworks_project.Areas.Identity.Data;
+using Dotnet_frameworks_project.Models;
 using Dotnet_frameworks_project.Seeders;
 using Dotnet_frameworks_project.Services;
 using Microsoft.AspNetCore.Identity;
@@ -10,6 +11,13 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("ApplicationContextConnection"); builder.Services.AddDbContext<ApplicationContext>(options =>
      options.UseSqlServer(connectionString)); builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
       .AddEntityFrameworkStores<ApplicationContext>();
+
+builder.Services.AddMvc()
+       .AddViewLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.Suffix)
+       .AddDataAnnotationsLocalization();
+
+
+builder.Services.AddLocalization(option => option.ResourcesPath = "Resources");
 
 builder.Services.AddControllersWithViews();
 
@@ -38,19 +46,19 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.User.RequireUniqueEmail = false;
 });
 
-builder.Services.AddTransient<IEmailSender, MailKitEmailSender>();
-builder.Services.Configure<MailKitOptions>(options =>
-{
-    options.Server = builder.Configuration["ExternalProviders:MailKit:SMTP:Address"];
-    options.Port = Convert.ToInt32(builder.Configuration["ExternalProviders:MailKit:SMTP:Port"]);
-    options.Account = builder.Configuration["ExternalProviders:MailKit:SMTP:Account"];
-    options.Password = builder.Configuration["ExternalProviders:MailKit:SMTP:Password"];
-    options.SenderEmail = builder.Configuration["ExternalProviders:MailKit:SMTP:SenderEmail"];
-    options.SenderName = builder.Configuration["ExternalProviders:MailKit:SMTP:SenderName"];
+//builder.Services.AddTransient<IEmailSender, MailKitEmailSender>();
+//builder.Services.Configure<MailKitOptions>(options =>
+//{
+//    options.Server = builder.Configuration["ExternalProviders:MailKit:SMTP:Address"];
+//    options.Port = Convert.ToInt32(builder.Configuration["ExternalProviders:MailKit:SMTP:Port"]);
+//    options.Account = builder.Configuration["ExternalProviders:MailKit:SMTP:Account"];
+//    options.Password = builder.Configuration["ExternalProviders:MailKit:SMTP:Password"];
+//    options.SenderEmail = builder.Configuration["ExternalProviders:MailKit:SMTP:SenderEmail"];
+//    options.SenderName = builder.Configuration["ExternalProviders:MailKit:SMTP:SenderName"];
 
-    // Set it to TRUE to enable ssl or tls, FALSE otherwise
-    options.Security = false;  // true zet ssl or tls aan
-});
+//    // Set it to TRUE to enable ssl or tls, FALSE otherwise
+//    options.Security = false;  // true zet ssl or tls aan
+//});
 
 
 
@@ -74,6 +82,11 @@ using (var scope = app.Services.CreateScope())
 }
 
 //voor de seeder
+var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture("nl-BE")
+     .AddSupportedCultures(Language.SupportedLanguages)
+     .AddSupportedUICultures(Language.SupportedLanguages);
+
+app.UseRequestLocalization(localizationOptions);
 
 
 app.UseRouting();
@@ -84,6 +97,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.MapRazorPages();
 app.UseMiddleware<SessionUser>();
+app.MapRazorPages();
 app.Run();

@@ -4,16 +4,19 @@ using Dotnet_frameworks_project.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace Dotnet_frameworks_project.Controllers
 {
-    public class PassedTestsController : Controller
+    public class PassedTestsController : ApplicationController
     {
-        private readonly ApplicationContext _context;
+      
+        private readonly IStringLocalizer<PassedTestsController> _localizer;
 
-        public PassedTestsController(ApplicationContext context)
+        public PassedTestsController(ApplicationContext context, IHttpContextAccessor httpContextAccessor, ILogger<ApplicationController> logger, IStringLocalizer<PassedTestsController> localizer) : base(context, httpContextAccessor, logger)
+
         {
-            _context = context;
+            _localizer = localizer;
         }
 
         // GET: PassedTests

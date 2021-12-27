@@ -3,16 +3,19 @@ using Dotnet_frameworks_project.Areas.Identity.Data;
 using Dotnet_frameworks_project.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace Dotnet_frameworks_project.Controllers
 {
-    public class TestsController : Controller
+    public class TestsController : ApplicationController
     {
-        private readonly ApplicationContext _context;
+      
+        private readonly IStringLocalizer<TestsController> _localizer;
 
-        public TestsController(ApplicationContext context)
+        public TestsController(ApplicationContext context , IHttpContextAccessor httpContextAccessor, ILogger<ApplicationController> logger, IStringLocalizer<TestsController> localizer) : base(context, httpContextAccessor, logger)
+
         {
-            _context = context;
+            _localizer = localizer;
         }
 
         // GET: Tests

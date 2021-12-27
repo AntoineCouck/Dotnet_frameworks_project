@@ -3,17 +3,20 @@ using Dotnet_frameworks_project.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace Dotnet_frameworks_project.Controllers
 {
-    public class FollowUp_patientsController : Controller
+    public class FollowUp_patientsController : ApplicationController
     {
-        private readonly ApplicationContext _context;
+        private readonly IStringLocalizer<FollowUp_patientsController> _localizer;
 
-        public FollowUp_patientsController(ApplicationContext context)
+        public FollowUp_patientsController(ApplicationContext context, IHttpContextAccessor httpContextAccessor, ILogger<ApplicationController> logger, IStringLocalizer<FollowUp_patientsController> localizer) : base(context, httpContextAccessor, logger)
+
         {
-            _context = context;
+            _localizer = localizer;
         }
+
 
         // GET: FollowUp_patients
         public async Task<IActionResult> Index()
