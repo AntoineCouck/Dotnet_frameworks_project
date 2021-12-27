@@ -45,6 +45,9 @@ namespace Dotnet_frameworks_project.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("LanguageId")
+                        .HasColumnType("nvarchar(2)");
+
                     b.Property<string>("Lastname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -83,6 +86,8 @@ namespace Dotnet_frameworks_project.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LanguageId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -152,6 +157,29 @@ namespace Dotnet_frameworks_project.Migrations
                     b.HasKey("Name");
 
                     b.ToTable("Insurance");
+                });
+
+            modelBuilder.Entity("Dotnet_frameworks_project.Models.Language", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasMaxLength(2)
+                        .HasColumnType("nvarchar(2)");
+
+                    b.Property<string>("Cultures")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsSystemLanguage")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Language");
                 });
 
             modelBuilder.Entity("Dotnet_frameworks_project.Models.PassedTests", b =>
@@ -376,6 +404,15 @@ namespace Dotnet_frameworks_project.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("Dotnet_frameworks_project.Areas.Identity.Data.ApplicationUser", b =>
+                {
+                    b.HasOne("Dotnet_frameworks_project.Models.Language", "Language")
+                        .WithMany()
+                        .HasForeignKey("LanguageId");
+
+                    b.Navigation("Language");
                 });
 
             modelBuilder.Entity("Dotnet_frameworks_project.Models.FollowUp_patients", b =>

@@ -1,6 +1,7 @@
 ﻿@model PaginatedList<ApplicationUserViewModel>
+@using Dotnet_frameworks_project.Areas.Identity.Data
 @using Microsoft.AspNetCore.Mvc.Localization
-@using StudentenBeheer.Areas.Identity.Data
+
 @inject IViewLocalizer Localizer;
 
 
@@ -54,9 +55,10 @@
             <th></th>
             <th></th>
             <th></th>
-            <th>S</th>
-            <th>D</th>
-            <th>B</th>
+            <th>L</th>
+            <th>P</th>
+            <th>M</th>
+            <th>A</th>
             
              
             <th>
@@ -91,15 +93,18 @@
                 @Html.DisplayFor(modelItem => item.Lockout)
             </td>
             <td class="show">
-                @Html.DisplayFor(modelItem => item.Student)
+                @Html.DisplayFor(modelItem => item.Logopedist)
             </td>
 
             <td class="show">
-                @Html.DisplayFor(modelItem => item.Docent)
+                @Html.DisplayFor(modelItem => item.Parents)
             </td>
             
             <td class="show">
-                @Html.DisplayFor(modelItem => item.Beheerder)     
+                @Html.DisplayFor(modelItem => item.Mutualiteit)     
+            </td>
+              <td class="show">
+                @Html.DisplayFor(modelItem => item.Admin)     
             </td>
             <td>
                 @if (!item.Lockout)
@@ -142,4 +147,4 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}s
+}

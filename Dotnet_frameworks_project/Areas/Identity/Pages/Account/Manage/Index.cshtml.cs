@@ -20,11 +20,11 @@ namespace Dotnet_frameworks_project.Areas.Identity.Pages.Account.Manage
 
         public IndexModel(
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager, ApplicationContext dbcontext)
+            SignInManager<ApplicationUser> signInManager, ApplicationContext dbContext)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _dbContext = dbcontext;
+            _dbContext = dbContext;
         }
 
         /// <summary>
@@ -57,18 +57,20 @@ namespace Dotnet_frameworks_project.Areas.Identity.Pages.Account.Manage
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Display(Name = "Firstname")]
+
+            [Display(Name = "Voornaam")]
             public string FirstName { get; set; }
 
-            [Display(Name = "Lastname")]
+            [Display(Name = "Achternaam")]
             public string LastName { get; set; }
 
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
 
-            [Display(Name = "Language")]
+            [Display(Name = "Taal")]
             public string LanguageId { get; set; }
+
         }
 
         private async Task LoadAsync(ApplicationUser user)
@@ -153,6 +155,5 @@ namespace Dotnet_frameworks_project.Areas.Identity.Pages.Account.Manage
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();
         }
-
     }
 }

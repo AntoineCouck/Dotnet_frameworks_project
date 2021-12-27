@@ -1,6 +1,7 @@
 ﻿using Dotnet_frameworks_project.Areas.Identity.Data;
 using Dotnet_frameworks_project.Services;
 using Microsoft.AspNetCore.Mvc;
+using StudentenBeheer.Services;
 
 namespace Dotnet_frameworks_project.Controllers
 {

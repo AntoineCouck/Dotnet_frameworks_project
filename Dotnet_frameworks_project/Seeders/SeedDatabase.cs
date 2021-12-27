@@ -36,7 +36,7 @@ namespace Dotnet_frameworks_project.Seeders
 
                 if (!context.Users.Any())
                 {
-                    ApplicationUser dummy = new ApplicationUser { Id = "-", Firstname = "-", Lastname = "-", UserName = "-", Email = "?@?.?" };
+                    ApplicationUser dummy = new ApplicationUser { Id = "-", Firstname = "-", Lastname = "-", UserName = "-", Email = "?@?.?" , LanguageId ="-" };
                     context.Users.Add(dummy);
                     context.SaveChanges();
 
@@ -45,6 +45,7 @@ namespace Dotnet_frameworks_project.Seeders
                         UserName = "Admin",
                         Firstname = "Antoine",
                         Lastname = "Couck",
+                        LanguageId = "nl",
                         Email = "System.administrator@studentenbeheer.be",
                         EmailConfirmed = true
                     };
@@ -54,6 +55,7 @@ namespace Dotnet_frameworks_project.Seeders
                         UserName = "Logopedist",
                         Firstname = "Margot",
                         Lastname = "Delo",
+                        LanguageId = "fr",
                         Email = "System.administrator@studentenbeheer.be",
                         EmailConfirmed = true
                     };
@@ -80,28 +82,18 @@ namespace Dotnet_frameworks_project.Seeders
 
 
 
-                if (user1 != null)
+                if (user1 != null && Logopedist != null)
                 {
                     context.UserRoles.AddRange(
 
-                        new IdentityUserRole<string> { UserId = user1.Id, RoleId = "Admin" }
-
+                        new IdentityUserRole<string> { UserId = user1.Id, RoleId = "Admin" },
+                          new IdentityUserRole<string> { UserId = Logopedist.Id, RoleId = "Logopedist" }
 
                         );
 
                     context.SaveChanges();
                 }
-                if (Logopedist != null)
-                {
-                    context.UserRoles.AddRange(
-
-                        new IdentityUserRole<string> { UserId = Logopedist.Id, RoleId = "Logopedist" }
-
-
-                        );
-
-                    context.SaveChanges();
-                }
+           
 
 
 

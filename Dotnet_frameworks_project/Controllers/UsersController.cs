@@ -89,7 +89,7 @@ namespace Dotnet_frameworks_project.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Roles([Bind("Id, UserName, FirstName, LastName, Student, Docent, Beheerder")] ApplicationUserViewModel model)
+        public async Task<ActionResult> Roles([Bind("Id,UserName,FirstName,LastName,Logopedist,Parents,Mutualiteit,Admin")] ApplicationUserViewModel model)
         {
             List<IdentityUserRole<string>> roles = _context.UserRoles.Where(ur => ur.UserId == model.Id).ToList();
             foreach (IdentityUserRole<string> role in roles)

@@ -4,6 +4,7 @@ using Dotnet_frameworks_project.Seeders;
 using Dotnet_frameworks_project.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using StudentenBeheer.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("ApplicationContextConnection"); builder.Services.AddDbContext<ApplicationContext>(options =>
@@ -98,3 +99,4 @@ app.MapControllerRoute(
 app.UseMiddleware<SessionUser>();
 app.MapRazorPages();
 app.Run();
+
