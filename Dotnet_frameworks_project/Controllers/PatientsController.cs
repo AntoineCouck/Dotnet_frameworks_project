@@ -53,7 +53,7 @@ namespace Dotnet_frameworks_project.Controllers
         public IActionResult Create()
         {
             var user = _context.Users.Where(u => u.UserName == _user.UserName).ToList();
-           
+
 
             ViewData["InsuranceId"] = new SelectList(_context.Insurance, "Name", "Name");
             ViewData["UserId"] = user;

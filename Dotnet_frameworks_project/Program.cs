@@ -3,9 +3,7 @@ using Dotnet_frameworks_project.Models;
 using Dotnet_frameworks_project.Seeders;
 using Dotnet_frameworks_project.Services;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
-using NETCore.MailKit.Infrastructure.Internal;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("ApplicationContextConnection"); builder.Services.AddDbContext<ApplicationContext>(options =>

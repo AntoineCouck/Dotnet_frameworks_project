@@ -10,7 +10,7 @@ namespace Dotnet_frameworks_project.Controllers
 {
     public class PassedTestsController : ApplicationController
     {
-      
+
         private readonly IStringLocalizer<PassedTestsController> _localizer;
 
         public PassedTestsController(ApplicationContext context, IHttpContextAccessor httpContextAccessor, ILogger<ApplicationController> logger, IStringLocalizer<PassedTestsController> localizer) : base(context, httpContextAccessor, logger)

@@ -9,10 +9,10 @@ namespace Dotnet_frameworks_project.Controllers
 {
     public class TestsController : ApplicationController
     {
-      
+
         private readonly IStringLocalizer<TestsController> _localizer;
 
-        public TestsController(ApplicationContext context , IHttpContextAccessor httpContextAccessor, ILogger<ApplicationController> logger, IStringLocalizer<TestsController> localizer) : base(context, httpContextAccessor, logger)
+        public TestsController(ApplicationContext context, IHttpContextAccessor httpContextAccessor, ILogger<ApplicationController> logger, IStringLocalizer<TestsController> localizer) : base(context, httpContextAccessor, logger)
 
         {
             _localizer = localizer;

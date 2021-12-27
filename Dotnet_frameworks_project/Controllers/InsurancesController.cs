@@ -22,7 +22,7 @@ namespace Dotnet_frameworks_project.Controllers
         // GET: Insurances
         public async Task<IActionResult> Index()
         {
-           
+
 
             return View(await _context.Insurance.ToListAsync());
         }
@@ -35,7 +35,7 @@ namespace Dotnet_frameworks_project.Controllers
                 return NotFound();
             }
 
-          var patients = _context.Patient.Where(p => p.InsuranceId == id).ToList();
+            var patients = _context.Patient.Where(p => p.InsuranceId == id).ToList();
 
             ViewData["Patients"] = patients;
 

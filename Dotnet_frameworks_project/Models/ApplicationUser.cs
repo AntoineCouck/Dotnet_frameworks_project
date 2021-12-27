@@ -1,6 +1,5 @@
 ﻿using Dotnet_frameworks_project.Models;
 using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dotnet_frameworks_project.Areas.Identity.Data;
@@ -11,7 +10,7 @@ public class ApplicationUser : IdentityUser
 
     public string Firstname { get; set; }
 
-    
+
     public string Lastname { get; set; }
 
     [ForeignKey("Language")]

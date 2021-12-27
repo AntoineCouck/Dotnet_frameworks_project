@@ -30,6 +30,6 @@ public class ApplicationContext : IdentityDbContext<ApplicationUser>
     public DbSet<Dotnet_frameworks_project.Models.PassedTests> PassedTests { get; set; }
 
     public DbSet<Dotnet_frameworks_project.Models.Insurance> Insurance { get; set; }
-    
+
     public DbSet<Dotnet_frameworks_project.Models.Language> Language { get; set; }
 }

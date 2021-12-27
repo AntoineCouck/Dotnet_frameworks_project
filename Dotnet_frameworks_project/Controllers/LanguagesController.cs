@@ -1,20 +1,15 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using Dotnet_frameworks_project.Areas.Identity.Data;
 using Dotnet_frameworks_project.Models;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Dotnet_frameworks_project.Controllers
 {
     public class LanguagesController : ApplicationController
     {
-       
+
 
         public LanguagesController(ApplicationContext context, IHttpContextAccessor httpContextAccessor, ILogger<ApplicationController> logger)
           : base(context, httpContextAccessor, logger)

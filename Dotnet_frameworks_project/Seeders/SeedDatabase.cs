@@ -14,7 +14,7 @@ namespace Dotnet_frameworks_project.Seeders
                 serviceProvider.GetRequiredService<
                     DbContextOptions<ApplicationContext>>()))
             {
-              
+
                 ApplicationUser user1 = null;
                 ApplicationUser Logopedist = null;
 
@@ -104,7 +104,7 @@ namespace Dotnet_frameworks_project.Seeders
                 }
 
 
-             
+
 
                 List<string> supportedLanguages = new List<string>();
                 Language.AllLanguages = context.Language.ToList();
