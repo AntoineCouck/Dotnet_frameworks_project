@@ -11,7 +11,7 @@
   <ul id="slide-out" class="sidenav">
     <li>
       <div class="background">
-    <i class="large material-icons" >account_circle</i>
+    <i class="large material-icons">account_circle</i>
       </div>
     </li>
      <li><div style="margin-top:20%;" class="divider"></div></li>
@@ -22,13 +22,15 @@
     <li><a class="subheader">Language options</a></li>
     <i style="text-align:center"><partial name="_LanguagePartial" /></i>
     <li><div class="divider"></div></li>
-    @if(User.IsInRole("Admin")  || User.IsInRole("Logopedist"))
+
+   
+
+    @if(User.IsInRole("Admin"))
     {
             <li><a class="subheader">Roles management</a></li>
             <a class="nav-link text-dark" asp-controller="Users" asp-action="Index">@Localizer["Gebruikersbeheer"]</a>
              <li><div class="divider"></div></li>
     }
-                <a class="nav-link text-dark" asp-controller="Users" asp-action="Index">@Localizer["Gebruikersbeheer"]</a>
 
     <li><a class="subheader">Navigation</a></li>
     <li><a class="waves-effect" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>

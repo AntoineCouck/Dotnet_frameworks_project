@@ -1,0 +1,62 @@
+
+
+profile of patient → details :
+
+🗸 Liste des suivi 
+
+🗸 Liste de tests que ce patient a passé
+
+- système de compteur ( un truc pour ajouter et enlever des sessions ) 
+
+-----------------------------------------
+
+Tests: 
+
+- Voir une liste de personnes qui ont passé le test 
+
+-----------------------------------------------
+
+
+
+Parents:
+
+
+- Parents : ajouter des perms, quand on crée un patient , un compte est crée pour les parents: avec ses données. ce compte peut consulter uniquement les données de l'enfant.
+
+--------------------------------------------------------
+
+Autres: 
+
+- Ajouter des filtres sur les tableaux
+
+- Users laten kiezen of ze cookies willen gebruiken of niet 
+
+- 1 gebruiker admin met password "Student1" met admin rechten 
+
+- Gebruik maken van middleware om minstens één sessie-afhankelijke variabele te voorzien.
+
+- Minstens 1x gebruik maken van Ajax-helpers i.p.v. Html-helpers
+
+- vérifier le " all divices access " 
+
+
+-----------------------------
+
+
+- faire les permissions
+
+
+------------------------------
+
+- Traductions ( nl,en , fr ) 
+
+
+
+--------------------------------
+
+Final : 
+
+- styling 
+
+- debugging / check errors
+

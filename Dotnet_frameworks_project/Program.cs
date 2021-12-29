@@ -7,8 +7,13 @@ using Microsoft.EntityFrameworkCore;
 using StudentenBeheer.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("ApplicationContextConnection"); builder.Services.AddDbContext<ApplicationContext>(options =>
-     options.UseSqlServer(connectionString)); builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+var connectionString = builder.Configuration.GetConnectionString("ApplicationContextConnection"); 
+
+builder.Services.AddDbContext<ApplicationContext>(options =>
+     options.UseSqlServer(connectionString)); 
+
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+      .AddRoles<IdentityRole>()
       .AddEntityFrameworkStores<ApplicationContext>();
 
 builder.Services.AddMvc()
@@ -59,7 +64,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 //    options.Security = false;  // true zet ssl or tls aan
 //});
 
-
+              
 
 
 

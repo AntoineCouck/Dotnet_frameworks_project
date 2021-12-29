@@ -60,3 +60,62 @@
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+
+<h3>Followed for</h3>
+
+
+    <table class="striped highlight centered responsive-table" >
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>required sessions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @{
+                foreach (var Follow in ViewBag.ListOfFollowUps)
+                {
+                    <tr>
+                        <td>@Follow.p.FollowUpId</td>
+                        <td>@Follow.t.Description</td>
+                        <td>@Follow.t.Number_of_requiredsessions</td>
+
+                    </tr>
+                }
+
+            }
+        </tbody>
+    </table>
+
+
+
+<h3>Passed Tests</h3>
+
+        <table class="striped highlight centered responsive-table" >
+        <thead>
+          <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Usage</th>
+             
+          </tr>
+        </thead>
+
+        <tbody>
+            @{
+
+        foreach(var Test in ViewBag.ListOfPassedTests)
+        {
+          <tr>
+            <td>@Test.p.TestId</td>
+            <td>@Test.t.Description</td>
+            <td>@Test.t.Usage</td>
+          </tr>
+        }
+
+ }
+        </tbody>
+      </table>
+

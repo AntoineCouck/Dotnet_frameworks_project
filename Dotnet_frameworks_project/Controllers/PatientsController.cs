@@ -32,6 +32,8 @@ namespace Dotnet_frameworks_project.Controllers
         // GET: Patients/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+           
+
             if (id == null)
             {
                 return NotFound();
@@ -41,6 +43,22 @@ namespace Dotnet_frameworks_project.Controllers
                 .Include(p => p.Insurance)
                 .Include(p => p.user)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
+            //var ListOfFollowUps = _context.FollowUp_patients.Include(f => f.FollowUpType)
+            //                                                .Where(p => p.PatientId == id).ToList();     
+            var ListOfFollowUps = _context.FollowUp_type.Join(_context.FollowUp_patients, t => t.Name , p => p.FollowUpId , (t , p) => new {t , p})
+                                                        .Where(p => p.p.PatientId == id)
+                                                        .ToList();
+
+
+            //var ListOfPassedTests = _context.PassedTests.Include(t => t.Test).Where(t => t.PatientId == id).ToList();    
+            var ListOfPassedTests = _context.Test.Join(_context.PassedTests, t => t.Name, p => p.TestId, (t, p) => new { t, p })
+                                                 .Where(p => p.p.PatientId == id)
+                                                 .ToList();
+
+            ViewData["ListOfFollowUps"] = ListOfFollowUps;
+            ViewData["ListOfPassedTests"] = ListOfPassedTests;
+
             if (patient == null)
             {
                 return NotFound();
