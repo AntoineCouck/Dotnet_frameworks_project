@@ -56,8 +56,10 @@ namespace Dotnet_frameworks_project.Controllers
                                                  .Where(p => p.p.PatientId == id)
                                                  .ToList();
 
+          
             ViewData["ListOfFollowUps"] = ListOfFollowUps;
             ViewData["ListOfPassedTests"] = ListOfPassedTests;
+
 
             if (patient == null)
             {
@@ -66,6 +68,25 @@ namespace Dotnet_frameworks_project.Controllers
 
             return View(patient);
         }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Details(int? id , [Bind("Id,FirstName,LastName,Birthday,ParentsPhone,LeftSessions,UserId,InsuranceId,AddSessions,RemoveSessions")] PatientViewModel model)
+        //{
+        //    List<Patient> patients = _context.Patient.Where(p => p.Id == id).ToList();
+            
+        //    foreach(Patient patient in patients)
+        //    {
+        //        patient.LeftSessions = model.LeftSessions + model.AddSessions - model.RemoveSessions;
+        //        _context.Update(patient);
+                
+
+        //    }
+        //       await _context.SaveChangesAsync();
+
+
+        //    return View();
+        //}
 
         // GET: Patients/Create
         public IActionResult Create()

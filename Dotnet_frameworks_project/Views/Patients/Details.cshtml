@@ -1,5 +1,6 @@
 ﻿@model Dotnet_frameworks_project.Models.Patient
 
+
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -118,4 +119,28 @@
  }
         </tbody>
       </table>
+<h3 class="center-align">Session manager</h3>
+@*  <div class="row card-panel hoverable">
+    <form class="col s12" asp-action="Details">
+          <input type="hidden" asp-for="Id">
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="LeftSessions" name="LeftSessions" type="number" placeholder=@Html.DisplayFor(model => model.LeftSessions) value=@Html.DisplayFor(model => model.LeftSessions) class="validate" disabled>
+          <label for="LeftSessions">Total sessions</label>
+        </div>
+          <div class="input-field col s6">
+          <input name="AddSessions"  id="AddSessions" type="number" class="validate" >
+          <label for="AddSessions">Add sessions</label>
+        </div>
+          <div class="input-field col s6">
+          <input name="RemoveSessions"  id="RemoveSessions" type="number"  class="validate" >
+          <label for="RemoveSessions"> Remove sessions</label>
+        </div>
+          <div class="form-group">
+                <input type="submit" value="Create" class="waves-effect waves-light btn-small" />
+            </div>
+         </div>
+        </form>
+         </div>*@
 
+      
