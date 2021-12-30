@@ -1,6 +1,7 @@
 ﻿#nullable disable
 using Dotnet_frameworks_project.Areas.Identity.Data;
 using Dotnet_frameworks_project.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,11 +15,12 @@ namespace Dotnet_frameworks_project.Controllers
 
 
         private readonly IStringLocalizer<PatientsController> _localizer;
-
-        public PatientsController(ApplicationContext context, IHttpContextAccessor httpContextAccessor, ILogger<ApplicationController> logger, IStringLocalizer<PatientsController> localizer) : base(context, httpContextAccessor, logger)
+        private readonly UserManager<ApplicationUser> UserManager;
+        public PatientsController(ApplicationContext context, UserManager<ApplicationUser> userManager, IHttpContextAccessor httpContextAccessor, ILogger<ApplicationController> logger, IStringLocalizer<PatientsController> localizer) : base(context, httpContextAccessor, logger)
 
         {
             _localizer = localizer;
+            UserManager = userManager;
         }
 
 
@@ -170,8 +172,21 @@ namespace Dotnet_frameworks_project.Controllers
         {
             if (ModelState.IsValid)
             {
+                var Account = Activator.CreateInstance<ApplicationUser>();
+
+                Account.Firstname = patient.FirstName;
+                Account.Lastname = patient.LastName;
+                Account.UserName = patient.FirstName + "." + patient.LastName;
+                Account.Email = patient.FirstName + "." + patient.LastName + "@hotmail.be";
+                Account.EmailConfirmed = true;
+                Account.LanguageId = "nl";
+                await UserManager.CreateAsync(Account, patient.FirstName + "." + patient.LastName + "L2022");
+
+                patient.AccountId = Account.Id;
                 _context.Add(patient);
                 await _context.SaveChangesAsync();
+
+                await UserManager.AddToRoleAsync(Account, "Parents");
                 return RedirectToAction(nameof(Index));
             }
             ViewData["InsuranceId"] = new SelectList(_context.Insurance, "Name", "Name", patient.InsuranceId);
@@ -260,7 +275,16 @@ namespace Dotnet_frameworks_project.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var patient = await _context.Patient.FindAsync(id);
+
+            var Account = _context.Users.Where(u => u.Id == patient.AccountId).ToList();
+
             _context.Patient.Remove(patient);
+
+            foreach (ApplicationUser user in Account)
+            {
+                _context.Users.Remove(user);
+            }
+            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

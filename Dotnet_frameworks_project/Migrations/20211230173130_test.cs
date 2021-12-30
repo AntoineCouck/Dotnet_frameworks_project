@@ -229,11 +229,17 @@ namespace Dotnet_frameworks_project.Migrations
                     ParentsPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LeftSessions = table.Column<int>(type: "int", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    InsuranceId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    InsuranceId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    AccountId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Patient", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Patient_AspNetUsers_AccountId",
+                        column: x => x.AccountId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Patient_AspNetUsers_UserId",
                         column: x => x.UserId,
@@ -358,6 +364,11 @@ namespace Dotnet_frameworks_project.Migrations
                 name: "IX_PassedTests_TestId",
                 table: "PassedTests",
                 column: "TestId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Patient_AccountId",
+                table: "Patient",
+                column: "AccountId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Patient_InsuranceId",

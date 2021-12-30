@@ -213,6 +213,9 @@ namespace Dotnet_frameworks_project.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("AccountId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("datetime2");
 
@@ -238,6 +241,8 @@ namespace Dotnet_frameworks_project.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
 
                     b.HasIndex("InsuranceId");
 
@@ -447,6 +452,10 @@ namespace Dotnet_frameworks_project.Migrations
 
             modelBuilder.Entity("Dotnet_frameworks_project.Models.Patient", b =>
                 {
+                    b.HasOne("Dotnet_frameworks_project.Areas.Identity.Data.ApplicationUser", "Account")
+                        .WithMany()
+                        .HasForeignKey("AccountId");
+
                     b.HasOne("Dotnet_frameworks_project.Models.Insurance", "Insurance")
                         .WithMany()
                         .HasForeignKey("InsuranceId");
@@ -454,6 +463,8 @@ namespace Dotnet_frameworks_project.Migrations
                     b.HasOne("Dotnet_frameworks_project.Areas.Identity.Data.ApplicationUser", "user")
                         .WithMany()
                         .HasForeignKey("UserId");
+
+                    b.Navigation("Account");
 
                     b.Navigation("Insurance");
 

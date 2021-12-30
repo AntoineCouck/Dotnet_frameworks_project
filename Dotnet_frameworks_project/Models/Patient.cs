@@ -7,6 +7,7 @@ namespace Dotnet_frameworks_project.Models;
 public class Patient
 {
 
+    [ForeignKey("applicationUser")]
     public int Id { get; set; }
 
     [Required]
@@ -35,6 +36,12 @@ public class Patient
 
     [ForeignKey("Insurance")]
     public string? InsuranceId { get; set; }
+
+
+    [ForeignKey("Account")]
+    public string? AccountId { get; set; }
+    public ApplicationUser? Account { get; set; }
+
 
 }
 
