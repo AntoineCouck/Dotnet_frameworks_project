@@ -20,24 +20,23 @@ Tests:
 Parents:
 
 
-- Parents : ajouter des perms, quand on crée un patient , un compte est crée pour les parents: avec ses données. ce compte peut consulter uniquement les données de l'enfant.
+🗸 Parents : ajouter des perms, quand on crée un patient , un compte est crée pour les parents: avec ses données. ce compte peut consulter uniquement les données de l'enfant.
 
 --------------------------------------------------------
 
 Autres: 
 
-- Ajouter des filtres sur les tableaux
+- Ajouter des filtres sur les tableaux → a tester !!
+
+🗸 1 gebruiker admin met password "Student1" met admin rechten 
+
+- vérifier le " all divices access " 
 
 - Users laten kiezen of ze cookies willen gebruiken of niet 
-
-- 1 gebruiker admin met password "Student1" met admin rechten 
 
 - Gebruik maken van middleware om minstens één sessie-afhankelijke variabele te voorzien.
 
 - Minstens 1x gebruik maken van Ajax-helpers i.p.v. Html-helpers
-
-- vérifier le " all divices access " 
-
 
 -----------------------------
 

@@ -61,7 +61,7 @@ namespace Dotnet_frameworks_project.Seeders
                     };
 
 
-                    userManager.CreateAsync(user1, "Abc!98765");
+                    userManager.CreateAsync(user1, "Student1");
                     userManager.CreateAsync(Logopedist, "Abc!12345");
                 }
 

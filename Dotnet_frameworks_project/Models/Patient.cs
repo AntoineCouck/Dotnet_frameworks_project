@@ -1,4 +1,5 @@
 ﻿using Dotnet_frameworks_project.Areas.Identity.Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -82,4 +83,12 @@ public class PatientViewModel
 
     
 
+}
+
+public class PatientIndexViewModel
+{
+
+    public string? NameFilter { get; set; }
+    public List<Patient>? FilteredStudents { get; set; }
+  
 }

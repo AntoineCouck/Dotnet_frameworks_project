@@ -25,9 +25,76 @@ namespace Dotnet_frameworks_project.Controllers
 
 
         // GET: Patients
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string nameFilter, string orderBy)
         {
             var applicationContext = _context.Patient.Include(p => p.Insurance).Include(p => p.user);
+
+
+            var filteredPatients = from m in _context.Patient
+                                   select m;
+
+
+
+            if (!string.IsNullOrEmpty(nameFilter))
+            {
+                filteredPatients = from s in filteredPatients
+                                   where s.FirstName.Contains(nameFilter) || s.LastName.Contains(nameFilter)
+                                   orderby s.LastName, s.FirstName
+                                   select s;
+            }
+
+
+            ViewData["FirstName"] = orderBy == "FirstName" ? "FirstName_Desc" : "FirstName";
+            ViewData["LastName"] = orderBy == "LastName" ? "LastName_Desc" : "LastName";
+            ViewData["BirthDay"] = string.IsNullOrEmpty(orderBy) ? "Date_Desc" : "";
+
+
+            switch (orderBy)
+            {
+                case "LastName":
+                    filteredPatients = filteredPatients.OrderBy(m => m.LastName);
+                    break;
+                case "LastName_Desc":
+                    filteredPatients = filteredPatients.OrderByDescending(m => m.LastName);
+                    break;
+                case "Name_Desc":
+                    filteredPatients = filteredPatients.OrderByDescending(m => m.FirstName);
+                    break;
+                case "Name":
+                    filteredPatients = filteredPatients.OrderBy(m => m.FirstName);
+                    break;
+                case "Date":
+                    filteredPatients = filteredPatients.OrderBy(m => m.Birthday);
+                    break;
+                case "Date_Desc":
+                    filteredPatients = filteredPatients.OrderByDescending(m => m.Birthday);
+                    break;
+
+
+                default:
+                    filteredPatients = filteredPatients.OrderBy(m => m.Birthday);
+                    break;
+            }
+
+            IQueryable<Patient> groupsToSelect = from g in _context.Patient orderby g.FirstName select g;
+
+            
+
+            PatientIndexViewModel studentviewmodel = new PatientIndexViewModel()
+            {
+                //TitleFilter = titleFilter,
+                //FilteredMessages = await filteredStudents.Include(s => s.Group).ToListAsync(),
+                //SelectedGroup = selectedGroup,
+                //GroupsToSelect = new SelectList(await groupsToSelect.ToListAsync(), "Id", "Name", selectedGroup)
+
+                NameFilter = nameFilter,
+                FilteredStudents = await filteredPatients.ToListAsync()
+               
+
+            };
+
+
+
             return View(await applicationContext.ToListAsync());
         }
 
