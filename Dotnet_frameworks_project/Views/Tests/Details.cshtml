@@ -41,3 +41,31 @@
     <a asp-action="Edit" asp-route-id="@Model?.Name">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+
+
+<h3 class="center-align">Patients</h3>
+
+
+    <table class="striped highlight centered responsive-table" >
+        <thead>
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @{
+                foreach (var patient in ViewBag.HasPassedTheTest)
+                {
+                    <tr>
+                        <td>@patient.p.FirstName</td>
+                        <td>@patient.p.LastName</td>
+                       
+                    </tr>
+                }
+
+
+            }
+        </tbody>
+    </table>

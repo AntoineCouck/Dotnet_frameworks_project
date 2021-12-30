@@ -6,16 +6,15 @@ profile of patient → details :
 
 🗸 Liste de tests que ce patient a passé
 
-- système de compteur ( un truc pour ajouter et enlever des sessions ) 
+🗸 système de compteur ( un truc pour ajouter et enlever des sessions ) 
 
 -----------------------------------------
 
 Tests: 
 
-- Voir une liste de personnes qui ont passé le test 
+🗸 Voir une liste de personnes qui ont passé le test 
 
 -----------------------------------------------
-
 
 
 Parents:

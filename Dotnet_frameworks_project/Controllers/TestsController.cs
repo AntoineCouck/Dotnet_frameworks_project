@@ -39,6 +39,15 @@ namespace Dotnet_frameworks_project.Controllers
                 return NotFound();
             }
 
+            var HasPassedTheTest = _context.PassedTests.Join(_context.Patient, t => t.PatientId, p => p.Id, (t, p) => new { t, p })
+                                           .Where(p => p.t.TestId == id)
+                                           .ToList();
+
+
+            ViewData["HasPassedTheTest"] = HasPassedTheTest;
+
+
+
             return View(test);
         }
 
