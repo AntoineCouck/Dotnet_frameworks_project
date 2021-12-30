@@ -44,6 +44,20 @@ namespace Dotnet_frameworks_project.Controllers
                 .Include(p => p.user)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
+            PatientViewModel model = new PatientViewModel
+            {
+                Id = patient.Id,
+                FirstName = patient.FirstName,
+                LastName = patient.LastName,
+                Birthday = patient.Birthday,
+                ParentsPhone = patient.ParentsPhone,
+                LeftSessions = patient.LeftSessions,
+                UserId = patient.UserId,
+                InsuranceId = patient.InsuranceId,
+                AddSessions = 0,
+                RemoveSessions = 0
+            };
+
             //var ListOfFollowUps = _context.FollowUp_patients.Include(f => f.FollowUpType)
             //                                                .Where(p => p.PatientId == id).ToList();     
             var ListOfFollowUps = _context.FollowUp_type.Join(_context.FollowUp_patients, t => t.Name , p => p.FollowUpId , (t , p) => new {t , p})
@@ -60,33 +74,81 @@ namespace Dotnet_frameworks_project.Controllers
             ViewData["ListOfFollowUps"] = ListOfFollowUps;
             ViewData["ListOfPassedTests"] = ListOfPassedTests;
 
+            if (patient == null)
+            {
+                return NotFound();
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Details(int? id, [Bind("Id,FirstName,LastName,Birthday,ParentsPhone,LeftSessions,AddSessions,RemoveSessions,UserId,InsuranceId")] PatientViewModel models)
+        {
+            List<Patient> patients = _context.Patient.Where(p => p.Id == id).ToList();
+
+            if (ModelState.IsValid)
+            {
+                foreach (Patient patient2 in patients)
+                {
+                    patient2.LeftSessions = models.LeftSessions + models.AddSessions - models.RemoveSessions;
+                    _context.Update(patient2);
+
+
+                }
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Details));
+            }
+
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var patient = await _context.Patient
+                .Include(p => p.Insurance)
+                .Include(p => p.user)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            PatientViewModel model = new PatientViewModel
+            {
+                Id = patient.Id,
+                FirstName = patient.FirstName,
+                LastName = patient.LastName,
+                Birthday = patient.Birthday,
+                ParentsPhone = patient.ParentsPhone,
+                LeftSessions = patient.LeftSessions,
+                UserId = patient.UserId,
+                InsuranceId = patient.InsuranceId,
+                AddSessions = 0,
+                RemoveSessions = 0
+            };
+
+            //var ListOfFollowUps = _context.FollowUp_patients.Include(f => f.FollowUpType)
+            //                                                .Where(p => p.PatientId == id).ToList();     
+            var ListOfFollowUps = _context.FollowUp_type.Join(_context.FollowUp_patients, t => t.Name, p => p.FollowUpId, (t, p) => new { t, p })
+                                                        .Where(p => p.p.PatientId == id)
+                                                        .ToList();
+
+
+            //var ListOfPassedTests = _context.PassedTests.Include(t => t.Test).Where(t => t.PatientId == id).ToList();    
+            var ListOfPassedTests = _context.Test.Join(_context.PassedTests, t => t.Name, p => p.TestId, (t, p) => new { t, p })
+                                                 .Where(p => p.p.PatientId == id)
+                                                 .ToList();
+
+
+            ViewData["ListOfFollowUps"] = ListOfFollowUps;
+            ViewData["ListOfPassedTests"] = ListOfPassedTests;
 
             if (patient == null)
             {
                 return NotFound();
             }
 
-            return View(patient);
+            return View(model);
         }
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Details(int? id , [Bind("Id,FirstName,LastName,Birthday,ParentsPhone,LeftSessions,UserId,InsuranceId,AddSessions,RemoveSessions")] PatientViewModel model)
-        //{
-        //    List<Patient> patients = _context.Patient.Where(p => p.Id == id).ToList();
-            
-        //    foreach(Patient patient in patients)
-        //    {
-        //        patient.LeftSessions = model.LeftSessions + model.AddSessions - model.RemoveSessions;
-        //        _context.Update(patient);
-                
-
-        //    }
-        //       await _context.SaveChangesAsync();
-
-
-        //    return View();
-        //}
 
         // GET: Patients/Create
         public IActionResult Create()

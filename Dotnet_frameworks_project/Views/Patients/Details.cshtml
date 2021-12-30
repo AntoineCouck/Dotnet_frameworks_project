@@ -1,4 +1,5 @@
-﻿@model Dotnet_frameworks_project.Models.Patient
+﻿@*@model Dotnet_frameworks_project.Models.Patient*@
+@model Dotnet_frameworks_project.Models.PatientViewModel
 
 
 @{
@@ -42,7 +43,6 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.LeftSessions)
         </dd>
-
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.user)
         </dt>
@@ -62,7 +62,7 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-<h3>Followed for</h3>
+<h3 class="center-align">Followed for</h3>
 
 
     <table class="striped highlight centered responsive-table" >
@@ -92,7 +92,7 @@
 
 
 
-<h3>Passed Tests</h3>
+<h3 class="center-align">Passed Tests</h3>
 
         <table class="striped highlight centered responsive-table" >
         <thead>
@@ -119,28 +119,59 @@
  }
         </tbody>
       </table>
+<div class="row center-align"  style="width:30%;">
 <h3 class="center-align">Session manager</h3>
-@*  <div class="row card-panel hoverable">
-    <form class="col s12" asp-action="Details">
-          <input type="hidden" asp-for="Id">
-      <div class="row">
-        <div class="input-field col s6">
-          <input id="LeftSessions" name="LeftSessions" type="number" placeholder=@Html.DisplayFor(model => model.LeftSessions) value=@Html.DisplayFor(model => model.LeftSessions) class="validate" disabled>
-          <label for="LeftSessions">Total sessions</label>
-        </div>
-          <div class="input-field col s6">
-          <input name="AddSessions"  id="AddSessions" type="number" class="validate" >
-          <label for="AddSessions">Add sessions</label>
-        </div>
-          <div class="input-field col s6">
-          <input name="RemoveSessions"  id="RemoveSessions" type="number"  class="validate" >
-          <label for="RemoveSessions"> Remove sessions</label>
-        </div>
-          <div class="form-group">
-                <input type="submit" value="Create" class="waves-effect waves-light btn-small" />
+    <div class="col-md-4 card-panel hoverable center-align" style="width:100%;">
+        <form asp-action="details">
+            <div asp-validation-summary="ModelOnly" class="text-danger hiddendiv"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group hiddendiv">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
-         </div>
+            <div class="form-group hiddendiv">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group hiddendiv">
+                <label asp-for="Birthday" class="control-label"></label>
+                <input asp-for="Birthday" class="form-control" />
+                <span asp-validation-for="Birthday" class="text-danger"></span>
+            </div>
+            <div class="form-group hiddendiv">
+                <label asp-for="ParentsPhone" class="control-label"></label>
+                <input asp-for="ParentsPhone" class="form-control" />
+                <span asp-validation-for="ParentsPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LeftSessions" class="control-label"></label>
+                <input asp-for="LeftSessions" class="form-control" />
+                <span asp-validation-for="LeftSessions" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Add sessions</label>
+                <input asp-for="@Model.AddSessions" class="form-control" />
+                <span asp-validation-for="AddSessions" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Remove sessions</label>
+                <input asp-for="@Model.RemoveSessions" class="form-control" />
+                <span asp-validation-for="RemoveSessions" class="text-danger"></span>
+            </div>
+            <div class="form-group hiddendiv">
+                <label asp-for="UserId" class="control-label"></label>
+                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+                <div class="form-group hiddendiv">
+                <label asp-for="InsuranceId" class="control-label"></label>
+                <select asp-for="InsuranceId" class ="form-control" asp-items="ViewBag.InsuranceId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
         </form>
-         </div>*@
-
-      
+    </div>
+</div>
