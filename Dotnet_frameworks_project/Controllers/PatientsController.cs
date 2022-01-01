@@ -120,7 +120,7 @@ namespace Dotnet_frameworks_project.Controllers
             var patient = await _context.Patient
                 .Include(p => p.Insurance)
                 .Include(p => p.user)
-                   .Include(s => s.Gender)
+                .Include(s => s.Gender)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             PatientViewModel model = new PatientViewModel
@@ -189,6 +189,7 @@ namespace Dotnet_frameworks_project.Controllers
 
             var patient = await _context.Patient
                 .Include(p => p.Insurance)
+                .Include(p => p.Gender)
                 .Include(p => p.user)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
@@ -345,7 +346,7 @@ namespace Dotnet_frameworks_project.Controllers
             var patient = await _context.Patient
                 .Include(p => p.Insurance)
                 .Include(p => p.user)
-                 .Include(s => s.Gender)
+                 //.Include(s => s.Gender)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (patient == null)
             {
