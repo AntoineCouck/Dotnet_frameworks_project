@@ -8,94 +8,88 @@ using Microsoft.Extensions.Localization;
 
 namespace Dotnet_frameworks_project.Controllers
 {
-    public class TestsController : ApplicationController
+    public class GendersController : ApplicationController
     {
 
 
-        public TestsController(ApplicationContext context, UserManager<ApplicationUser> userManager, IHttpContextAccessor httpContextAccessor, ILogger<ApplicationController> logger, IStringLocalizer<PatientsController> localizer) : base(context, httpContextAccessor, logger, localizer, userManager)
+        public GendersController(ApplicationContext context, UserManager<ApplicationUser> userManager, IHttpContextAccessor httpContextAccessor, ILogger<ApplicationController> logger, IStringLocalizer<PatientsController> localizer) : base(context, httpContextAccessor, logger, localizer, userManager)
 
         {
+
+
         }
 
-        // GET: Tests
+
+        // GET: Genders
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Test.ToListAsync());
+            return View(await _context.Gender.ToListAsync());
         }
 
-        // GET: Tests/Details/5
-        public async Task<IActionResult> Details(string id)
+        // GET: Genders/Details/5
+        public async Task<IActionResult> Details(char? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var test = await _context.Test
-                .FirstOrDefaultAsync(m => m.Name == id);
-            if (test == null)
+            var gender = await _context.Gender
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (gender == null)
             {
                 return NotFound();
             }
 
-            var HasPassedTheTest = _context.PassedTests.Join(_context.Patient, t => t.PatientId, p => p.Id, (t, p) => new { t, p })
-                                           .Where(p => p.t.TestId == id)
-                                           .ToList();
-
-
-            ViewData["HasPassedTheTest"] = HasPassedTheTest;
-
-
-
-            return View(test);
+            return View(gender);
         }
 
-        // GET: Tests/Create
+        // GET: Genders/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Tests/Create
+        // POST: Genders/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Description,Usage,Min_age,Max_age")] Test test)
+        public async Task<IActionResult> Create([Bind("ID,Name")] Gender gender)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(test);
+                _context.Add(gender);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(test);
+            return View(gender);
         }
 
-        // GET: Tests/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        // GET: Genders/Edit/5
+        public async Task<IActionResult> Edit(char? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var test = await _context.Test.FindAsync(id);
-            if (test == null)
+            var gender = await _context.Gender.FindAsync(id);
+            if (gender == null)
             {
                 return NotFound();
             }
-            return View(test);
+            return View(gender);
         }
 
-        // POST: Tests/Edit/5
+        // POST: Genders/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Name,Description,Usage,Min_age,Max_age")] Test test)
+        public async Task<IActionResult> Edit(char id, [Bind("ID,Name")] Gender gender)
         {
-            if (id != test.Name)
+            if (id != gender.ID)
             {
                 return NotFound();
             }
@@ -104,12 +98,12 @@ namespace Dotnet_frameworks_project.Controllers
             {
                 try
                 {
-                    _context.Update(test);
+                    _context.Update(gender);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TestExists(test.Name))
+                    if (!GenderExists(gender.ID))
                     {
                         return NotFound();
                     }
@@ -120,41 +114,41 @@ namespace Dotnet_frameworks_project.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(test);
+            return View(gender);
         }
 
-        // GET: Tests/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        // GET: Genders/Delete/5
+        public async Task<IActionResult> Delete(char? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var test = await _context.Test
-                .FirstOrDefaultAsync(m => m.Name == id);
-            if (test == null)
+            var gender = await _context.Gender
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (gender == null)
             {
                 return NotFound();
             }
 
-            return View(test);
+            return View(gender);
         }
 
-        // POST: Tests/Delete/5
+        // POST: Genders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(char id)
         {
-            var test = await _context.Test.FindAsync(id);
-            _context.Test.Remove(test);
+            var gender = await _context.Gender.FindAsync(id);
+            _context.Gender.Remove(gender);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TestExists(string id)
+        private bool GenderExists(char id)
         {
-            return _context.Test.Any(e => e.Name == id);
+            return _context.Gender.Any(e => e.ID == id);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Dotnet_frameworks_project.Areas.Identity.Data;
 using Dotnet_frameworks_project.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using System.Diagnostics;
@@ -8,12 +9,12 @@ namespace Dotnet_frameworks_project.Controllers
 {
     public class HomeController : ApplicationController
     {
-        private readonly IStringLocalizer<HomeController> _localizer;
 
-        public HomeController(ApplicationContext context, IHttpContextAccessor httpContextAccessor, ILogger<ApplicationController> logger, IStringLocalizer<HomeController> localizer) : base(context, httpContextAccessor, logger)
+
+        public HomeController(ApplicationContext context, UserManager<ApplicationUser> userManager, IHttpContextAccessor httpContextAccessor, ILogger<ApplicationController> logger, IStringLocalizer<PatientsController> localizer) : base(context, httpContextAccessor, logger, localizer, userManager)
 
         {
-            _localizer = localizer;
+
         }
 
 

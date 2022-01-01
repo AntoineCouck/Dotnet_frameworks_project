@@ -34,9 +34,11 @@ namespace Dotnet_frameworks_project.Seeders
 
 
 
+
                 if (!context.Users.Any())
                 {
-                    ApplicationUser dummy = new ApplicationUser { Id = "-", Firstname = "-", Lastname = "-", UserName = "-", Email = "?@?.?" , LanguageId ="-" };
+
+                    ApplicationUser dummy = new ApplicationUser { Id = "-", Firstname = "-", Lastname = "-", UserName = "-", Email = "?@?.?", LanguageId = "-" };
                     context.Users.Add(dummy);
                     context.SaveChanges();
 
@@ -61,8 +63,37 @@ namespace Dotnet_frameworks_project.Seeders
                     };
 
 
-                    userManager.CreateAsync(user1, "Student1");
+                    userManager.CreateAsync(user1, "Student+1");
                     userManager.CreateAsync(Logopedist, "Abc!12345");
+                }
+
+                if (!context.Gender.Any())
+                {
+                    context.Gender.AddRange(
+
+                        new Gender
+                        {
+                            Name = "Female",
+                            ID = 'F'
+                        },
+
+                        new Gender
+                        {
+                            Name = "Male",
+                            ID = 'M'
+                        },
+
+                        new Gender
+                        {
+                            Name = "Not set",
+                            ID = 'N'
+                        }
+
+
+
+                        );
+
+                    context.SaveChanges();
                 }
 
                 if (!context.Roles.Any())
@@ -93,7 +124,7 @@ namespace Dotnet_frameworks_project.Seeders
 
                     context.SaveChanges();
                 }
-           
+
 
 
 

@@ -13,41 +13,45 @@ namespace Dotnet_frameworks_project.Controllers
     {
         //private readonly ApplicationContext _context;
 
-
-        private readonly IStringLocalizer<PatientsController> _localizer;
-        private readonly UserManager<ApplicationUser> UserManager;
-        public PatientsController(ApplicationContext context, UserManager<ApplicationUser> userManager, IHttpContextAccessor httpContextAccessor, ILogger<ApplicationController> logger, IStringLocalizer<PatientsController> localizer) : base(context, httpContextAccessor, logger)
+        public PatientsController(ApplicationContext context, UserManager<ApplicationUser> userManager, IHttpContextAccessor httpContextAccessor, ILogger<ApplicationController> logger, IStringLocalizer<PatientsController> localizer) : base(context, httpContextAccessor, logger, localizer, userManager)
 
         {
-            _localizer = localizer;
-            UserManager = userManager;
+
         }
 
 
         // GET: Patients
-        public async Task<IActionResult> Index(string nameFilter, string orderBy)
+        public async Task<IActionResult> Index(string nameFilter, char genderFilter, string orderBy)
         {
-            var applicationContext = _context.Patient.Include(p => p.Insurance).Include(p => p.user);
-
+            var applicationContext = await _context.Patient.Include(p => p.Insurance).Include(p => p.user).ToListAsync();
+            
+            ViewData["object"] = applicationContext;
 
             var filteredPatients = from m in _context.Patient
                                    select m;
 
+            if (genderFilter != 0)
+            {
+                filteredPatients = from s in _context.Patient
+                                   where s.GenderId == genderFilter
+                                   select s;
+            }
 
 
             if (!string.IsNullOrEmpty(nameFilter))
             {
                 filteredPatients = from s in filteredPatients
-                                   where s.FirstName.Contains(nameFilter) || s.LastName.Contains(nameFilter)
+                                   where s.LastName.Contains(nameFilter) || s.FirstName.Contains(nameFilter)
                                    orderby s.LastName, s.FirstName
                                    select s;
             }
 
+            // encore a faire
 
-            ViewData["FirstName"] = orderBy == "FirstName" ? "FirstName_Desc" : "FirstName";
-            ViewData["LastName"] = orderBy == "LastName" ? "LastName_Desc" : "LastName";
+            ViewData["NameField"] = orderBy == "Name" ? "Name_Desc" : "Name";
+            ViewData["LastName"] = orderBy == "Lastname" ? "LastName_Desc" : "Lastname";
             ViewData["BirthDay"] = string.IsNullOrEmpty(orderBy) ? "Date_Desc" : "";
-
+            ViewData["genderId"] = new SelectList(_context.Gender.ToList(), "ID", "Name");
 
             switch (orderBy)
             {
@@ -76,32 +80,37 @@ namespace Dotnet_frameworks_project.Controllers
                     break;
             }
 
+            // Lijst van groepen 
             IQueryable<Patient> groupsToSelect = from g in _context.Patient orderby g.FirstName select g;
 
-            
+            // Maak een object van de view-model-class en voeg daarin alle wat we nodig hebben
+
+            // encore a faire
 
             PatientIndexViewModel studentviewmodel = new PatientIndexViewModel()
             {
-                //TitleFilter = titleFilter,
-                //FilteredMessages = await filteredStudents.Include(s => s.Group).ToListAsync(),
-                //SelectedGroup = selectedGroup,
-                //GroupsToSelect = new SelectList(await groupsToSelect.ToListAsync(), "Id", "Name", selectedGroup)
+                
 
                 NameFilter = nameFilter,
-                FilteredStudents = await filteredPatients.ToListAsync()
-               
+                GenderFilter = genderFilter,
+                FilteredStudents = await filteredPatients.Include(s => s.Gender).ToListAsync(),
+                ListGenders = new SelectList(await groupsToSelect.ToListAsync(), "ID", "Name", genderFilter)
+
 
             };
 
+            return View(studentviewmodel);
 
 
-            return View(await applicationContext.ToListAsync());
+            //return View(await applicationContext.ToListAsync());
+
+            //return View(Patientviewmodel);
         }
 
         // GET: Patients/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-           
+
 
             if (id == null)
             {
@@ -111,6 +120,7 @@ namespace Dotnet_frameworks_project.Controllers
             var patient = await _context.Patient
                 .Include(p => p.Insurance)
                 .Include(p => p.user)
+                   .Include(s => s.Gender)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             PatientViewModel model = new PatientViewModel
@@ -119,6 +129,7 @@ namespace Dotnet_frameworks_project.Controllers
                 FirstName = patient.FirstName,
                 LastName = patient.LastName,
                 Birthday = patient.Birthday,
+                GenderId = patient.GenderId,
                 ParentsPhone = patient.ParentsPhone,
                 LeftSessions = patient.LeftSessions,
                 UserId = patient.UserId,
@@ -129,7 +140,7 @@ namespace Dotnet_frameworks_project.Controllers
 
             //var ListOfFollowUps = _context.FollowUp_patients.Include(f => f.FollowUpType)
             //                                                .Where(p => p.PatientId == id).ToList();     
-            var ListOfFollowUps = _context.FollowUp_type.Join(_context.FollowUp_patients, t => t.Name , p => p.FollowUpId , (t , p) => new {t , p})
+            var ListOfFollowUps = _context.FollowUp_type.Join(_context.FollowUp_patients, t => t.Name, p => p.FollowUpId, (t, p) => new { t, p })
                                                         .Where(p => p.p.PatientId == id)
                                                         .ToList();
 
@@ -139,7 +150,7 @@ namespace Dotnet_frameworks_project.Controllers
                                                  .Where(p => p.p.PatientId == id)
                                                  .ToList();
 
-          
+
             ViewData["ListOfFollowUps"] = ListOfFollowUps;
             ViewData["ListOfPassedTests"] = ListOfPassedTests;
 
@@ -153,7 +164,7 @@ namespace Dotnet_frameworks_project.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Details(int? id, [Bind("Id,FirstName,LastName,Birthday,ParentsPhone,LeftSessions,AddSessions,RemoveSessions,UserId,InsuranceId")] PatientViewModel models)
+        public async Task<IActionResult> Details(int? id, [Bind("Id,FirstName,LastName,Birthday,GenderId,ParentsPhone,LeftSessions,AddSessions,RemoveSessions,UserId,InsuranceId")] PatientViewModel models)
         {
             List<Patient> patients = _context.Patient.Where(p => p.Id == id).ToList();
 
@@ -187,6 +198,7 @@ namespace Dotnet_frameworks_project.Controllers
                 FirstName = patient.FirstName,
                 LastName = patient.LastName,
                 Birthday = patient.Birthday,
+                GenderId = patient.GenderId,
                 ParentsPhone = patient.ParentsPhone,
                 LeftSessions = patient.LeftSessions,
                 UserId = patient.UserId,
@@ -224,7 +236,7 @@ namespace Dotnet_frameworks_project.Controllers
         {
             var user = _context.Users.Where(u => u.UserName == _user.UserName).ToList();
 
-
+            ViewData["GenderId"] = new SelectList(_context.Gender, "ID", "Name");
             ViewData["InsuranceId"] = new SelectList(_context.Insurance, "Name", "Name");
             ViewData["UserId"] = user;
             return View();
@@ -235,7 +247,7 @@ namespace Dotnet_frameworks_project.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Birthday,ParentsPhone,LeftSessions,UserId,InsuranceId")] Patient patient)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Birthday,GenderId,ParentsPhone,LeftSessions,UserId,InsuranceId")] Patient patient)
         {
             if (ModelState.IsValid)
             {
@@ -247,17 +259,19 @@ namespace Dotnet_frameworks_project.Controllers
                 Account.Email = patient.FirstName + "." + patient.LastName + "@hotmail.be";
                 Account.EmailConfirmed = true;
                 Account.LanguageId = "nl";
-                await UserManager.CreateAsync(Account, patient.FirstName + "." + patient.LastName + "L2022");
+                await _userManager.CreateAsync(Account, patient.FirstName + "." + patient.LastName + "L2022");
 
                 patient.AccountId = Account.Id;
                 _context.Add(patient);
                 await _context.SaveChangesAsync();
 
-                await UserManager.AddToRoleAsync(Account, "Parents");
+                await _userManager.AddToRoleAsync(Account, "Parents");
                 return RedirectToAction(nameof(Index));
             }
             ViewData["InsuranceId"] = new SelectList(_context.Insurance, "Name", "Name", patient.InsuranceId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", patient.UserId);
+            ViewData["GenderId"] = new SelectList(_context.Gender, "ID", "Name", patient.GenderId);
+
             return View(patient);
         }
 
@@ -276,6 +290,8 @@ namespace Dotnet_frameworks_project.Controllers
             }
             ViewData["InsuranceId"] = new SelectList(_context.Insurance, "Name", "Name", patient.InsuranceId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", patient.UserId);
+            ViewData["GenderId"] = new SelectList(_context.Gender, "ID", "Name", patient.GenderId);
+
             return View(patient);
         }
 
@@ -284,7 +300,7 @@ namespace Dotnet_frameworks_project.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Birthday,ParentsPhone,LeftSessions,UserId,InsuranceId")] Patient patient)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Birthday,GenderId,ParentsPhone,LeftSessions,UserId,InsuranceId")] Patient patient)
         {
             if (id != patient.Id)
             {
@@ -313,6 +329,8 @@ namespace Dotnet_frameworks_project.Controllers
             }
             ViewData["InsuranceId"] = new SelectList(_context.Insurance, "Name", "Name", patient.InsuranceId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", patient.UserId);
+            ViewData["GenderId"] = new SelectList(_context.Gender, "ID", "Name", patient.GenderId);
+
             return View(patient);
         }
 
@@ -327,6 +345,7 @@ namespace Dotnet_frameworks_project.Controllers
             var patient = await _context.Patient
                 .Include(p => p.Insurance)
                 .Include(p => p.user)
+                 .Include(s => s.Gender)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (patient == null)
             {
@@ -351,7 +370,7 @@ namespace Dotnet_frameworks_project.Controllers
             {
                 _context.Users.Remove(user);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

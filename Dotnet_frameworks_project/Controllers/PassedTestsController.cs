@@ -1,6 +1,7 @@
 ﻿#nullable disable
 using Dotnet_frameworks_project.Areas.Identity.Data;
 using Dotnet_frameworks_project.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,12 +12,12 @@ namespace Dotnet_frameworks_project.Controllers
     public class PassedTestsController : ApplicationController
     {
 
-        private readonly IStringLocalizer<PassedTestsController> _localizer;
 
-        public PassedTestsController(ApplicationContext context, IHttpContextAccessor httpContextAccessor, ILogger<ApplicationController> logger, IStringLocalizer<PassedTestsController> localizer) : base(context, httpContextAccessor, logger)
+
+        public PassedTestsController(ApplicationContext context, UserManager<ApplicationUser> userManager, IHttpContextAccessor httpContextAccessor, ILogger<ApplicationController> logger, IStringLocalizer<PatientsController> localizer) : base(context, httpContextAccessor, logger, localizer, userManager)
 
         {
-            _localizer = localizer;
+
         }
 
         // GET: PassedTests

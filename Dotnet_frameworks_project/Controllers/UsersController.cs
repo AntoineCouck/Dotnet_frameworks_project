@@ -3,6 +3,7 @@ using Dotnet_frameworks_project.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 
 namespace Dotnet_frameworks_project.Controllers
 {
@@ -10,10 +11,7 @@ namespace Dotnet_frameworks_project.Controllers
     [Authorize(Roles = "Admin")]
     public class UsersController : ApplicationController
     {
-        public UsersController(ApplicationContext context,
-                                 IHttpContextAccessor httpContextAccessor,
-                                 ILogger<ApplicationController> logger)
-             : base(context, httpContextAccessor, logger)
+        public UsersController(ApplicationContext context, UserManager<ApplicationUser> userManager, IHttpContextAccessor httpContextAccessor, ILogger<ApplicationController> logger, IStringLocalizer<PatientsController> localizer) : base(context, httpContextAccessor, logger, localizer, userManager)
         {
         }
 

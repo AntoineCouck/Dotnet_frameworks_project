@@ -1,34 +1,13 @@
 
 
-profile of patient → details :
+---------------- extra ------------------------------
 
-🗸 Liste des suivi 
-
-🗸 Liste de tests que ce patient a passé
-
-🗸 système de compteur ( un truc pour ajouter et enlever des sessions ) 
-
------------------------------------------
-
-Tests: 
-
-🗸 Voir une liste de personnes qui ont passé le test 
-
------------------------------------------------
-
-
-Parents:
-
-
-🗸 Parents : ajouter des perms, quand on crée un patient , un compte est crée pour les parents: avec ses données. ce compte peut consulter uniquement les données de l'enfant.
+- pouvoir envoyer un message a la logo de son enfant 
 
 --------------------------------------------------------
 
 Autres: 
 
-- Ajouter des filtres sur les tableaux → a tester !!
-
-🗸 1 gebruiker admin met password "Student1" met admin rechten 
 
 - vérifier le " all divices access " 
 
@@ -40,15 +19,11 @@ Autres:
 
 -----------------------------
 
-
 - faire les permissions
-
 
 ------------------------------
 
 - Traductions ( nl,en , fr ) 
-
-
 
 --------------------------------
 
@@ -57,4 +32,12 @@ Final :
 - styling 
 
 - debugging / check errors
+
+  → dans edit de patient userid (logo) est encore le vrai id et non le username
+
+  → details patient → on voit pas le userId ( logo )
+
+  → on voit pas le gender dans details
+
+  → ajouter des sessions ne marche plus 
 

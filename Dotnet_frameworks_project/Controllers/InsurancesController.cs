@@ -1,6 +1,7 @@
 ﻿#nullable disable
 using Dotnet_frameworks_project.Areas.Identity.Data;
 using Dotnet_frameworks_project.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
@@ -10,12 +11,11 @@ namespace Dotnet_frameworks_project.Controllers
     public class InsurancesController : ApplicationController
     {
 
-        private readonly IStringLocalizer<InsurancesController> _localizer;
 
-        public InsurancesController(ApplicationContext context, IHttpContextAccessor httpContextAccessor, ILogger<ApplicationController> logger, IStringLocalizer<InsurancesController> localizer) : base(context, httpContextAccessor, logger)
+        public InsurancesController(ApplicationContext context, UserManager<ApplicationUser> userManager, IHttpContextAccessor httpContextAccessor, ILogger<ApplicationController> logger, IStringLocalizer<PatientsController> localizer) : base(context, httpContextAccessor, logger, localizer, userManager)
 
         {
-            _localizer = localizer;
+
         }
 
 

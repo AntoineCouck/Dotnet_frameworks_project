@@ -1,5 +1,6 @@
 ﻿using Dotnet_frameworks_project.Areas.Identity.Data;
 using Dotnet_frameworks_project.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
@@ -8,12 +9,12 @@ namespace Dotnet_frameworks_project.Controllers
 {
     public class FollowUp_typeController : ApplicationController
     {
-        private readonly IStringLocalizer<FollowUp_typeController> _localizer;
 
-        public FollowUp_typeController(ApplicationContext context, IHttpContextAccessor httpContextAccessor, ILogger<ApplicationController> logger, IStringLocalizer<FollowUp_typeController> localizer) : base(context, httpContextAccessor, logger)
+
+        public FollowUp_typeController(ApplicationContext context, UserManager<ApplicationUser> userManager, IHttpContextAccessor httpContextAccessor, ILogger<ApplicationController> logger, IStringLocalizer<PatientsController> localizer) : base(context, httpContextAccessor, logger, localizer, userManager)
 
         {
-            _localizer = localizer;
+
         }
 
 

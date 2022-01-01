@@ -27,7 +27,7 @@ public class Patient
     public string ParentsPhone { get; set; }
 
 
-    public int? LeftSessions { get; set; }
+    public int? LeftSessions { get; set; } 
 
     public string? UserId { get; set; }
     public ApplicationUser? user { get; set; }
@@ -42,6 +42,13 @@ public class Patient
     [ForeignKey("Account")]
     public string? AccountId { get; set; }
     public ApplicationUser? Account { get; set; }
+
+
+    [ForeignKey("Gender")]
+    public char GenderId { get; set; }
+
+    public Gender? Gender { get; set; }
+
 
 
 }
@@ -81,7 +88,11 @@ public class PatientViewModel
     [ForeignKey("Insurance")]
     public string? InsuranceId { get; set; }
 
-    
+
+    [ForeignKey("Gender")]
+    public char GenderId { get; set; }
+
+    public Gender? Gender { get; set; }
 
 }
 
@@ -89,6 +100,8 @@ public class PatientIndexViewModel
 {
 
     public string? NameFilter { get; set; }
+    public char GenderFilter { get; set; }
     public List<Patient>? FilteredStudents { get; set; }
-  
+    public SelectList? ListGenders { get; set; }
+
 }

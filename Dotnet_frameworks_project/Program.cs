@@ -1,16 +1,15 @@
 using Dotnet_frameworks_project.Areas.Identity.Data;
 using Dotnet_frameworks_project.Models;
 using Dotnet_frameworks_project.Seeders;
-using Dotnet_frameworks_project.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using StudentenBeheer.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("ApplicationContextConnection"); 
+var connectionString = builder.Configuration.GetConnectionString("ApplicationContextConnection");
 
 builder.Services.AddDbContext<ApplicationContext>(options =>
-     options.UseSqlServer(connectionString)); 
+     options.UseSqlServer(connectionString));
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
       .AddRoles<IdentityRole>()
@@ -64,7 +63,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 //    options.Security = false;  // true zet ssl or tls aan
 //});
 
-              
+
 
 
 

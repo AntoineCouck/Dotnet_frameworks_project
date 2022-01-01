@@ -37,6 +37,18 @@ namespace Dotnet_frameworks_project.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Gender",
+                columns: table => new
+                {
+                    ID = table.Column<string>(type: "nvarchar(1)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Gender", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Insurance",
                 columns: table => new
                 {
@@ -230,7 +242,8 @@ namespace Dotnet_frameworks_project.Migrations
                     LeftSessions = table.Column<int>(type: "int", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     InsuranceId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    AccountId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    AccountId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    GenderId = table.Column<string>(type: "nvarchar(1)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -245,6 +258,12 @@ namespace Dotnet_frameworks_project.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Patient_Gender_GenderId",
+                        column: x => x.GenderId,
+                        principalTable: "Gender",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Patient_Insurance_InsuranceId",
                         column: x => x.InsuranceId,
@@ -371,6 +390,11 @@ namespace Dotnet_frameworks_project.Migrations
                 column: "AccountId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Patient_GenderId",
+                table: "Patient",
+                column: "GenderId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Patient_InsuranceId",
                 table: "Patient",
                 column: "InsuranceId");
@@ -418,6 +442,9 @@ namespace Dotnet_frameworks_project.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Gender");
 
             migrationBuilder.DropTable(
                 name: "Insurance");

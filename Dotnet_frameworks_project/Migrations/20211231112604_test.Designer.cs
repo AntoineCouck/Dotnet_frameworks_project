@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dotnet_frameworks_project.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20211230173130_test")]
+    [Migration("20211231112604_test")]
     partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -144,6 +144,21 @@ namespace Dotnet_frameworks_project.Migrations
                     b.ToTable("FollowUp_type");
                 });
 
+            modelBuilder.Entity("Dotnet_frameworks_project.Models.Gender", b =>
+                {
+                    b.Property<string>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(1)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Gender");
+                });
+
             modelBuilder.Entity("Dotnet_frameworks_project.Models.Insurance", b =>
                 {
                     b.Property<string>("Name")
@@ -225,6 +240,10 @@ namespace Dotnet_frameworks_project.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("GenderId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1)");
+
                     b.Property<string>("InsuranceId")
                         .HasColumnType("nvarchar(450)");
 
@@ -245,6 +264,8 @@ namespace Dotnet_frameworks_project.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AccountId");
+
+                    b.HasIndex("GenderId");
 
                     b.HasIndex("InsuranceId");
 
@@ -458,6 +479,12 @@ namespace Dotnet_frameworks_project.Migrations
                         .WithMany()
                         .HasForeignKey("AccountId");
 
+                    b.HasOne("Dotnet_frameworks_project.Models.Gender", "Gender")
+                        .WithMany()
+                        .HasForeignKey("GenderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Dotnet_frameworks_project.Models.Insurance", "Insurance")
                         .WithMany()
                         .HasForeignKey("InsuranceId");
@@ -467,6 +494,8 @@ namespace Dotnet_frameworks_project.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("Account");
+
+                    b.Navigation("Gender");
 
                     b.Navigation("Insurance");
 
