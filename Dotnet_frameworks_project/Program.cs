@@ -85,7 +85,7 @@ using (var scope = app.Services.CreateScope())
 }
 
 //voor de seeder
-var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture("nl-BE")
+var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture("en")
      .AddSupportedCultures(Language.SupportedLanguages)
      .AddSupportedUICultures(Language.SupportedLanguages);
 

@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -35,11 +38,11 @@
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
-                <h5 class="white-text">De logo-manager platform </h5>
-                <p class="grey-text text-lighten-4">De beste platform voor management van patienten en veel meer</p>
+                <h5 class="white-text">@Localizer["logo-manager platform"]</h5>
+                <p class="grey-text text-lighten-4">@Localizer["The best platform for speech therapists"]</p>
               </div>
               <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
+                <h5 class="white-text">@Localizer["Links"]</h5>
                 <ul>
                   <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
                   <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>

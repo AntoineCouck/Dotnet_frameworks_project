@@ -1,14 +1,16 @@
-﻿@model PatientIndexViewModel;
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@model PatientIndexViewModel;
+@inject IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Index";
+    //ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>@Localizer["All patients"]</h1>
 <p>
  <form asp-controller="Patients" asp-action="Index" method="get">
-        <small>Search Name or lastname </small> <input type="text" name="nameFilter"/>
+        <small>@Localizer["Search for a Name or lastname"]</small> <input type="text" name="nameFilter"/>
          
    @*        <div class="input-field col s12">
     <select  name="genderfilter" asp-items="@ViewBag.genderId">
@@ -18,7 +20,7 @@
     
   </div>*@
         
-  <button class="waves-effect waves-light btn-small" type="submit" name="action">Submit
+  <button class="waves-effect waves-light btn-small" type="submit" name="action">@Localizer["Search"]
     
   </button>
     </form>
@@ -26,15 +28,15 @@
 <form asp-controller="Patients" asp-action="Index" method="get"> 
    <div class="input-field col s3">
           
-    <small>Gender:</small> 
+    <small>@Localizer["Gender"]</small> 
     <select  name="genderfilter" asp-items="@ViewBag.genderId" class="">
-       <option value="" disabled="disabled" selected="selected">Choose your option</option>
-      <option value="">All</option>
+       <option value="" disabled="disabled" selected="selected">@Localizer["Choose your option"]</option>
+      <option value="">@Localizer["All"]</option>
     </select>
       </div>    
       
   <button class="waves-effect waves-light btn-small" type="submit" name="action">
-      Search gender
+      @Localizer["Search gender"]
   </button>
 </form>
 
@@ -53,7 +55,7 @@
                 <a asp-action="Index" asp-route-orderBy="@ViewBag.BirthDay">@Html.DisplayNameFor(model => model.FilteredStudents[0].Birthday)</a>
             </th>
              <th>
-                @Html.DisplayNameFor(model => model.FilteredStudents[0].Gender)
+                @Html.DisplayNameFor(model => model.FilteredStudents[0].@Gender)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FilteredStudents[0].ParentsPhone)
@@ -100,9 +102,9 @@
                 @Html.DisplayFor(modelItem => item.Insurance.Name)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">@Localizer["Edit"]</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">@Localizer["Details"]</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">@Localizer["Delete"]</a>
             </td>
         </tr>
 }

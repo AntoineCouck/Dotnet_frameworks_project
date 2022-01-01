@@ -15,11 +15,11 @@
       </div>
     </li>
      <li><div style="margin-top:20%;" class="divider"></div></li>
-    <li><a class="subheader">Account options</a></li>
+    <li><a class="subheader">@Localizer["Account options"]</a></li>
     
      <i style="text-align:center"><partial name="_LoginPartial" /></i>
       <li><div class="divider"></div></li>
-    <li><a class="subheader">Language options</a></li>
+    <li><a class="subheader">@Localizer["Language options"]</a></li>
     <i style="text-align:center"><partial name="_LanguagePartial" /></i>
     <li><div class="divider"></div></li>
 
@@ -27,26 +27,26 @@
 
     @if(User.IsInRole("Admin"))
     {
-            <li><a class="subheader">Roles management</a></li>
-            <a class="nav-link text-dark" asp-controller="Users" asp-action="Index">@Localizer["Gebruikersbeheer"]</a>
+            <li><a class="subheader">@Localizer["Roles management"]</a></li>
+            <a class="nav-link text-dark" asp-controller="Users" asp-action="Index">@Localizer["Roles management"]</a>
              <li><div class="divider"></div></li>
     }
 
-    <li><a class="subheader">Navigation</a></li>
-    <li><a class="waves-effect" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-     <li><a class="waves-effect" asp-area="" asp-controller="Home" asp-action="Privacy">Bronnen vermelding</a></li>
+    <li><a class="subheader">@Localizer["Navigation"]</a></li>
+    <li><a class="waves-effect" asp-area="" asp-controller="Home" asp-action="Index">@Localizer["Home"]</a></li>
+     <li><a class="waves-effect" asp-area="" asp-controller="Home" asp-action="Privacy">@Localizer["Bronnen"]</a></li>
       <li><div class="divider"></div></li>
-    <li><a class="subheader">Patients management</a></li>
-         <li><a class="waves-effect" asp-area="" asp-controller="Patients" asp-action="Index">View all patients</a></li>
-                  <li><a class="waves-effect" asp-area="" asp-controller="FollowUp_patients" asp-action="Index">Create a follow up </a></li>
-             <li><a class="waves-effect" asp-area="" asp-controller="FollowUp_type" asp-action="Index">Followup types</a></li>
+    <li><a class="subheader">@Localizer["Patients management"]</a></li>
+         <li><a class="waves-effect" asp-area="" asp-controller="Patients" asp-action="Index">@Localizer["View all patients"]</a></li>
+                  <li><a class="waves-effect" asp-area="" asp-controller="FollowUp_patients" asp-action="Index">@Localizer["Follow a new patient"]</a></li>
+             <li><a class="waves-effect" asp-area="" asp-controller="FollowUp_type" asp-action="Index">@Localizer["Follow up management"]</a></li>
                    <li><div class="divider"></div></li>
-    <li><a class="subheader">Tests management</a></li>
-                 <li><a class="waves-effect" asp-area="" asp-controller="Tests" asp-action="Index">Tests</a></li>
-                 <li><a class="waves-effect" asp-area="" asp-controller="PassedTests" asp-action="Index">Add a passed test</a></li>
+    <li><a class="subheader">@Localizer["Tests management"]</a></li>
+                 <li><a class="waves-effect" asp-area="" asp-controller="Tests" asp-action="Index">@Localizer["Tests"]</a></li>
+                 <li><a class="waves-effect" asp-area="" asp-controller="PassedTests" asp-action="Index">@Localizer["Add a passed test"]</a></li>
                                  <li><div class="divider"></div></li>
-    <li><a class="subheader">Insurance management</a></li>
-                     <li><a class="waves-effect" asp-area="" asp-controller="Insurances" asp-action="Index">Add an insurance</a></li>
+    <li><a class="subheader">@Localizer["Insurance management"]</a></li>
+                     <li><a class="waves-effect" asp-area="" asp-controller="Insurances" asp-action="Index">@Localizer["Add an insurance"]</a></li>
 
   </ul>
   <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons" style="font-size:50px; margin-left:1.2%; margin-top:1.2%;">menu</i></a>
