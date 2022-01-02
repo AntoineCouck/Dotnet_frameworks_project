@@ -117,52 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="All patients" xml:space="preserve">
-    <value>Patients</value>
+  <data name="Back to List" xml:space="preserve">
+    <value>Terug naar lijst</value>
   </data>
   <data name="Birthday" xml:space="preserve">
-    <value>Date de naissance</value>
-  </data>
-  <data name="Choose your option" xml:space="preserve">
-    <value>Choisisez votre option </value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Supprimer</value>
-  </data>
-  <data name="Details" xml:space="preserve">
-    <value>Details</value>
+    <value>Geboortedatum</value>
   </data>
   <data name="Edit" xml:space="preserve">
-    <value>Modifier</value>
+    <value>Wijzig</value>
   </data>
   <data name="Firstname" xml:space="preserve">
-    <value>Prénom</value>
+    <value>Voornaam</value>
   </data>
   <data name="Gender" xml:space="preserve">
-    <value>Sexe</value>
+    <value>Geslacht</value>
   </data>
   <data name="Insurance" xml:space="preserve">
-    <value>Mutuelle</value>
+    <value>Mutualiteit</value>
   </data>
   <data name="Lastname" xml:space="preserve">
-    <value>Nom</value>
+    <value>Achternaam</value>
   </data>
   <data name="Left sessions" xml:space="preserve">
-    <value>Nombre de sessions restantes</value>
+    <value>Overige sessies</value>
+  </data>
+  <data name="Patients" xml:space="preserve">
+    <value>Patienten</value>
   </data>
   <data name="Phone" xml:space="preserve">
-    <value>Nr. de téléphone</value>
+    <value>Telefoonnummer</value>
   </data>
-  <data name="Search" xml:space="preserve">
-    <value>Rechercher</value>
-  </data>
-  <data name="Search for a Name or lastname" xml:space="preserve">
-    <value>Rechercher un nom ou prénom</value>
-  </data>
-  <data name="Search gender" xml:space="preserve">
-    <value>filtrer un sexe</value>
+  <data name="Save" xml:space="preserve">
+    <value>Bewaar</value>
   </data>
   <data name="Therapist" xml:space="preserve">
-    <value>Logopède</value>
+    <value>Logopedist</value>
   </data>
 </root>

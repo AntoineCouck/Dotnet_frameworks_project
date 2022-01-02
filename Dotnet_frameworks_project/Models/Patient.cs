@@ -27,7 +27,7 @@ public class Patient
     public string ParentsPhone { get; set; }
 
 
-    public int? LeftSessions { get; set; } 
+    public int? LeftSessions { get; set; }
 
     public string? UserId { get; set; }
     public ApplicationUser? user { get; set; }

@@ -120,6 +120,9 @@
   <data name="All patients" xml:space="preserve">
     <value>Patienten</value>
   </data>
+  <data name="Birthday" xml:space="preserve">
+    <value>Geboortedatum</value>
+  </data>
   <data name="Choose your option" xml:space="preserve">
     <value>Kies optie</value>
   </data>
@@ -132,8 +135,23 @@
   <data name="Edit" xml:space="preserve">
     <value>Wijzig</value>
   </data>
+  <data name="Firstname" xml:space="preserve">
+    <value>Voornaam</value>
+  </data>
   <data name="Gender" xml:space="preserve">
     <value>Geslacht</value>
+  </data>
+  <data name="Insurance" xml:space="preserve">
+    <value>Mutualiteit</value>
+  </data>
+  <data name="Lastname" xml:space="preserve">
+    <value>Achternaam</value>
+  </data>
+  <data name="Left sessions" xml:space="preserve">
+    <value>Overige sessies</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>TéléfoonNr</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Zoek</value>
@@ -143,5 +161,8 @@
   </data>
   <data name="Search gender" xml:space="preserve">
     <value>Zoek op geslacht</value>
+  </data>
+  <data name="Therapist" xml:space="preserve">
+    <value>Logopedist</value>
   </data>
 </root>

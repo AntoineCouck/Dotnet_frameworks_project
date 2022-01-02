@@ -52,19 +52,19 @@ namespace Dotnet_frameworks_project.Seeders
                         EmailConfirmed = true
                     };
 
-                    Logopedist = new ApplicationUser
-                    {
-                        UserName = "Logopedist",
-                        Firstname = "Margot",
-                        Lastname = "Delo",
-                        LanguageId = "fr",
-                        Email = "System.administrator@studentenbeheer.be",
-                        EmailConfirmed = true
-                    };
+                    //Logopedist = new ApplicationUser
+                    //{
+                    //    UserName = "Logopedist",
+                    //    Firstname = "Margot",
+                    //    Lastname = "Delo",
+                    //    LanguageId = "fr",
+                    //    Email = "System.administrator@studentenbeheer.be",
+                    //    EmailConfirmed = true
+                    //};
 
 
                     userManager.CreateAsync(user1, "Student+1");
-                    userManager.CreateAsync(Logopedist, "Abc!12345");
+                    //userManager.CreateAsync(Logopedist, "Abc!12345");
                 }
 
                 if (!context.Gender.Any())
@@ -117,8 +117,8 @@ namespace Dotnet_frameworks_project.Seeders
                 {
                     context.UserRoles.AddRange(
 
-                        new IdentityUserRole<string> { UserId = user1.Id, RoleId = "Admin" },
-                          new IdentityUserRole<string> { UserId = Logopedist.Id, RoleId = "Logopedist" }
+                        new IdentityUserRole<string> { UserId = user1.Id, RoleId = "Admin" }
+                        //new IdentityUserRole<string> { UserId = Logopedist.Id, RoleId = "Logopedist" }
 
                         );
 

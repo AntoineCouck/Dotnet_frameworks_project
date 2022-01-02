@@ -19,7 +19,7 @@ namespace Dotnet_frameworks_project.Models
 
         public ApplicationUser? Receiver { get; set; }
         [ForeignKey("Receiver")]
-        public string ? ReceiverId { get; set; }
+        public string? ReceiverId { get; set; }
 
 
     }

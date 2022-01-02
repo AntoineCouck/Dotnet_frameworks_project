@@ -12,13 +12,7 @@
  <form asp-controller="Patients" asp-action="Index" method="get">
         <small>@Localizer["Search for a Name or lastname"]</small> <input type="text" name="nameFilter"/>
          
-   @*        <div class="input-field col s12">
-    <select  name="genderfilter" asp-items="@ViewBag.genderId">
-      <option value="" disabled selected>Choose your option</option>
-      <option value="">All</option>
-    </select>
-    
-  </div>*@
+
         
   <button class="waves-effect waves-light btn-small" type="submit" name="action">@Localizer["Search"]
     
@@ -46,28 +40,28 @@
     <thead>
         <tr>
             <th>
-                   <a asp-action="Index" asp-route-orderBy="@ViewBag.NameField">@Html.DisplayNameFor(model => model.FilteredStudents[0].FirstName)</a>
+                   <a asp-action="Index" asp-route-orderBy="@ViewBag.NameField">@Localizer["Firstname"]</a>
             </th>
             <th>
-                  <a asp-action="Index" asp-route-orderBy="@ViewBag.LastName">@Html.DisplayNameFor(model => model.FilteredStudents[0].LastName)</a>
+                  <a asp-action="Index" asp-route-orderBy="@ViewBag.LastName">@Localizer["Lastname"]</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-orderBy="@ViewBag.BirthDay">@Html.DisplayNameFor(model => model.FilteredStudents[0].Birthday)</a>
+                <a asp-action="Index" asp-route-orderBy="@ViewBag.BirthDay">@Localizer["Birthday"]</a>
             </th>
              <th>
-                @Html.DisplayNameFor(model => model.FilteredStudents[0].@Gender)
+              @Localizer["Gender"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FilteredStudents[0].ParentsPhone)
+              @Localizer["Phone"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FilteredStudents[0].LeftSessions)
+              @Localizer["Left sessions"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FilteredStudents[0].user)
+              @Localizer["Therapist"]
             </th>
                <th>
-                @Html.DisplayNameFor(model => model.FilteredStudents[0].Insurance)
+                @Localizer["Insurance"]
             </th>
              
             <th></th>

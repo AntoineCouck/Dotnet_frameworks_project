@@ -24,7 +24,7 @@ namespace Dotnet_frameworks_project.Controllers
         public async Task<IActionResult> Index(string nameFilter, char genderFilter, string orderBy)
         {
             var applicationContext = await _context.Patient.Include(p => p.Insurance).Include(p => p.user).ToListAsync();
-            
+
             ViewData["object"] = applicationContext;
 
             var filteredPatients = from m in _context.Patient
@@ -89,7 +89,7 @@ namespace Dotnet_frameworks_project.Controllers
 
             PatientIndexViewModel studentviewmodel = new PatientIndexViewModel()
             {
-                
+
 
                 NameFilter = nameFilter,
                 GenderFilter = genderFilter,
@@ -346,7 +346,7 @@ namespace Dotnet_frameworks_project.Controllers
             var patient = await _context.Patient
                 .Include(p => p.Insurance)
                 .Include(p => p.user)
-                 //.Include(s => s.Gender)
+                //.Include(s => s.Gender)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (patient == null)
             {
