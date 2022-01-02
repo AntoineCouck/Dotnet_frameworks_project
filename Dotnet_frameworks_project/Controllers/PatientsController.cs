@@ -172,7 +172,7 @@ namespace Dotnet_frameworks_project.Controllers
             {
                 foreach (Patient patient2 in patients)
                 {
-                    patient2.LeftSessions = models.LeftSessions + models.AddSessions - models.RemoveSessions;
+                    patient2.LeftSessions = patient2.LeftSessions + models.AddSessions - models.RemoveSessions;
                     _context.Update(patient2);
 
 

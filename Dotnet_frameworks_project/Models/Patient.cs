@@ -45,7 +45,7 @@ public class Patient
 
 
     [ForeignKey("Gender")]
-    public char GenderId { get; set; }
+    public char? GenderId { get; set; }
 
     public Gender? Gender { get; set; }
 
@@ -90,7 +90,7 @@ public class PatientViewModel
 
 
     [ForeignKey("Gender")]
-    public char GenderId { get; set; }
+    public char? GenderId { get; set; }
 
     public Gender? Gender { get; set; }
 
