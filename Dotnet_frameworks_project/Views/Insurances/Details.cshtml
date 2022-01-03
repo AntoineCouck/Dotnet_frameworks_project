@@ -1,24 +1,25 @@
 ﻿@model Dotnet_frameworks_project.Models.Insurance
-
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<h1>@Localizer["Details of the insurance"]</h1>
 
 <div>
-    <h4>Insurance</h4>
+    <h4>@Localizer["Insurance"]</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Adres)
+           @Localizer["Adres"]
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Adres)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PhoneNumber)
+           @Localizer["Phone"]
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.PhoneNumber)
@@ -26,13 +27,13 @@
     </dl>
 </div>
 <div>
-<h2>Member of the insurance:</h2>
+<h2>@Localizer["Member of the insurance:"]</h2>
 
         <table class="striped highlight centered responsive-table" >
         <thead>
           <tr>
-              <th>FirstName</th>
-              <th>LastName</th>
+              <th>@Localizer["Firstname"]</th>
+              <th>@Localizer["Lastname"]</th>
              
           </tr>
         </thead>
@@ -60,6 +61,6 @@
 
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Name">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.Name">@Localizer["Edit"]</a> |
+    <a asp-action="Index">@Localizer["Back to List"]</a>
 </div>
