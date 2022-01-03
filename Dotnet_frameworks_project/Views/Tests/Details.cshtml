@@ -1,36 +1,42 @@
 ﻿@model Dotnet_frameworks_project.Models.Test
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<h1>@Localizer["Details"]</h1>
 
 <div>
-    <h4>Test</h4>
+    <h4>@Localizer["Test"]</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
+           
+         @Localizer["Description"]
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Description)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Usage)
+           
+         @Localizer["Usage"]
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Usage)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Min_age)
+          
+         @Localizer["Minimal age"]
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Min_age)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Max_age)
+         
+         @Localizer["Maximal age"]
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Max_age)
@@ -38,19 +44,19 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Name">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.Name">@Localizer["Edit"]</a> |
+    <a asp-action="Index">@Localizer["Back to List"]</a>
 </div>
 
 
-<h3 class="center-align">Patients</h3>
+<h3 class="center-align">@Localizer["Patients"]</h3>
 
 
     <table class="striped highlight centered responsive-table" >
         <thead>
             <tr>
-                <th>Firstname</th>
-                <th>Lastname</th>
+                <th>@Localizer["Firstname"]</th>
+                <th>@Localizer["Lastname"]</th>
             </tr>
         </thead>
 

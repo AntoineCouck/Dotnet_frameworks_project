@@ -41,3 +41,5 @@ Final :
 
   → ajouter des sessions ne marche plus 
 
+  → mettre le nom du test comme titre de l'edit + details + delete
+
