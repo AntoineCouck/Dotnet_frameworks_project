@@ -1,50 +1,66 @@
 ﻿@model Dotnet_frameworks_project.Models.Patient
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<h1>@Localizer["Create"]</h1>
 
-<h4>Patient</h4>
+<h4>@Localizer["Patient"]</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
+                <label asp-for="FirstName" class="control-label">
+                 @Localizer["Firstname"]
+                 </label>
                 <input asp-for="FirstName" class="form-control" />
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
+                <label asp-for="LastName" class="control-label">
+                @Localizer["Lastname"]
+                </label>
                 <input asp-for="LastName" class="form-control" />
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Birthday" class="control-label"></label>
+                <label asp-for="Birthday" class="control-label">
+                @Localizer["Birthday"]
+                </label>
                 <input asp-for="Birthday" id="dtp" type="text" class="datepicker"  />
                 <span asp-validation-for="Birthday" class="text-danger"></span>
             </div>
              <div class="form-group">
-                <label asp-for="GenderId" class="control-label"></label>
+                <label asp-for="GenderId" class="control-label">
+                @Localizer["Gender"]
+                </label>
                 <select asp-for="GenderId" class ="form-control" asp-items="ViewBag.GenderId"></select>
             </div>
             <div class="form-group " class="input-field col s6">
-                <label asp-for="ParentsPhone" class="control-label"></label>
+                <label asp-for="ParentsPhone" class="control-label">
+                @Localizer["Phone"]
+                </label>
                 @*<i class="material-icons prefix">phone</i>*@
                 <input asp-for="ParentsPhone" class="form-control" />
                 <span asp-validation-for="ParentsPhone" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LeftSessions" class="control-label"></label>
+                <label asp-for="LeftSessions" class="control-label">
+                @Localizer["Left sessions"]
+                </label>
                 <input asp-for="LeftSessions" value="0"  class="form-control" />
                 <span asp-validation-for="LeftSessions" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
+                <label asp-for="UserId" class="control-label">
+                @Localizer["Therapsist"]
+                </label>
                 <select asp-for="UserId" class ="form-control">
 
                 @{
@@ -59,7 +75,9 @@
             </div>
             
              <div class="form-group">
-                <label asp-for="InsuranceId" class="control-label"></label>
+                <label asp-for="InsuranceId" class="control-label">
+                @Localizer["Insurance"]
+                </label>
                 <select asp-for="InsuranceId" class ="form-control" asp-items="ViewBag.InsuranceId"></select>
             </div>
             <div class="form-group">
@@ -71,7 +89,9 @@
 
 <div>
     <a 
- class="waves-effect waves-light btn-small" asp-action="Index">Back to List</a>
+ class="waves-effect waves-light btn-small" asp-action="Index">
+@Localizer["Back to List"]
+</a>
 </div>
 
 @section Scripts {

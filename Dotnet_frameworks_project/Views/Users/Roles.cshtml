@@ -20,40 +20,40 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label class="control-label">@Localizer["UserName"]
+                <label class="control-label">@Localizer["Username"]
                 <input class="filled-in" asp-for="UserName" class="form-control" asp-items="ViewBag.GroupId" disabled></input>
                 <span asp-validation-for="UserName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">@Localizer["FirstName"]</label>
+                <label class="control-label">@Localizer["Firstname"]</label>
                 <input class="filled-in" asp-for="FirstName" class="form-control" asp-items="ViewBag.UserId" disabled></input>
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">@Localizer["LastName"]</label>
+                <label class="control-label">@Localizer["Lastname"]</label>
                 <input class="filled-in" asp-for="LastName" class="form-control" disabled/>
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">@Localizer["Student"]
+                <label class="control-label">@Localizer["Therapist"]
                 <input class="filled-in" type="checkbox" asp-for="@Model.Logopedist" />
                 <span asp-validation-for="Logopedist" class="text-danger"></span>
                 </label>
             </div>
             <div class="form-group">
-                <label class="control-label">@Localizer["Docent"]
+                <label class="control-label">@Localizer["Parent"]
                 <input class="filled-in" type="checkbox" asp-for="@Model.Parents" />
                 <span asp-validation-for="Parents" class="text-danger"></span>
                 </label>
             </div>
             <div class="form-group">
-                <label class="control-label">@Localizer["Beheerder"]
+                <label class="control-label">@Localizer["Insurancer"]
                 <input class="filled-in" type="checkbox" asp-for="@Model.Mutualiteit" />
                 <span asp-validation-for="Mutualiteit" class="text-danger"></span>
                 </label>
             </div>
                 <div class="form-group">
-                <label class="control-label">@Localizer["Beheerder"]
+                <label class="control-label">@Localizer["Admin"]
                 <input class="filled-in" type="checkbox" asp-for="@Model.Admin" />
                 <span asp-validation-for="Admin" class="text-danger"></span>
                 </label>

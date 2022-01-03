@@ -117,70 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Add sessions" xml:space="preserve">
-    <value>Sessies toevoegen</value>
+  <data name="Admin" xml:space="preserve">
+    <value>Administrateur</value>
   </data>
-  <data name="Back to list" xml:space="preserve">
-    <value>Terug naar lijst</value>
+  <data name="All users" xml:space="preserve">
+    <value>Tout les utilisateurs</value>
   </data>
-  <data name="Birthday" xml:space="preserve">
-    <value>Geboortedatum</value>
+  <data name="Ban" xml:space="preserve">
+    <value>Bannir</value>
   </data>
-  <data name="Description" xml:space="preserve">
-    <value>Beschrijving</value>
+  <data name="Banned" xml:space="preserve">
+    <value>Banni</value>
   </data>
-  <data name="Details" xml:space="preserve">
-    <value>Details</value>
+  <data name="Email" xml:space="preserve">
+    <value>E-mail</value>
   </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Wijzig</value>
+  <data name="Filter" xml:space="preserve">
+    <value>Filtrer</value>
   </data>
-  <data name="Firstname" xml:space="preserve">
-    <value>Voornaam</value>
+  <data name="Firsname" xml:space="preserve">
+    <value>Prénom</value>
   </data>
-  <data name="Followed for" xml:space="preserve">
-    <value>Gevolgd voor</value>
+  <data name="Insurancer" xml:space="preserve">
+    <value>Mutuelle</value>
   </data>
-  <data name="Gender" xml:space="preserve">
-    <value>Geslacht</value>
-  </data>
-  <data name="Insurance" xml:space="preserve">
-    <value>Mutualiteit</value>
+  <data name="Language" xml:space="preserve">
+    <value>Langue</value>
   </data>
   <data name="Lastname" xml:space="preserve">
-    <value>Achternaam</value>
+    <value>Nom</value>
   </data>
-  <data name="Left sessions" xml:space="preserve">
-    <value>Overige sessies</value>
+  <data name="Next" xml:space="preserve">
+    <value>Prochaine</value>
   </data>
-  <data name="Name" xml:space="preserve">
-    <value>Naam</value>
-  </data>
-  <data name="Passed Tests" xml:space="preserve">
-    <value>Geslaagde testen</value>
-  </data>
-  <data name="Patients" xml:space="preserve">
-    <value>Patienten</value>
+  <data name="Parent" xml:space="preserve">
+    <value>Parents</value>
   </data>
   <data name="Phone" xml:space="preserve">
-    <value>Telefoonnummer</value>
+    <value>Num. de téléphone</value>
   </data>
-  <data name="Remove sessions" xml:space="preserve">
-    <value>Sessies verwijderen</value>
+  <data name="Previous" xml:space="preserve">
+    <value>Précédent</value>
   </data>
-  <data name="Required sessions" xml:space="preserve">
-    <value>Nodige sessies</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>Bewaar</value>
-  </data>
-  <data name="Session manager" xml:space="preserve">
-    <value>Sessiesbeheer</value>
+  <data name="Roles" xml:space="preserve">
+    <value>Roles</value>
   </data>
   <data name="Therapist" xml:space="preserve">
-    <value>Logopedist</value>
+    <value>Logopède</value>
   </data>
-  <data name="Usage" xml:space="preserve">
-    <value>Gebruik</value>
+  <data name="Unban" xml:space="preserve">
+    <value>Debannir</value>
+  </data>
+  <data name="User management" xml:space="preserve">
+    <value>Gestion des utilisateurs</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Nom d'utilisateur</value>
   </data>
 </root>

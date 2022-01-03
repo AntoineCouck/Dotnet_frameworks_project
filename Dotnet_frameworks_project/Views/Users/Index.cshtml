@@ -6,11 +6,11 @@
 
 
 @{
-    ViewData["Title"] = Localizer["Gebruikersbeheer"];
+    ViewData["Title"] = Localizer["User management"];
     string VerticaalStreepje = " | ";
 }
 
-<h1>@Localizer["Index"]</h1>
+<h1>@Localizer["All users"]</h1>
 
 
 <table class="striped centered responsive-table highlight ">
@@ -18,25 +18,25 @@
     <thead>
         <tr>
             <th>
-                @Localizer["Gebruikersnaam"]
+                @Localizer["Username"]
             </th>
             <th>
-                @Localizer["Voornaam"]
+                @Localizer["Firsname"]
             </th>
             <th>
-                @Localizer["Familienaam"]
+                @Localizer["Lastname"]
             </th>
             <th>
                 @Localizer["Email"]
             </th>
             <th>
-                @Localizer["Taal"]
+                @Localizer["Language"]
             </th>
             <th>
-                @Localizer["Telefoonnummer"]
+                @Localizer["Phone"]
             </th>
             <th>
-                @Localizer["Buitengesloten"]
+                @Localizer["Banned"]
 
             </th>
             <th colspan=4 class="align-content-center">@Localizer["Roles"]</th>
@@ -55,10 +55,18 @@
             <th></th>
             <th></th>
             <th></th>
-            <th>L</th>
-            <th>P</th>
-            <th>M</th>
-            <th>A</th>
+            <th>
+            @Localizer["Therapist"]
+            </th>
+            <th>
+             @Localizer["Parent"]
+             </th>
+            <th>
+            @Localizer["Insurancer"]
+            </th>
+            <th>
+            @Localizer["Admin"]
+            </th>
             
              
             <th>
@@ -109,11 +117,11 @@
             <td>
                 @if (!item.Lockout)
                 {
-                    <a asp-action="Locking" asp-route-id="@item.Id">@Localizer["Lock"]</a> @VerticaalStreepje
+                    <a asp-action="Locking" asp-route-id="@item.Id">@Localizer["Ban"]</a> @VerticaalStreepje
                 }
                 else
                 {
-                    <a asp-action="Locking" asp-route-id="@item.Id">@Localizer["Unlock"]</a> @VerticaalStreepje
+                    <a asp-action="Locking" asp-route-id="@item.Id">@Localizer["Unban"]</a> @VerticaalStreepje
                 }
                 <a asp-action="Roles" asp-route-id="@item.Id">@Localizer["Roles"]</a>
             </td>

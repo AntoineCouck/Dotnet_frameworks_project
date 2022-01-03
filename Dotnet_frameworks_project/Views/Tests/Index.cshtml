@@ -1,32 +1,34 @@
 ﻿@model IEnumerable<Dotnet_frameworks_project.Models.Test>
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>@Localizer["All tests"]</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">@Localizer["Create a new test"]</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+             @Localizer["Name"]   
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+              @Localizer["Description"] 
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Usage)
+              @Localizer["Usage"]  
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Min_age)
+               @Localizer["Minimal age"] 
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Max_age)
+               @Localizer["Maximal age"] 
             </th>
             <th></th>
         </tr>
@@ -50,9 +52,9 @@
                 @Html.DisplayFor(modelItem => item.Max_age)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Name">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Name">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Name">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Name">@Localizer["Edit"]</a> |
+                <a asp-action="Details" asp-route-id="@item.Name">@Localizer["Details"]</a> |
+                <a asp-action="Delete" asp-route-id="@item.Name">@Localizer["Delete"]</a>
             </td>
         </tr>
 }
