@@ -1,35 +1,36 @@
 ﻿@model Dotnet_frameworks_project.Models.PassedTests
-
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<h1>@Localizer["Create a new passed test"]</h1>
 
-<h4>PassedTests</h4>
+<h4>@Localizer["Passed Tests"]</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="TestId" class="control-label"></label>
+                <label asp-for="TestId" class="control-label">@Localizer["Test"]</label>
                 <select asp-for="TestId" class ="form-control" asp-items="ViewBag.TestId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="PatientId" class="control-label"></label>
+                <label asp-for="PatientId" class="control-label">@Localizer["Patient"]</label>
                 <select asp-for="PatientId" class ="form-control" asp-items="ViewBag.PatientId"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="@Localizer["Create"]" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">@Localizer["Back to List"]</a>
 </div>
 
 @section Scripts {
