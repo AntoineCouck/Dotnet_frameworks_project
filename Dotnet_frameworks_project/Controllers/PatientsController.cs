@@ -1,6 +1,7 @@
 ﻿#nullable disable
 using Dotnet_frameworks_project.Areas.Identity.Data;
 using Dotnet_frameworks_project.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Localization;
 
 namespace Dotnet_frameworks_project.Controllers
 {
+    [Authorize(Roles = "Logopedist,Admin")]
     public class PatientsController : ApplicationController
     {
         //private readonly ApplicationContext _context;
@@ -151,6 +153,11 @@ namespace Dotnet_frameworks_project.Controllers
                                                  .ToList();
 
 
+            var user = _context.Users.Where(u => u.Id == patient.UserId).ToList();
+            ViewData["User"] = user;
+
+
+
             ViewData["ListOfFollowUps"] = ListOfFollowUps;
             ViewData["ListOfPassedTests"] = ListOfPassedTests;
 
@@ -220,7 +227,7 @@ namespace Dotnet_frameworks_project.Controllers
                                                  .Where(p => p.p.PatientId == id)
                                                  .ToList();
 
-
+          
             ViewData["ListOfFollowUps"] = ListOfFollowUps;
             ViewData["ListOfPassedTests"] = ListOfPassedTests;
 
@@ -289,10 +296,10 @@ namespace Dotnet_frameworks_project.Controllers
             {
                 return NotFound();
             }
+            var user = _context.Users.Where(u => u.UserName == _user.UserName).ToList();
             ViewData["InsuranceId"] = new SelectList(_context.Insurance, "Name", "Name", patient.InsuranceId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", patient.UserId);
             ViewData["GenderId"] = new SelectList(_context.Gender, "ID", "Name", patient.GenderId);
-
+            ViewData["UserId"] = user;
             return View(patient);
         }
 
@@ -328,8 +335,10 @@ namespace Dotnet_frameworks_project.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            var user = _context.Users.Where(u => u.UserName == _user.UserName).ToList();
+
             ViewData["InsuranceId"] = new SelectList(_context.Insurance, "Name", "Name", patient.InsuranceId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", patient.UserId);
+            ViewData["UserId"] = user;
             ViewData["GenderId"] = new SelectList(_context.Gender, "ID", "Name", patient.GenderId);
 
             return View(patient);

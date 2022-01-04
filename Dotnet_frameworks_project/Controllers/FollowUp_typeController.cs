@@ -1,5 +1,6 @@
 ﻿using Dotnet_frameworks_project.Areas.Identity.Data;
 using Dotnet_frameworks_project.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,7 @@ using Microsoft.Extensions.Localization;
 
 namespace Dotnet_frameworks_project.Controllers
 {
+    [Authorize(Roles = "Logopedist,Admin")]
     public class FollowUp_typeController : ApplicationController
     {
 

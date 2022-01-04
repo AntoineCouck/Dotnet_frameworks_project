@@ -1,43 +1,37 @@
 
 
----------------- extra ------------------------------
 
-- pouvoir envoyer un message a la logo de son enfant 
 
---------------------------------------------------------
+- faire les permissions
+
+
 
 Autres: 
-
 
 - vérifier le " all divices access " 
 
 - Users laten kiezen of ze cookies willen gebruiken of niet 
 
+→ https://docs.microsoft.com/en-us/previous-versions/aspnet/ms178194(v=vs.100)
+
+→ https://docs.microsoft.com/en-us/aspnet/core/security/authentication/cookie?view=aspnetcore-6.0
+
+
 - Gebruik maken van middleware om minstens één sessie-afhankelijke variabele te voorzien.
 
 - Minstens 1x gebruik maken van Ajax-helpers i.p.v. Html-helpers
 
------------------------------
-
-- faire les permissions
-
-------------------------------
+-------------------------------------------------------
 
 Final : 
 
-- styling 
-
 - debugging / check errors
 
-  → dans edit de patient userid (logo) est encore le vrai id et non le username
-
-  → details patient → on voit pas le userId ( logo )
-
-  → on voit pas le gender dans details
-
-  → ajouter des sessions ne marche plus 
-
-  → mettre le nom du test comme titre de l'edit + details + delete
+- styling 
 
 
+---------------- extra --------------------------------
 
+- pouvoir envoyer un message a la logo de son enfant 
+
+--------------------------------------------------------

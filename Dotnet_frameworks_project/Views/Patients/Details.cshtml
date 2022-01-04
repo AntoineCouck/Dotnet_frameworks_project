@@ -36,7 +36,7 @@
           @Localizer["Gender"]
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Gender.Name)
+            @Html.DisplayFor(model => model.GenderId)
         </dd>
         <dt class = "col-sm-2">
           @Localizer["Phone"]
@@ -54,7 +54,17 @@
             @Localizer["Therapist"]
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.user.Id)
+
+              @{
+
+                    foreach ( var item in ViewBag.User)
+                    {
+                       @item.UserName
+                    }
+
+                }
+           @* @Html.DisplayFor(model => model.UserId)*@
+       
         </dd>
           <dt class = "col-sm-2">
            @Localizer["Insurance"]

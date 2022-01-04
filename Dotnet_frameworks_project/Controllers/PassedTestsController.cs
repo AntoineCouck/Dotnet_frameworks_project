@@ -1,6 +1,7 @@
 ﻿#nullable disable
 using Dotnet_frameworks_project.Areas.Identity.Data;
 using Dotnet_frameworks_project.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Localization;
 
 namespace Dotnet_frameworks_project.Controllers
 {
+    [Authorize(Roles = "Logopedist,Admin")]
     public class PassedTestsController : ApplicationController
     {
 

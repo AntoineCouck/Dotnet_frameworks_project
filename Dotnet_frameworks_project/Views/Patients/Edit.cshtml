@@ -46,11 +46,28 @@
                 <input asp-for="LeftSessions" class="form-control" />
                 <span asp-validation-for="LeftSessions" class="text-danger"></span>
             </div>
-            <div class="form-group">
+          @*  <div class="form-group">
                 <label asp-for="UserId" class="control-label">@Localizer["Therapist"]</label>
                 <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
                 <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>*@
+             <div class="form-group">
+                <label asp-for="UserId" class="control-label">
+                @Localizer["Therapsist"]
+                </label>
+                <select asp-for="UserId" class ="form-control">
+
+                @{
+
+                    foreach ( var item in ViewBag.UserId)
+                    {
+                        <option  value="@item.Id">@item.UserName</option>
+                    }
+
+                }
+                </select>
             </div>
+            
                 <div class="form-group">
                 <label asp-for="InsuranceId" class="control-label">@Localizer["Insurance"]</label>
                 <select asp-for="InsuranceId" class ="form-control" asp-items="ViewBag.InsuranceId"></select>

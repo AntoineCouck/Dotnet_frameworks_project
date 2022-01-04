@@ -10,9 +10,9 @@
 
   <ul id="slide-out" class="sidenav">
     <li>
-      <div class="background">
+     @* <div class="background">
     <i class="large material-icons">account_circle</i>
-      </div>
+      </div>*@
     </li>
      <li><div style="margin-top:20%;" class="divider"></div></li>
     <li><a class="subheader">@Localizer["Account options"]</a></li>
@@ -36,7 +36,10 @@
     <li><a class="waves-effect" asp-area="" asp-controller="Home" asp-action="Index">@Localizer["Home"]</a></li>
      <li><a class="waves-effect" asp-area="" asp-controller="Home" asp-action="Privacy">@Localizer["Bronnen"]</a></li>
       <li><div class="divider"></div></li>
-    <li><a class="subheader">@Localizer["Patients management"]</a></li>
+
+    @if (User.IsInRole("Logopedist"))
+    {
+         <li><a class="subheader">@Localizer["Patients management"]</a></li>
          <li><a class="waves-effect" asp-area="" asp-controller="Patients" asp-action="Index">@Localizer["View all patients"]</a></li>
                   <li><a class="waves-effect" asp-area="" asp-controller="FollowUp_patients" asp-action="Index">@Localizer["Follow a new patient"]</a></li>
              <li><a class="waves-effect" asp-area="" asp-controller="FollowUp_type" asp-action="Index">@Localizer["Follow up management"]</a></li>
@@ -47,6 +50,9 @@
                                  <li><div class="divider"></div></li>
     <li><a class="subheader">@Localizer["Insurance management"]</a></li>
                      <li><a class="waves-effect" asp-area="" asp-controller="Insurances" asp-action="Index">@Localizer["Add an insurance"]</a></li>
+    }
+
+   
 
   </ul>
   <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons" style="font-size:50px; margin-left:1.2%; margin-top:1.2%;">menu</i></a>
