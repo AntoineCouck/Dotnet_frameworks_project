@@ -8,7 +8,7 @@ using StudentenBeheer.Services;
 namespace Dotnet_frameworks_project.Controllers
 {
 
-    [Authorize(Roles = "Admin")]
+   
     public class ApplicationController : Controller
     {
         protected readonly ApplicationUser _user;

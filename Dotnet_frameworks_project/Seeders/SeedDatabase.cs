@@ -112,7 +112,7 @@ namespace Dotnet_frameworks_project.Seeders
 
 
 
-                if (user1 != null && Logopedist != null)
+                if (user1 != null)
                 {
                     context.UserRoles.AddRange(
 

@@ -1,11 +1,6 @@
 
 
 
-
-- faire les permissions
-
-
-
 Autres: 
 
 - vérifier le " all divices access " 

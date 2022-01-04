@@ -126,9 +126,6 @@
   <data name="Add an insurance" xml:space="preserve">
     <value>Voeg een nieuw mutualiteit toe</value>
   </data>
-  <data name="Bronnen" xml:space="preserve">
-    <value>Bronnen</value>
-  </data>
   <data name="Follow a new patient" xml:space="preserve">
     <value>Volg een nieuw patient</value>
   </data>
@@ -149,6 +146,9 @@
   </data>
   <data name="Roles management" xml:space="preserve">
     <value>Gebruikersbeheer</value>
+  </data>
+  <data name="Sources" xml:space="preserve">
+    <value>Bronnen</value>
   </data>
   <data name="Tests" xml:space="preserve">
     <value>Tests</value>
