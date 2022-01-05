@@ -102,6 +102,7 @@ namespace Dotnet_frameworks_project.Seeders
                     context.Roles.AddRange(
 
                             new IdentityRole { Id = "Logopedist", Name = "Logopedist", NormalizedName = "logopedist" },
+                              new IdentityRole { Id = "Mutualiteit", Name = "Mutualiteit", NormalizedName = "mutualiteit" },
                             new IdentityRole { Id = "Parents", Name = "Parents", NormalizedName = "parents" },
                             new IdentityRole { Id = "Admin", Name = "Admin", NormalizedName = "admin" }
 

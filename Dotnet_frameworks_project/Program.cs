@@ -43,13 +43,14 @@ builder.Services.Configure<IdentityOptions>(options =>
 
     // lockout settings
 
-    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromHours(24);
     options.Lockout.MaxFailedAccessAttempts = 5;
     options.Lockout.AllowedForNewUsers = true;
 
     // ApplicationUser settings
 
     options.User.RequireUniqueEmail = false;
+    
 });
 
 builder.Services.AddTransient<IEmailSender, MailKitEmailSender>();

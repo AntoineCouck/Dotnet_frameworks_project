@@ -28,11 +28,11 @@ public class ApplicationUserViewModel
     public string Email { get; set; }
     public string? Language { get; set; }
     public string? PhoneNumber { get; set; }
-    public bool Lockout { get; set; }
-    public bool Logopedist { get; set; }
-    public bool Parents { get; set; }
-    public bool Mutualiteit { get; set; }
-    public bool Admin { get; set; }
+    public bool  Lockout { get; set; }
+    public bool  Logopedist { get; set; }
+    public bool  Parents { get; set; }
+    public bool  Mutualiteit { get; set; }
+    public bool  Admin { get; set; }
 }
 
 

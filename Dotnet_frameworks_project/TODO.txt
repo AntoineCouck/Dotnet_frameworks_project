@@ -24,7 +24,6 @@ Final :
 
 - styling 
 
-
 ---------------- extra --------------------------------
 
 - pouvoir envoyer un message a la logo de son enfant 
