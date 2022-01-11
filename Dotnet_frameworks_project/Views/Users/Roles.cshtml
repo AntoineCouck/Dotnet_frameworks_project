@@ -36,25 +36,25 @@
             </div>
             <div class="form-group">
                 <label class="control-label">@Localizer["Therapist"]
-                <input class="filled-in" type="checkbox" asp-for="@Model.Logopedist" />
+                <input hidden class="filled-in" type="checkbox" asp-for="@Model.Logopedist" />
                 <span asp-validation-for="Logopedist" class="text-danger"></span>
                 </label>
             </div>
             <div class="form-group">
                 <label class="control-label">@Localizer["Parent"]
-                <input class="filled-in" type="checkbox" asp-for="@Model.Parents" />
+                <input hidden class="filled-in" type="checkbox" asp-for="@Model.Parents" />
                 <span asp-validation-for="Parents" class="text-danger"></span>
                 </label>
             </div>
             <div class="form-group">
                 <label class="control-label">@Localizer["Insurancer"]
-                <input class="filled-in" type="checkbox" asp-for="@Model.Mutualiteit" />
+                <input hidden class="filled-in" type="checkbox" asp-for="@Model.Mutualiteit" />
                 <span asp-validation-for="Mutualiteit" class="text-danger"></span>
                 </label>
             </div>
                 <div class="form-group">
                 <label class="control-label">@Localizer["Admin"]
-                <input class="filled-in" type="checkbox" asp-for="@Model.Admin" />
+                <input hidden class="filled-in" type="checkbox" asp-for="@Model.Admin" />
                 <span asp-validation-for="Admin" class="text-danger"></span>
                 </label>
             </div>

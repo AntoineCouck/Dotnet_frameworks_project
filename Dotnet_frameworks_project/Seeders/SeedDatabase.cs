@@ -51,20 +51,21 @@ namespace Dotnet_frameworks_project.Seeders
                         Email = "System.administrator@studentenbeheer.be",
                         EmailConfirmed = true
                     };
-
-                    //Logopedist = new ApplicationUser
-                    //{
-                    //    UserName = "Logopedist",
-                    //    Firstname = "Margot",
-                    //    Lastname = "Delo",
-                    //    LanguageId = "fr",
-                    //    Email = "System.administrator@studentenbeheer.be",
-                    //    EmailConfirmed = true
-                    //};
-
-
                     userManager.CreateAsync(user1, "Student+1");
-                    //userManager.CreateAsync(Logopedist, "Abc!12345");
+                    Thread.Sleep(3000);
+
+                    Logopedist = new ApplicationUser
+                    {
+                        UserName = "Logopedist",
+                        Firstname = "Margot",
+                        Lastname = "Delo",
+                        LanguageId = "fr",
+                        Email = "System.administrator@studentenbeheer.be",
+                        EmailConfirmed = true
+                    };
+                    userManager.CreateAsync(Logopedist, "Abc!12345");
+                    Thread.Sleep(3000);
+
                 }
 
                 if (!context.Gender.Any())
