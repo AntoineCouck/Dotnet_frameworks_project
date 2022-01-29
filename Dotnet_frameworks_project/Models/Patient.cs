@@ -53,7 +53,7 @@ public class Patient
 
 }
 
-public class PatientViewModel
+public partial class PatientViewModel
 {
     public int Id { get; set; }
 
@@ -96,7 +96,7 @@ public class PatientViewModel
 
 }
 
-public class PatientIndexViewModel
+public partial class PatientIndexViewModel
 {
 
     public string? NameFilter { get; set; }

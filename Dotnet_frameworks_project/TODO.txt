@@ -3,7 +3,7 @@
 
 Autres: 
 
-- vérifier le " all divices access " 
+- vérifier le " all divices access " ( h1 en tables niet al de rest is ok )
 
 - Users laten kiezen of ze cookies willen gebruiken of niet 
 
@@ -11,10 +11,10 @@ Autres:
 
 → https://docs.microsoft.com/en-us/aspnet/core/security/authentication/cookie?view=aspnetcore-6.0
 
+- Minstens 1x gebruik maken van Ajax-helpers i.p.v. Html-helpers
 
 - Gebruik maken van middleware om minstens één sessie-afhankelijke variabele te voorzien.
 
-- Minstens 1x gebruik maken van Ajax-helpers i.p.v. Html-helpers
 
 -------------------------------------------------------
 
@@ -24,8 +24,3 @@ Final :
 
 - styling 
 
----------------- extra --------------------------------
-
-- pouvoir envoyer un message a la logo de son enfant 
-
---------------------------------------------------------
