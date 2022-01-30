@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
+using RestSharp;
+using System.Net;
 
 namespace Dotnet_frameworks_project.Controllers
 {
@@ -75,7 +77,6 @@ namespace Dotnet_frameworks_project.Controllers
                 case "Date_Desc":
                     filteredPatients = filteredPatients.OrderByDescending(m => m.Birthday);
                     break;
-
 
                 default:
                     filteredPatients = filteredPatients.OrderBy(m => m.Birthday);
@@ -166,7 +167,7 @@ namespace Dotnet_frameworks_project.Controllers
         public async Task<IActionResult> Details(int? id, [Bind("Id,FirstName,LastName,Birthday,GenderId,ParentsPhone,LeftSessions,AddSessions,RemoveSessions,UserId,InsuranceId")] PatientViewModel models)
         {
             List<Patient> patients = _context.Patient.Where(p => p.Id == id).ToList();
-
+         
             if (ModelState.IsValid)
             {
                 foreach (Patient patient2 in patients)
@@ -346,7 +347,6 @@ namespace Dotnet_frameworks_project.Controllers
             var patient = await _context.Patient
                 .Include(p => p.Insurance)
                 .Include(p => p.user)
-                //.Include(s => s.Gender)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (patient == null)
             {
