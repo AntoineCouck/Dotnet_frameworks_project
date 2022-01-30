@@ -41,7 +41,19 @@
                 </select>
                 <label asp-for="Input.LanguageId" class="form-label">@Localizer["Language choice"]</label>
             </div>
-            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">@Localizer["Save"]</button>
+            <br />
+             <label>@Localizer["Use cookies?"]</label>
+            <div class="form-floating" style="margin-top:5%">
+             <div class="switch">
+             <label>
+               @Localizer["Off"]
+             <input asp-for="Input.AcceptCookies" type="checkbox">
+             <span class="lever"></span>
+              @Localizer["On"]
+              </label>
+            </div>
+            </div>
+            <button style="margin-top:5%" id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">@Localizer["Save"]</button>
         </form>
     </div>
 </div>

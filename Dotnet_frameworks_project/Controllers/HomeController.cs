@@ -17,8 +17,6 @@ namespace Dotnet_frameworks_project.Controllers
 
         }
 
-
-
         public IActionResult Index()
         {
             return View();

@@ -3,7 +3,6 @@
 
 Autres: 
 
-- vérifier le " all divices access " ( h1 en tables niet al de rest is ok )
 
 - Users laten kiezen of ze cookies willen gebruiken of niet 
 
@@ -23,12 +22,9 @@ Final :
 
 - styling 
 
-
 -------------------------------------------
 
 Bugs:
 
 - ArgumentNullException: Value cannot be null. (Parameter 'key') → quand on va vers userbeheer
-
-
 

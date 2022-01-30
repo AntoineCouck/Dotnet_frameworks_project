@@ -74,7 +74,7 @@ namespace Dotnet_frameworks_project.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Taal")]
             public string LanguageId { get; set; }
 
-
+            public bool AcceptCookies { get; set; }
 
         }
 
@@ -93,6 +93,7 @@ namespace Dotnet_frameworks_project.Areas.Identity.Pages.Account.Manage
                 FirstName = user.Firstname,
                 LastName = user.Lastname,
                 PhoneNumber = phoneNumber,
+                AcceptCookies = (bool)user.AcceptCookies,
                 LanguageId = user.LanguageId
             };
             ViewData["Languages"] = Language.SystemLanguages;
@@ -129,10 +130,12 @@ namespace Dotnet_frameworks_project.Areas.Identity.Pages.Account.Manage
 
             if (user.Firstname != Input.FirstName
                 || user.Lastname != Input.LastName
-                || user.LanguageId != Input.LanguageId)
+                || user.LanguageId != Input.LanguageId
+                || user.AcceptCookies != Input.AcceptCookies)
             {
                 user.Firstname = Input.FirstName;
                 user.Lastname = Input.LastName;
+                user.AcceptCookies = Input.AcceptCookies;
 
                 user.Language = _dbContext.Language.FirstOrDefault(l => l.Id == Input.LanguageId);
                 user.LanguageId = Input.LanguageId;

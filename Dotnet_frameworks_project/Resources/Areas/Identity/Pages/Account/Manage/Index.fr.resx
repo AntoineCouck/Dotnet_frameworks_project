@@ -126,6 +126,12 @@
   <data name="Lastname" xml:space="preserve">
     <value>Nom</value>
   </data>
+  <data name="Off" xml:space="preserve">
+    <value>Accepter</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>Refuser</value>
+  </data>
   <data name="Phone" xml:space="preserve">
     <value>Numéro de téléphone</value>
   </data>
@@ -134,6 +140,9 @@
   </data>
   <data name="Save" xml:space="preserve">
     <value>Sauvegarder</value>
+  </data>
+  <data name="Use cookies?" xml:space="preserve">
+    <value>Autoriser les cookies?</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Nom d'utilisateur</value>

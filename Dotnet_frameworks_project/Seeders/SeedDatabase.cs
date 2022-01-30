@@ -61,7 +61,7 @@ namespace Dotnet_frameworks_project.Seeders
                         Firstname = "Margot",
                         Lastname = "Delo",
                         LanguageId = "fr",
-                        AcceptCookies = true,
+                        AcceptCookies = false,
                         Email = "System.administrator@studentenbeheer.be",
                         EmailConfirmed = true
                     };
