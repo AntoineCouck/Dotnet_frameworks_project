@@ -38,7 +38,7 @@ namespace Dotnet_frameworks_project.Seeders
                 if (!context.Users.Any())
                 {
 
-                    ApplicationUser dummy = new ApplicationUser { Id = "-", Firstname = "-", Lastname = "-", UserName = "-", Email = "?@?.?", LanguageId = "-" };
+                    ApplicationUser dummy = new ApplicationUser { Id = "-", Firstname = "-", Lastname = "-", UserName = "-", Email = "?@?.?", LanguageId = "-", AcceptCookies = true };
                     context.Users.Add(dummy);
                     context.SaveChanges();
 
@@ -48,6 +48,7 @@ namespace Dotnet_frameworks_project.Seeders
                         Firstname = "Antoine",
                         Lastname = "Couck",
                         LanguageId = "nl",
+                        AcceptCookies = true,
                         Email = "System.administrator@studentenbeheer.be",
                         EmailConfirmed = true
                     };
@@ -60,6 +61,7 @@ namespace Dotnet_frameworks_project.Seeders
                         Firstname = "Margot",
                         Lastname = "Delo",
                         LanguageId = "fr",
+                        AcceptCookies = true,
                         Email = "System.administrator@studentenbeheer.be",
                         EmailConfirmed = true
                     };
@@ -118,8 +120,8 @@ namespace Dotnet_frameworks_project.Seeders
                 {
                     context.UserRoles.AddRange(
 
-                        new IdentityUserRole<string> { UserId = user1.Id, RoleId = "Admin" }
-                        //new IdentityUserRole<string> { UserId = Logopedist.Id, RoleId = "Logopedist" }
+                        new IdentityUserRole<string> { UserId = user1.Id, RoleId = "Admin" },
+                        new IdentityUserRole<string> { UserId = Logopedist.Id, RoleId = "Logopedist" }
 
                         );
 
@@ -139,12 +141,13 @@ namespace Dotnet_frameworks_project.Seeders
                 foreach (Language l in Language.AllLanguages)
                 {
 
+
                     // key not found = ligne en dessous mettre au dessus du if 
                     Language.LanguageDictionary[l.Id] = l;
 
-
                     if (l.Id != "-")
                     {
+
 
                         if (l.IsSystemLanguage)
                             Language.SystemLanguages.Add(l);

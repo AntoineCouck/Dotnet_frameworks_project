@@ -50,7 +50,7 @@ builder.Services.Configure<IdentityOptions>(options =>
     // ApplicationUser settings
 
     options.User.RequireUniqueEmail = false;
-    
+
 });
 
 builder.Services.AddTransient<IEmailSender, MailKitEmailSender>();

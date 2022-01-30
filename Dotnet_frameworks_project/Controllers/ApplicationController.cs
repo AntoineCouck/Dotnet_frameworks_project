@@ -1,5 +1,4 @@
 ﻿using Dotnet_frameworks_project.Areas.Identity.Data;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
@@ -8,7 +7,7 @@ using StudentenBeheer.Services;
 namespace Dotnet_frameworks_project.Controllers
 {
 
-   
+
     public class ApplicationController : Controller
     {
         protected readonly ApplicationUser _user;

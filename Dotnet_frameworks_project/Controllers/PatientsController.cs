@@ -102,11 +102,6 @@ namespace Dotnet_frameworks_project.Controllers
             };
 
             return View(studentviewmodel);
-
-
-            //return View(await applicationContext.ToListAsync());
-
-            //return View(Patientviewmodel);
         }
 
         // GET: Patients/Details/5
@@ -140,14 +135,11 @@ namespace Dotnet_frameworks_project.Controllers
                 RemoveSessions = 0
             };
 
-            //var ListOfFollowUps = _context.FollowUp_patients.Include(f => f.FollowUpType)
-            //                                                .Where(p => p.PatientId == id).ToList();     
+
             var ListOfFollowUps = _context.FollowUp_type.Join(_context.FollowUp_patients, t => t.Name, p => p.FollowUpId, (t, p) => new { t, p })
                                                         .Where(p => p.p.PatientId == id)
                                                         .ToList();
 
-
-            //var ListOfPassedTests = _context.PassedTests.Include(t => t.Test).Where(t => t.PatientId == id).ToList();    
             var ListOfPassedTests = _context.Test.Join(_context.PassedTests, t => t.Name, p => p.TestId, (t, p) => new { t, p })
                                                  .Where(p => p.p.PatientId == id)
                                                  .ToList();
@@ -215,19 +207,17 @@ namespace Dotnet_frameworks_project.Controllers
                 RemoveSessions = 0
             };
 
-            //var ListOfFollowUps = _context.FollowUp_patients.Include(f => f.FollowUpType)
-            //                                                .Where(p => p.PatientId == id).ToList();     
+
             var ListOfFollowUps = _context.FollowUp_type.Join(_context.FollowUp_patients, t => t.Name, p => p.FollowUpId, (t, p) => new { t, p })
                                                         .Where(p => p.p.PatientId == id)
                                                         .ToList();
 
 
-            //var ListOfPassedTests = _context.PassedTests.Include(t => t.Test).Where(t => t.PatientId == id).ToList();    
             var ListOfPassedTests = _context.Test.Join(_context.PassedTests, t => t.Name, p => p.TestId, (t, p) => new { t, p })
                                                  .Where(p => p.p.PatientId == id)
                                                  .ToList();
 
-          
+
             ViewData["ListOfFollowUps"] = ListOfFollowUps;
             ViewData["ListOfPassedTests"] = ListOfPassedTests;
 
@@ -265,6 +255,7 @@ namespace Dotnet_frameworks_project.Controllers
                 Account.Lastname = patient.LastName;
                 Account.UserName = patient.FirstName + "." + patient.LastName;
                 Account.Email = patient.FirstName + "." + patient.LastName + "@hotmail.be";
+                Account.AcceptCookies = true;
                 Account.EmailConfirmed = true;
                 Account.LanguageId = "nl";
                 await _userManager.CreateAsync(Account, patient.FirstName + "." + patient.LastName + "L2022");

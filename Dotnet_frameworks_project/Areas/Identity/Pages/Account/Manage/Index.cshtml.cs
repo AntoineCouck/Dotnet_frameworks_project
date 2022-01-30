@@ -33,6 +33,9 @@ namespace Dotnet_frameworks_project.Areas.Identity.Pages.Account.Manage
         /// </summary>
         public string Username { get; set; }
 
+
+        public bool CookiesIsActivated { get; set; }
+
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -71,7 +74,11 @@ namespace Dotnet_frameworks_project.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Taal")]
             public string LanguageId { get; set; }
 
+
+
         }
+
+
 
         private async Task LoadAsync(ApplicationUser user)
         {
@@ -79,6 +86,7 @@ namespace Dotnet_frameworks_project.Areas.Identity.Pages.Account.Manage
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
             Username = userName;
+
 
             Input = new InputModel
             {

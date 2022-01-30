@@ -117,11 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Links" xml:space="preserve">
-    <value>Links</value>
-  </data>
   <data name="logo-manager platform" xml:space="preserve">
     <value>Logo manager platform</value>
+  </data>
+  <data name="Shortcuts" xml:space="preserve">
+    <value>Sneltoetsen</value>
   </data>
   <data name="The best platform for speech therapists" xml:space="preserve">
     <value>Het beste platform voor logopedisten</value>

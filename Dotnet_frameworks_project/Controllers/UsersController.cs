@@ -37,6 +37,7 @@ namespace Dotnet_frameworks_project.Controllers
                     Email = user.Email,
                     FirstName = user.Firstname,
                     Language = Language.LanguageDictionary[user.LanguageId].Name,
+                    AcceptCookies = user.AcceptCookies,
                     LastName = user.Lastname,
                     Lockout = user.LockoutEnd != null,
                     PhoneNumber = user.PhoneNumber,
@@ -65,7 +66,9 @@ namespace Dotnet_frameworks_project.Controllers
             _context.Update(user);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
+
         }
+
 
         public ActionResult Roles(string id)
         {
@@ -77,6 +80,7 @@ namespace Dotnet_frameworks_project.Controllers
                 Email = user.Email,
                 FirstName = user.Firstname,
                 Language = Language.LanguageDictionary[user.LanguageId].Name,
+                AcceptCookies = user.AcceptCookies,
                 LastName = user.Lastname,
                 Lockout = user.LockoutEnd != null,
                 PhoneNumber = user.PhoneNumber,

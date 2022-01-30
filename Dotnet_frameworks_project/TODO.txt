@@ -9,7 +9,6 @@ Autres:
 
 → https://docs.microsoft.com/en-us/previous-versions/aspnet/ms178194(v=vs.100)
 
-→ https://docs.microsoft.com/en-us/aspnet/core/security/authentication/cookie?view=aspnetcore-6.0
 
 - Minstens 1x gebruik maken van Ajax-helpers i.p.v. Html-helpers
 
@@ -23,4 +22,13 @@ Final :
 - debugging / check errors
 
 - styling 
+
+
+-------------------------------------------
+
+Bugs:
+
+- ArgumentNullException: Value cannot be null. (Parameter 'key') → quand on va vers userbeheer
+
+
 
