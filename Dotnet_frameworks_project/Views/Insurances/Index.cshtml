@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Dotnet_frameworks_project.Models.Insurance>
+﻿@model InsuranceIndexViewModel;
 @using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer Localizer
 @{
@@ -7,15 +7,25 @@
 }
 
 <h1>@Localizer["List of all insurances"]</h1>
+<p>
+ <form asp-controller="Insurances" asp-action="Index" method="get">
+        <small>@Localizer["Search for a Name "]</small> <input type="text" name="nameFilter"/>
+              
+  <button class="waves-effect waves-light btn-small" type="submit" name="action">@Localizer["Search"]
+    
+  </button>
+    </form>
 
-@*<p>
-    <a asp-action="Create">@Localizer["Create New insurance"]</a>
-</p>*@
+</p>
+
+
+
 <table class="table">
     <thead>
         <tr>
               <th>
-                @Localizer["Name"]
+               
+                 <a asp-action="Index" asp-route-orderBy="@ViewBag.NameField">@Localizer["Name"]</a>
             </th>
             <th>
                @Localizer["Adres"]
@@ -27,7 +37,7 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Insurances) {
         <tr>
               <td>
                 @item.Name

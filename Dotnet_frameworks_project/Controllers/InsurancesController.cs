@@ -22,11 +22,44 @@ namespace Dotnet_frameworks_project.Controllers
 
 
         // GET: Insurances
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string nameFilter, string orderBy)
         {
+            var filteredInsurances = from m in _context.Insurance
+                                select m;
+
+            if (!string.IsNullOrEmpty(nameFilter))
+            {
+                filteredInsurances = from s in filteredInsurances
+                                     where s.Name.Contains(nameFilter)
+                                     orderby s.Name
+                                     select s;
+            }
+
+            ViewData["NameField"] = orderBy == "Name" ? "Name_Desc" : "Name";
+
+            switch (orderBy)
+            {
+
+                case "Name_Desc":
+                    filteredInsurances = filteredInsurances.OrderByDescending(m => m.Name);
+                    break;
+                case "Name":
+                    filteredInsurances = filteredInsurances.OrderBy(m => m.Name);
+                    break;
 
 
-            return View(await _context.Insurance.ToListAsync());
+                default:
+                    filteredInsurances = filteredInsurances.OrderBy(m => m.Name);
+                    break;
+            }
+
+            InsuranceIndexViewModel viewModel = new InsuranceIndexViewModel
+            {
+                NameFilter = nameFilter,
+                Insurances = await filteredInsurances.ToListAsync()
+            };
+
+            return View(viewModel);
         }
 
         // GET: Insurances/Details/5

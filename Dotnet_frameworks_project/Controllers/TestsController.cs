@@ -20,9 +20,51 @@ namespace Dotnet_frameworks_project.Controllers
         }
 
         // GET: Tests
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string nameFilter , string orderBy)
         {
-            return View(await _context.Test.ToListAsync());
+
+            var filteredTests = from m in _context.Test
+                                   select m;
+
+            if (!string.IsNullOrEmpty(nameFilter))
+            {
+                filteredTests =    from s in filteredTests
+                                   where s.Name.Contains(nameFilter)
+                                   orderby s.Name
+                                   select s;
+            }
+
+            ViewData["NameField"] = orderBy == "Name" ? "Name_Desc" : "Name";
+
+            switch (orderBy)
+            {
+               
+                case "Name_Desc":
+                    filteredTests = filteredTests.OrderByDescending(m => m.Name);
+                    break;
+                case "Name":
+                    filteredTests = filteredTests.OrderBy(m => m.Name);
+                    break;
+
+
+                default:
+                    filteredTests = filteredTests.OrderBy(m => m.Name);
+                    break;
+            }
+
+            TestIndexViewModel testsviewmodel = new TestIndexViewModel()
+            {
+
+
+                NameFilter = nameFilter,
+
+                tests = await filteredTests.ToListAsync()
+               
+
+
+            };
+
+            return View(testsviewmodel);
         }
 
         // GET: Tests/Details/5

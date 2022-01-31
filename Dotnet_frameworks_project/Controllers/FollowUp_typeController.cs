@@ -22,9 +22,52 @@ namespace Dotnet_frameworks_project.Controllers
 
 
         // GET: FollowUp_type
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string nameFilter, string orderBy)
         {
-            return View(await _context.FollowUp_type.ToListAsync());
+
+            var filteredTypes = from m in _context.FollowUp_type
+                                select m;
+
+            if (!string.IsNullOrEmpty(nameFilter))
+            {
+                filteredTypes = from s in filteredTypes
+                                where s.Name.Contains(nameFilter)
+                                orderby s.Name
+                                select s;
+            }
+
+            ViewData["NameField"] = orderBy == "Name" ? "Name_Desc" : "Name";
+
+            switch (orderBy)
+            {
+
+                case "Name_Desc":
+                    filteredTypes = filteredTypes.OrderByDescending(m => m.Name);
+                    break;
+                case "Name":
+                    filteredTypes = filteredTypes.OrderBy(m => m.Name);
+                    break;
+
+
+                default:
+                    filteredTypes = filteredTypes.OrderBy(m => m.Name);
+                    break;
+            }
+
+            FollowUpTypeIndexViewModel typesviewmodel = new FollowUpTypeIndexViewModel()
+            {
+
+
+                NameFilter = nameFilter,
+
+                followUp_Types = await filteredTypes.ToListAsync()
+
+
+
+            };
+
+            return View(typesviewmodel);
+
         }
 
         // GET: FollowUp_type/Details/5

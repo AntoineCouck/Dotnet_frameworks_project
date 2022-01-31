@@ -16,4 +16,11 @@ namespace Dotnet_frameworks_project.Models
 
 
     }
+
+    public partial class FollowUpTypeIndexViewModel
+    {
+        public string ? NameFilter { get; set; }
+
+        public List<FollowUp_type> ? followUp_Types { get; set; }
+    }
 }

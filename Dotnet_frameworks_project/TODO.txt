@@ -1,8 +1,7 @@
 
-
+--------------------------------------
 
 Autres: 
-
 
 - Users laten kiezen of ze cookies willen gebruiken of niet 
 
@@ -14,7 +13,7 @@ Autres:
 - Gebruik maken van middleware om minstens één sessie-afhankelijke variabele te voorzien.
 
 
--------------------------------------------------------
+--------------------------------------
 
 Final : 
 
@@ -22,9 +21,4 @@ Final :
 
 - styling 
 
--------------------------------------------
-
-Bugs:
-
-- ArgumentNullException: Value cannot be null. (Parameter 'key') → quand on va vers userbeheer
-
+--------------------------------------
