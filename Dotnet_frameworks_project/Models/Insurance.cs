@@ -20,8 +20,8 @@ namespace Dotnet_frameworks_project.Models
 
     public partial class InsuranceIndexViewModel
     {
-        public string ? NameFilter { get; set; }
+        public string? NameFilter { get; set; }
 
-        public List<Insurance> ? Insurances { get; set; }
+        public List<Insurance>? Insurances { get; set; }
     }
 }

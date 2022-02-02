@@ -1,0 +1,15 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+<h1>@Localizer["Sources"]</h1>
+
+<p>@Localizer["Here come all the sources used to create the website"]</p>
+
+<div>
+    <a href="" data-ajax="true" data-ajax-url="/privacy" data-ajax-update="#bronnen">Click here to see de bronnen</a>
+    <br />
+    <div id="bronnen"></div>
+</div>
+
+ 

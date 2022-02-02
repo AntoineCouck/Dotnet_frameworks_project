@@ -75,8 +75,6 @@ namespace Dotnet_frameworks_project.Controllers
                 case "Date_Desc":
                     filteredPatients = filteredPatients.OrderByDescending(m => m.Birthday);
                     break;
-
-
                 default:
                     filteredPatients = filteredPatients.OrderBy(m => m.Birthday);
                     break;

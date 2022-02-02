@@ -26,8 +26,8 @@ namespace Dotnet_frameworks_project.Models
 
     public partial class TestIndexViewModel
     {
-        public string ? NameFilter { get; set; }
+        public string? NameFilter { get; set; }
 
-        public List<Test> ? tests { get; set; }
+        public List<Test>? tests { get; set; }
     }
 }

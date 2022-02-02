@@ -20,25 +20,25 @@ namespace Dotnet_frameworks_project.Controllers
         }
 
         // GET: Tests
-        public async Task<IActionResult> Index(string nameFilter , string orderBy)
+        public async Task<IActionResult> Index(string nameFilter, string orderBy)
         {
 
             var filteredTests = from m in _context.Test
-                                   select m;
+                                select m;
 
             if (!string.IsNullOrEmpty(nameFilter))
             {
-                filteredTests =    from s in filteredTests
-                                   where s.Name.Contains(nameFilter)
-                                   orderby s.Name
-                                   select s;
+                filteredTests = from s in filteredTests
+                                where s.Name.Contains(nameFilter)
+                                orderby s.Name
+                                select s;
             }
 
             ViewData["NameField"] = orderBy == "Name" ? "Name_Desc" : "Name";
 
             switch (orderBy)
             {
-               
+
                 case "Name_Desc":
                     filteredTests = filteredTests.OrderByDescending(m => m.Name);
                     break;
@@ -59,7 +59,7 @@ namespace Dotnet_frameworks_project.Controllers
                 NameFilter = nameFilter,
 
                 tests = await filteredTests.ToListAsync()
-               
+
 
 
             };

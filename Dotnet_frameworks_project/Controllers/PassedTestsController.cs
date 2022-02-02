@@ -41,6 +41,7 @@ namespace Dotnet_frameworks_project.Controllers
                 .Include(p => p.Patient)
                 .Include(p => p.Test)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (passedTests == null)
             {
                 return NotFound();
@@ -52,6 +53,8 @@ namespace Dotnet_frameworks_project.Controllers
         // GET: PassedTests/Create
         public IActionResult Create()
         {
+
+
             ViewData["PatientId"] = new SelectList(_context.Patient, "Id", "FirstName");
             ViewData["TestId"] = new SelectList(_context.Test, "Name", "Name");
             return View();

@@ -25,7 +25,7 @@ namespace Dotnet_frameworks_project.Controllers
         public async Task<IActionResult> Index(string nameFilter, string orderBy)
         {
             var filteredInsurances = from m in _context.Insurance
-                                select m;
+                                     select m;
 
             if (!string.IsNullOrEmpty(nameFilter))
             {

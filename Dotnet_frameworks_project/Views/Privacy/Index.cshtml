@@ -1,24 +1,20 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer;
+
+@{
+    Layout = null;
 }
-@using Microsoft.AspNetCore.Mvc.Localization
-@inject IViewLocalizer Localizer
 
-<h1>@Localizer["Sources"]</h1>
-
-<p>@Localizer["Here come all the sources used to create the website"]</p>
-
-
-    <table  class="striped">
-        <thead>
+<table  class="striped">
+    <thead>
           <tr>
               <th>@Localizer["Name"]</th>
               <th>@Localizer["Link"]</th>
               <th>@Localizer["Description"]</th>
           </tr>
-        </thead>
+    </thead>
 
-        <tbody>
+    <tbody>
           <tr>
             <td>Materialize designs</td>
             <td><a href="https://materializecss.com/getting-started.html">Material design</a></td>
@@ -30,5 +26,5 @@
             <td>Algemene documentatie voor het project</td>
           </tr>
 
-        </tbody>
-      </table>
+    </tbody>
+</table>

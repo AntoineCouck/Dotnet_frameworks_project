@@ -17,4 +17,5 @@
         public int? PatientId { get; set; }
 
     }
+
 }
