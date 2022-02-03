@@ -72,6 +72,7 @@
                 <label asp-for="InsuranceId" class="control-label">@Localizer["Insurance"]</label>
                 <select asp-for="InsuranceId" class ="form-control" asp-items="ViewBag.InsuranceId"></select>
             </div>
+            <br />
             <div class="form-group">
                 <input type="submit" value="@Localizer["Save"]" class="btn btn-primary" />
             </div>
@@ -80,7 +81,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">@Localizer["Back to List"]</a>
+    <a class="waves-effect waves-light btn-small" asp-action="Index">@Localizer["Back to List"]</a>
 </div>
 
 @section Scripts {

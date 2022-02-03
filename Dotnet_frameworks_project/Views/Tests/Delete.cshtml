@@ -41,7 +41,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Name" />
-        <input type="submit" value="@Localizer["Delete"]" class="btn btn-danger" /> |
-        <a asp-action="Index">@Localizer["Back to List"]</a>
+        <a class="waves-effect waves-light btn-small" asp-action="Index">@Localizer["Back to List"]</a>
+         <input type="submit" value="@Localizer["Delete"]" class="btn btn-danger" style="background-color:red;" /> 
     </form>
 </div>

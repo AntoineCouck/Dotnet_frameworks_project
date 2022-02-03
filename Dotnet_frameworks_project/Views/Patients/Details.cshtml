@@ -11,7 +11,7 @@
 <h1>@Localizer["Details"]</h1>
 
 <div>
-    <h4>@Localizer["Patients"]</h4>
+    <h4>@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -76,8 +76,8 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">@Localizer["Edit"]</a> |
-    <a asp-action="Index">@Localizer["Back to list"]</a>
+    <a class="waves-effect waves-light btn-small" asp-action="Edit" asp-route-id="@Model.Id">@Localizer["Edit"]</a> 
+    <a class="waves-effect waves-light btn-small" asp-action="Index">@Localizer["Back to list"]</a>
 </div>
 
 <h3 class="center-align">@Localizer["Followed for"]</h3>

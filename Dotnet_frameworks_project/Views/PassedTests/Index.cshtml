@@ -11,7 +11,7 @@
 @*<p>
     <a asp-action="Create">@Localizer["Create a new passed test"]</a>
 </p>*@
-<table class="table">
+<table class="striped highlight centered responsive-table">
     <thead>
         <tr>
             <th>
@@ -33,9 +33,9 @@
                 @Html.DisplayFor(modelItem => item.Test.Name)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">@Localizer["Edit"]</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">@Localizer["Details"]</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">@Localizer["Delete"]</a>
+                <a class="waves-effect waves-light btn" asp-action="Edit" asp-route-id="@item.Id">@Localizer["Edit"]</a> 
+                <a class="waves-effect waves-light btn" asp-action="Details" asp-route-id="@item.Id">@Localizer["Details"]</a> 
+                <a class="waves-effect waves-light btn" asp-action="Delete" asp-route-id="@item.Id">@Localizer["Delete"]</a>
             </td>
         </tr>
 }

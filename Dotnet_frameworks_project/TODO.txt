@@ -1,16 +1,4 @@
 
---------------------------------------
-
-Autres: 
-
-- Users laten kiezen of ze cookies willen gebruiken of niet 
-
-- Minstens 1x gebruik maken van Ajax-helpers i.p.v. Html-helpers
-
-- Gebruik maken van middleware om minstens één sessie-afhankelijke variabele te voorzien.
-
-
---------------------------------------
 
 Final : 
 
@@ -21,6 +9,8 @@ Final :
 - avoir plus de data dans le seeder
 
 - re-check traductions (par exemple les filtres)
+
+- regarder pour utiliser des cookies allieurs ? 
 
 - test (global) du site 
 

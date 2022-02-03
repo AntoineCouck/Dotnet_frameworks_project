@@ -47,9 +47,9 @@
                 @Html.DisplayFor(modelItem => item.Number_of_requiredsessions)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Name">@Localizer["Edit"]</a> |
-                <a asp-action="Details" asp-route-id="@item.Name">@Localizer["Details"]</a> |
-                <a asp-action="Delete" asp-route-id="@item.Name">@Localizer["Delete"]</a>
+                <a class="waves-effect waves-light btn-small" asp-action="Edit" asp-route-id="@item.Name">@Localizer["Edit"]</a> 
+                <a  class="waves-effect waves-light btn-small"asp-action="Details" asp-route-id="@item.Name">@Localizer["Details"]</a> 
+                <a  class="waves-effect waves-light btn-small"asp-action="Delete" asp-route-id="@item.Name">@Localizer["Delete"]</a>
             </td>
         </tr>
 }

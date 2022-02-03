@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using System.Diagnostics;
+using System.Net;
 
 namespace Dotnet_frameworks_project.Controllers
 {
@@ -19,6 +20,25 @@ namespace Dotnet_frameworks_project.Controllers
 
         public IActionResult Index()
         {
+            var CookiesAccepted = _context.Users.Where(u => u.Id == _user.Id).Select(u => u.AcceptCookies);
+
+            foreach(var Accept in CookiesAccepted)
+            {
+                if (Accept == true)
+                {
+                   
+
+                    Cookie cookie = new Cookie("Username", _user.UserName );
+                    ViewData["username"] = cookie.Value;
+
+
+                } else
+                {
+
+
+                }
+            }
+          
             return View();
         }
 

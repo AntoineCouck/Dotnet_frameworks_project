@@ -286,9 +286,11 @@ namespace Dotnet_frameworks_project.Controllers
                 return NotFound();
             }
             var user = _context.Users.Where(u => u.UserName == _user.UserName).ToList();
+     
             ViewData["InsuranceId"] = new SelectList(_context.Insurance, "Name", "Name", patient.InsuranceId);
             ViewData["GenderId"] = new SelectList(_context.Gender, "ID", "Name", patient.GenderId);
             ViewData["UserId"] = user;
+            
             return View(patient);
         }
 
@@ -344,7 +346,7 @@ namespace Dotnet_frameworks_project.Controllers
             var patient = await _context.Patient
                 .Include(p => p.Insurance)
                 .Include(p => p.user)
-                //.Include(s => s.Gender)
+                .Include(s => s.Gender)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (patient == null)
             {
@@ -360,6 +362,8 @@ namespace Dotnet_frameworks_project.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var patient = await _context.Patient.FindAsync(id);
+
+          
 
             var Account = _context.Users.Where(u => u.Id == patient.AccountId).ToList();
 

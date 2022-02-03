@@ -39,6 +39,7 @@
                 <input asp-for="Max_age" class="form-control" />
                 <span asp-validation-for="Max_age" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
                 <input type="submit" value="@Localizer["Create"]" class="btn btn-primary" />
             </div>
@@ -47,7 +48,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">@Localizer["Back to List"]</a>
+    <a class="waves-effect waves-light btn" asp-action="Index">@Localizer["Back to List"]</a>
 </div>
 
 @section Scripts {

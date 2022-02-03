@@ -27,6 +27,20 @@ builder.Services.AddLocalization(option => option.ResourcesPath = "Resources");
 
 builder.Services.AddControllersWithViews();
 
+// sessions variabelen
+
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = "Logo_manager.Session";
+    options.IdleTimeout = TimeSpan.FromSeconds(10);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+// sessions variabelen
+
 // for app controller 
 
 builder.Services.AddHttpContextAccessor();
@@ -105,6 +119,11 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.UseMiddleware<SessionUser>();
+
+// sessions 
+app.UseSession();
+// sessions 
+
 app.MapRazorPages();
 app.Run();
 
