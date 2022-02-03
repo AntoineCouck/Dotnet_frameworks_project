@@ -115,15 +115,17 @@
                 @Html.DisplayFor(modelItem => item.Admin)     
             </td>
             <td>
+                <div style="margin-bottom:10%;">
                 @if (!item.Lockout)
                 {
-                    <a asp-action="Locking" asp-route-id="@item.Id">@Localizer["Ban"]</a> @VerticaalStreepje
+                    <a style="background-color:red;" class="waves-effect waves-light btn" asp-action="Locking" asp-route-id="@item.Id">@Localizer["Ban"]</a> 
                 }
                 else
                 {
-                    <a asp-action="Locking" asp-route-id="@item.Id">@Localizer["Unban"]</a> @VerticaalStreepje
+                    <a class="waves-effect waves-light btn" asp-action="Locking" asp-route-id="@item.Id">@Localizer["Unban"]</a> 
                 }
-                <a asp-action="Roles" asp-route-id="@item.Id">@Localizer["Roles"]</a>
+                </div>
+                <a class="waves-effect waves-light btn" asp-action="Roles" asp-route-id="@item.Id">@Localizer["Roles"]</a>
             </td>
 
         </tr>

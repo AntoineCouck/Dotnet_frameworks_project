@@ -87,6 +87,7 @@ namespace Dotnet_frameworks_project.Controllers
             {
                 return NotFound();
             }
+            ViewData["TypeId"] = new SelectList(_context.FollowUp_type, "Name", "Name");
             ViewData["PatientId"] = new SelectList(_context.Patient, "Id", "FirstName", followUp_patients.PatientId);
             return View(followUp_patients);
         }
@@ -123,6 +124,7 @@ namespace Dotnet_frameworks_project.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["TypeId"] = new SelectList(_context.FollowUp_type, "Name", "Name");
             ViewData["PatientId"] = new SelectList(_context.Patient, "Id", "FirstName", followUp_patients.PatientId);
             return View(followUp_patients);
         }

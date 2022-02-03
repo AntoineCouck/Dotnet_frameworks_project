@@ -84,6 +84,9 @@ namespace Dotnet_frameworks_project.Controllers
             {
                 return NotFound();
             }
+            var name = _context.FollowUp_type.Where(t => t.Name == id).Select(t => t.Name).FirstOrDefault();
+
+            ViewData["followUpName"] = name;
 
             return View(followUp_type);
         }
@@ -124,7 +127,13 @@ namespace Dotnet_frameworks_project.Controllers
             if (followUp_type == null)
             {
                 return NotFound();
+            
             }
+
+            var name = _context.FollowUp_type.Where(t => t.Name == id).Select(t => t.Name).FirstOrDefault();
+
+            ViewData["followUpName"] = name;
+
             return View(followUp_type);
         }
 
@@ -177,6 +186,10 @@ namespace Dotnet_frameworks_project.Controllers
             {
                 return NotFound();
             }
+
+            var name = _context.FollowUp_type.Where(t => t.Name == id).Select(t => t.Name).FirstOrDefault();
+
+            ViewData["followUpName"] = name;
 
             return View(followUp_type);
         }

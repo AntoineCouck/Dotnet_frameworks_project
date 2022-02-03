@@ -10,7 +10,7 @@
 <h1>@Localizer["Details of the follow-up type"]</h1>
 
 <div>
-    <h4>@Localizer["follow-up type"]</h4>
+    <h4>@ViewBag.followUpName</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -28,6 +28,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Name">@Localizer["Edit"]</a> |
-    <a asp-action="Index">@Localizer["Back to List"]</a>
+    <a class="waves-effect waves-light btn" asp-action="Edit" asp-route-id="@Model.Name">@Localizer["Edit"]</a> 
+    <a  class="waves-effect waves-light btn"asp-action="Index">@Localizer["Back to List"]</a>
 </div>
