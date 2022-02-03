@@ -45,14 +45,12 @@ namespace Dotnet_frameworks_project.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Firstname")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LanguageId")
                         .HasColumnType("nvarchar(2)");
 
                     b.Property<string>("Lastname")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")

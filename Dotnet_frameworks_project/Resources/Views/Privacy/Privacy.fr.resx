@@ -117,17 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Description" xml:space="preserve">
-    <value>Description</value>
+  <data name="Click here to see the sources" xml:space="preserve">
+    <value>Appuyer ici pour voir les sources</value>
   </data>
   <data name="Here come all the sources used to create the website" xml:space="preserve">
-    <value>Voici toutes les sources utilisées pour créer le site web</value>
-  </data>
-  <data name="Link" xml:space="preserve">
-    <value>Lien</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Nom</value>
+    <value>Ici viennent toutes les sources utilisé pour ce projet </value>
   </data>
   <data name="Sources" xml:space="preserve">
     <value>Sources</value>

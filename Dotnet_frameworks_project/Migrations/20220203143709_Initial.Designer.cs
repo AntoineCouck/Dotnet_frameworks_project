@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dotnet_frameworks_project.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220130133348_test")]
-    partial class test
+    [Migration("20220203143709_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -47,14 +47,12 @@ namespace Dotnet_frameworks_project.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Firstname")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LanguageId")
                         .HasColumnType("nvarchar(2)");
 
                     b.Property<string>("Lastname")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")

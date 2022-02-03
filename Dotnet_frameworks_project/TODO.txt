@@ -1,14 +1,7 @@
 
 
-Final : 
 
-- debugging / check errors
-
-- styling 
-
-- avoir plus de data dans le seeder
-
-- re-check traductions (par exemple les filtres)
+- utiliser une session
 
 - regarder pour utiliser des cookies allieurs ? 
 
@@ -16,4 +9,3 @@ Final :
 
 - écrire un readme 
 
---------------------------------------
