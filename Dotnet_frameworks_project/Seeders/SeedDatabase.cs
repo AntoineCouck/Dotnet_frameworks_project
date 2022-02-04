@@ -27,16 +27,13 @@ namespace Dotnet_frameworks_project.Seeders
                 if (!context.Language.Any())
                 {
                     context.Language.AddRange(
-                        new Language() { Id = "-", Name = "-", Cultures = "-", IsSystemLanguage = false },
-                        new Language() { Id = "en", Name = "English", Cultures = "UK;US", IsSystemLanguage = true },
-                        new Language() { Id = "fr", Name = "français", Cultures = "BE;FR", IsSystemLanguage = true },
-                        new Language() { Id = "nl", Name = "Nederlands", Cultures = "BE;NL", IsSystemLanguage = true }
+                        new Language() { Id = "-", Name = "-", Culture = "-", SystemLanguage = false },
+                        new Language() { Id = "en", Name = "English", Culture = "UK;US", SystemLanguage = true },
+                        new Language() { Id = "fr", Name = "français", Culture = "BE;FR", SystemLanguage = true },
+                        new Language() { Id = "nl", Name = "Nederlands", Culture = "BE;NL", SystemLanguage = true }
                     );
                     context.SaveChanges();
                 }
-
-
-
 
                 if (!context.Users.Any())
                 {
@@ -215,7 +212,7 @@ namespace Dotnet_frameworks_project.Seeders
                         Name = "Woordenpakket",
                         Description = "Met woorden spelen",
                         Min_age = 6,
-                        Max_age=13,
+                        Max_age = 13,
                         Usage = "Voor taal problemen"
                     }
                  );
@@ -257,7 +254,7 @@ namespace Dotnet_frameworks_project.Seeders
                             Name = "Logo dingo",
                             Description = "Heeft logopedie nodig",
                             Number_of_requiredsessions = 175
-                        } ,
+                        },
 
                          new FollowUp_type
                          {
@@ -327,9 +324,6 @@ namespace Dotnet_frameworks_project.Seeders
                 }
 
 
-
-
-
                 List<string> supportedLanguages = new List<string>();
                 Language.AllLanguages = context.Language.ToList();
                 Language.LanguageDictionary = new Dictionary<string, Language>();
@@ -347,10 +341,10 @@ namespace Dotnet_frameworks_project.Seeders
                     {
 
 
-                        if (l.IsSystemLanguage)
+                        if (l.SystemLanguage)
                             Language.SystemLanguages.Add(l);
                         supportedLanguages.Add(l.Id);
-                        string[] even = l.Cultures.Split(";");
+                        string[] even = l.Culture.Split(";");
                         foreach (string e in even)
                         {
                             supportedLanguages.Add(l.Id + "-" + e);

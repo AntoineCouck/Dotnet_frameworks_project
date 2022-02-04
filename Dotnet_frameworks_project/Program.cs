@@ -34,7 +34,7 @@ builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
     options.Cookie.Name = "Logo_manager.Session";
-    options.IdleTimeout = TimeSpan.FromSeconds(10);
+    options.IdleTimeout = TimeSpan.FromHours(3);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
@@ -93,22 +93,21 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
 }
 app.UseStaticFiles();
-//voor de seeder 
 
+//voor de seeder 
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
     SeedDatabase.Initialize(services, userManager);
 }
-
 //voor de seeder
+
 var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture("en")
      .AddSupportedCultures(Language.SupportedLanguages)
      .AddSupportedUICultures(Language.SupportedLanguages);
 
 app.UseRequestLocalization(localizationOptions);
-
 
 app.UseRouting();
 app.UseAuthentication();

@@ -21,7 +21,7 @@ namespace Dotnet_frameworks_project.Controllers
         public IActionResult ChangeLanguage(string id, string returnUrl)
         {
             string culture = Thread.CurrentThread.CurrentCulture.ToString();
-            culture = id + culture.Substring(2);  // bv. als de cookie "en-US" bevat, en Nederlands wordt gekozen: --> "nl-US"
+            culture = id + culture.Substring(2);
 
             if (culture.Length != 5) culture = id;
 

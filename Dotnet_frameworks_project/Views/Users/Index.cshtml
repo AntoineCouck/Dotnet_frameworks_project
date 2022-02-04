@@ -142,7 +142,7 @@
    asp-route-userName=@ViewData["userName"] 
    asp-route-email=@ViewData["email"]
    asp-route-name=@ViewData["name"]
-   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-pageNumber="@(Model.Index - 1)"
    class="btn btn-default @prevDisabled">
    @Localizer["Previous"]
 </a>
@@ -150,7 +150,7 @@
    asp-route-userName=@ViewData["userName"] 
    asp-route-name=@ViewData["name"]
    asp-route-email=@ViewData["email"]
-   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-pageNumber="@(Model.Index + 1)"
    class="btn btn-default @nextDisabled">
    @Localizer["Next"]
 </a>

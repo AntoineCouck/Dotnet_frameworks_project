@@ -22,23 +22,24 @@ namespace Dotnet_frameworks_project.Controllers
         {
             var CookiesAccepted = _context.Users.Where(u => u.Id == _user.Id).Select(u => u.AcceptCookies);
 
-            foreach(var Accept in CookiesAccepted)
+            foreach (var Accept in CookiesAccepted)
             {
                 if (Accept == true)
                 {
-                   
 
-                    Cookie cookie = new Cookie("Username", _user.UserName );
+
+                    Cookie cookie = new Cookie("Username", _user.UserName);
                     ViewData["username"] = cookie.Value;
 
 
-                } else
+                }
+                else
                 {
 
 
                 }
             }
-          
+
             return View();
         }
 

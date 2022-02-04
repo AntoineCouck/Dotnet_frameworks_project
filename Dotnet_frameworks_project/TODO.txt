@@ -1,6 +1,4 @@
 
-
-
 - utiliser une session
 
 - regarder pour utiliser des cookies allieurs ? 

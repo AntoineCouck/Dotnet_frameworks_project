@@ -26,10 +26,7 @@ namespace Dotnet_frameworks_project.Controllers
             _Localizer = localizer;
             _userManager = userManager;
             _httpContextAccessor = httpContextAccessor;
-            //string? userName = _httpContextAccessor.HttpContext.User.Identity.Name;
-            //if (userName == null)
-            //    userName = "-";
-            //_user = _context.Users.FirstOrDefault(u => u.UserName == userName);
+
             _user = SessionUser.GetUser(httpContextAccessor.HttpContext);
         }
     }

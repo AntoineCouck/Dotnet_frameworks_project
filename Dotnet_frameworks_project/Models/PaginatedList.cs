@@ -4,13 +4,13 @@ namespace Dotnet_frameworks_project.Models
 {
     public class PaginatedList<T> : List<T>
     {
-        public int PageIndex { get; private set; }
-        public int TotalPages { get; private set; }
+        public int Index { get; private set; }
+        public int NumberOfPages { get; private set; }
 
         public PaginatedList(List<T> items, int count, int pageIndex, int pageSize)
         {
-            PageIndex = pageIndex;
-            TotalPages = (int)Math.Ceiling(count / (double)pageSize);
+            Index = pageIndex;
+            NumberOfPages = (int)Math.Ceiling(count / (double)pageSize);
 
             this.AddRange(items);
         }
@@ -19,7 +19,7 @@ namespace Dotnet_frameworks_project.Models
         {
             get
             {
-                return (PageIndex > 1);
+                return (Index > 1);
             }
         }
 
@@ -27,7 +27,7 @@ namespace Dotnet_frameworks_project.Models
         {
             get
             {
-                return (PageIndex < TotalPages);
+                return (Index < NumberOfPages);
             }
         }
 
