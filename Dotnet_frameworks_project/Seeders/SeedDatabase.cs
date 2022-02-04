@@ -165,33 +165,33 @@ namespace Dotnet_frameworks_project.Seeders
                     context.Patient.AddRange(
 
                       patient1 = new Patient
+                      {
+                          FirstName = "Jamy",
+                          LastName = "Wolf",
+                          Birthday = DateTime.Now,
+                          ParentsPhone = "0475214788",
+                          UserId = Logopedist.Id,
+                          LeftSessions = 4,
+                          InsuranceId = "Liberale mutualiteit",
+                          AccountId = ParentAccount1.Id,
+                          GenderId = 'M'
+
+
+                      },
+                        patient2 = new Patient
                         {
-                            FirstName = "Jamy",
-                            LastName = "Wolf",
+                            FirstName = "Melvin",
+                            LastName = "Kat",
                             Birthday = DateTime.Now,
                             ParentsPhone = "0475214788",
                             UserId = Logopedist.Id,
                             LeftSessions = 4,
-                            InsuranceId = "Liberale mutualiteit",
-                            AccountId = ParentAccount1.Id,
-                            GenderId = 'M'
+                            InsuranceId = "Socialistische mutualiteit",
+                            AccountId = ParentAccount2.Id,
+                            GenderId = 'F'
 
 
-                        },
-                        patient2 =  new Patient
-                         {
-                             FirstName = "Melvin",
-                             LastName = "Kat",
-                             Birthday = DateTime.Now,
-                             ParentsPhone = "0475214788",
-                             UserId = Logopedist.Id,
-                             LeftSessions = 4,
-                             InsuranceId = "Socialistische mutualiteit",
-                             AccountId = ParentAccount2.Id,
-                             GenderId = 'F'
-
-
-                         }
+                        }
 
 
                   );
