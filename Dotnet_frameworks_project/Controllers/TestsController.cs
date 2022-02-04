@@ -191,6 +191,12 @@ namespace Dotnet_frameworks_project.Controllers
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var test = await _context.Test.FindAsync(id);
+            var pt = _context.PassedTests.Where(u => u.TestId == test.Name).ToList();
+
+            foreach (var item in pt)
+            {
+                _context.PassedTests.Remove(item);
+            }
             _context.Test.Remove(test);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

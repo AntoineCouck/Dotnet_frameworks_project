@@ -181,6 +181,14 @@ namespace Dotnet_frameworks_project.Controllers
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var insurance = await _context.Insurance.FindAsync(id);
+
+            var p = _context.Patient.Where(u => u.InsuranceId == insurance.Name).ToList();
+
+            foreach (var item in p)
+            {
+                item.InsuranceId = null;
+            }
+
             _context.Insurance.Remove(insurance);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

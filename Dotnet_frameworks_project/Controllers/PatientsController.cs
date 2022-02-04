@@ -362,10 +362,19 @@ namespace Dotnet_frameworks_project.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var patient = await _context.Patient.FindAsync(id);
-
-
-
             var Account = _context.Users.Where(u => u.Id == patient.AccountId).ToList();
+            var fup = _context.FollowUp_patients.Where(u => u.PatientId == patient.Id).ToList();
+            var pt = _context.PassedTests.Where(u => u.PatientId == patient.Id).ToList();
+
+            foreach (var item in fup)
+            {
+                _context.FollowUp_patients.Remove(item);
+            }
+
+            foreach (var item in pt)
+            {
+                _context.PassedTests.Remove(item);
+            }
 
             _context.Patient.Remove(patient);
 

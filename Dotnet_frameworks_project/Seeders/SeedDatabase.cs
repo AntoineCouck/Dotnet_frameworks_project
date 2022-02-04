@@ -19,6 +19,8 @@ namespace Dotnet_frameworks_project.Seeders
                 ApplicationUser Logopedist = null;
                 ApplicationUser ParentAccount1 = null;
                 ApplicationUser ParentAccount2 = null;
+                Patient patient1 = null;
+                Patient patient2 = null;
 
 
                 context.Database.EnsureCreated();
@@ -162,7 +164,7 @@ namespace Dotnet_frameworks_project.Seeders
 
                     context.Patient.AddRange(
 
-                        new Patient
+                      patient1 = new Patient
                         {
                             FirstName = "Jamy",
                             LastName = "Wolf",
@@ -176,7 +178,7 @@ namespace Dotnet_frameworks_project.Seeders
 
 
                         },
-                         new Patient
+                        patient2 =  new Patient
                          {
                              FirstName = "Melvin",
                              LastName = "Kat",
@@ -225,8 +227,10 @@ namespace Dotnet_frameworks_project.Seeders
 
                 if (!context.PassedTests.Any())
                 {
+                    if (patient1 != null && patient2 != null)
+                    {
+                        context.PassedTests.AddRange(
 
-                    context.PassedTests.AddRange(
 
 
                         new PassedTests
@@ -243,6 +247,7 @@ namespace Dotnet_frameworks_project.Seeders
                             TestId = "Woordenpakket"
                         }
                   );
+                    }
 
                     context.SaveChanges();
                 }
@@ -274,26 +279,29 @@ namespace Dotnet_frameworks_project.Seeders
                 if (!context.FollowUp_patients.Any())
                 {
 
+                    if (patient1 != null && patient2 != null)
+                    {
 
-                    context.FollowUp_patients.AddRange(
-
-
-                        new FollowUp_patients
-                        {
-                            FollowUpId = "Logo dingo",
-                            PatientId = 1
-                        },
+                        context.FollowUp_patients.AddRange(
 
 
+                            new FollowUp_patients
+                            {
+                                FollowUpId = "Logo dingo",
+                                PatientId = 1
+                            },
 
-                        new FollowUp_patients
-                        {
-                            FollowUpId = "Kan niet tellen",
-                            PatientId = 2
-                        }
 
 
-                  );
+                            new FollowUp_patients
+                            {
+                                FollowUpId = "Kan niet tellen",
+                                PatientId = 2
+                            }
+
+
+                      );
+                    }
                 }
 
 
