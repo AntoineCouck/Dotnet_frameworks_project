@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dotnet_frameworks_project.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220204094252_initial")]
-    partial class initial
+    [Migration("20220204100016_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,7 +29,7 @@ namespace Dotnet_frameworks_project.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<bool?>("AcceptCookies")
+                    b.Property<bool>("AcceptCookies")
                         .HasColumnType("bit");
 
                     b.Property<int>("AccessFailedCount")

@@ -64,8 +64,8 @@ namespace Dotnet_frameworks_project.Seeders
                         LanguageId = "nl",
                         AcceptCookies = false,
                         Email = "System.administrator@studentenbeheer.be",
-                        EmailConfirmed = true, 
-                        
+                        EmailConfirmed = true,
+
                     };
 
                     userManager.CreateAsync(Logopedist, "Abc!12345");

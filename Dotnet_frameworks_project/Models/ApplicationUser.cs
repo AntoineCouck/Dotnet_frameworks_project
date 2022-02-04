@@ -12,7 +12,7 @@ public class ApplicationUser : IdentityUser
 
     public string? Lastname { get; set; }
 
-    public bool? AcceptCookies { get; set; }
+    public bool AcceptCookies { get; set; }
 
     [ForeignKey("Language")]
     public string? LanguageId { get; set; }
