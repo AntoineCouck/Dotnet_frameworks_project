@@ -3,7 +3,5 @@
 
 - regarder pour utiliser des cookies allieurs ? 
 
-- test (global) du site 
-
 - écrire un readme 
 

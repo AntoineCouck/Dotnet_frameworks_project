@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace Dotnet_frameworks_project.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -65,9 +66,9 @@ namespace Dotnet_frameworks_project.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(2)", maxLength: 2, nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Cultures = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsSystemLanguage = table.Column<bool>(type: "bit", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Culture = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SystemLanguage = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -181,17 +181,15 @@ namespace Dotnet_frameworks_project.Migrations
                         .HasMaxLength(2)
                         .HasColumnType("nvarchar(2)");
 
-                    b.Property<string>("Cultures")
-                        .IsRequired()
+                    b.Property<string>("Culture")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsSystemLanguage")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("SystemLanguage")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

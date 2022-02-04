@@ -58,13 +58,14 @@ namespace Dotnet_frameworks_project.Seeders
 
                     Logopedist = new ApplicationUser
                     {
-                        UserName = "Margot de logo",
+                        UserName = "Margot_de_logo",
                         Firstname = "Margot",
                         Lastname = "Delo",
-                        LanguageId = "fr",
+                        LanguageId = "nl",
                         AcceptCookies = false,
                         Email = "System.administrator@studentenbeheer.be",
-                        EmailConfirmed = true
+                        EmailConfirmed = true, 
+                        
                     };
 
                     userManager.CreateAsync(Logopedist, "Abc!12345");
@@ -192,6 +193,8 @@ namespace Dotnet_frameworks_project.Seeders
 
 
                   );
+
+                    context.SaveChanges();
                 }
 
                 if (!context.Test.Any())

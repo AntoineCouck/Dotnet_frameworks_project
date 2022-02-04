@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dotnet_frameworks_project.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220203143709_Initial")]
-    partial class Initial
+    [Migration("20220204094252_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -183,17 +183,15 @@ namespace Dotnet_frameworks_project.Migrations
                         .HasMaxLength(2)
                         .HasColumnType("nvarchar(2)");
 
-                    b.Property<string>("Cultures")
-                        .IsRequired()
+                    b.Property<string>("Culture")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsSystemLanguage")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("SystemLanguage")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
