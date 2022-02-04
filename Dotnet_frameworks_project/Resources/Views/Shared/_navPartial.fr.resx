@@ -126,11 +126,11 @@
   <data name="Add an insurance" xml:space="preserve">
     <value>Ajouter une mutuelle</value>
   </data>
-  <data name="Follow a new patient" xml:space="preserve">
-    <value>Suivre un nouveau patient</value>
-  </data>
-  <data name="Follow up management" xml:space="preserve">
+  <data name="Follow up types" xml:space="preserve">
     <value>Gestion des suivis </value>
+  </data>
+  <data name="Follow-ups" xml:space="preserve">
+    <value>Suivre un nouveau patient</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Menu principal</value>
